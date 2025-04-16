@@ -1,6 +1,8 @@
-// This is a test page for working out usability of the mazemap api
-// Copied directly from mazemap's dev api documentation
-// I imagine it works locally, however i use "python -m http.server 8000 &"
+<!-- 
+This is a test page for working out usability of the mazemap api
+Copied directly from mazemap's dev api documentation
+I imagine it works locally, however i use "python -m http.server 8000 &"
+-->
 <!DOCTYPE html>
 <head>
 	<meta name="viewport" id="vp" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
@@ -21,16 +23,19 @@
 	var map = new Mazemap.Map({
 		// container id specified in the HTML
 		container: 'map',
+		config: 'uwa',
 
-		campuses: 121,
+		// left over from example
+		// campuses: 121,
 
 		// initial position in lngLat format
-		// center: {lng: -31.979029010782348, lat: 115.81822363657551},
-		center: {lng: 13.270286316716465, lat: 52.502217640505705},
-		// initial zoom
-		zoom: 18,
+		// center: {lng: 13.270286316716465, lat: 52.502217640505705},
+		center: {lat: -31.979029010782348, lng: 115.81822363657551},
 
-		zLevel: 3
+		// initial zoom
+		zoom: 16,
+
+		zLevel: NaN
 	});
 
 	// Add zoom and rotation controls to the map.
