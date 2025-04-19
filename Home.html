@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="imgs/icon.jpg" type="image/x-icon" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="Home_css.css">
+  <script src="js/jquery.js"></script>
+  <title>gear up!</title>
+</head>
+
+<body>
+  <div class="container-fluid navbar-container">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-3">
+      <img src="imgs/uwa.png" alt="logo">
+    </div>
+    <div class="container">
+      <ul id="nav_bar">
+        <li class="slide1"></li>
+        <li class="slide2"></li>
+        <li><a href="#">Page A</a></li>
+        <li><a href="#">Page B</a></li>
+        <li><a href="#">Page C</a></li>
+        <li><a href="#">Page D</a></li>
+        <li><a href="#">Page E</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3">
+        <p>this is a test</p>
+      </div>
+      <div class="col-lg-6">
+        <div class="ratio ratio-16x9">
+          <iframe src="https://www.youtube.com/embed/RA2smjDsPHw" allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $("#nav_bar a").on("click", function () {
+      var position = $(this).parent().position();
+      var width = $(this).parent().width();
+      $("#nav_bar .slide1").css({ opacity: 1, left: +position.left, width: width });
+    });
+
+    $("#nav_bar a").on("mouseover", function () {
+      var position = $(this).parent().position();
+      var width = $(this).parent().width();
+      $("#nav_bar .slide2").css({ opacity: 1, left: +position.left, width: width }).addClass("squeeze");
+    });
+
+    $("#nav_bar a").on("mouseout", function () {
+      $("#nav_bar .slide2").css({ opacity: 0 }).removeClass("squeeze");
+    });
+
+    $(document).ready(function () {
+      var currentWidth = $("#nav_bar li:nth-of-type(3) a").parent("li").width();
+      var currentLeft = $("#nav_bar li:nth-of-type(3) a").parent("li").position().left;
+      $("#nav_bar .slide1").css({ left: currentLeft, width: currentWidth });
+    });
+  </script>
+</body>
+
+</html>
