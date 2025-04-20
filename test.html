@@ -1,27 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login Form</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css" >
-</head>
-<body class="bg-light d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
-  <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
-    <h2 class="text-center mb-4">Login</h2>
-    <form>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
-      </div>
-      <button type="submit" class="btn btn-primary w-100">Login</button>
-    </form>
-  </div>
+  <style>
+    .form-floating-input {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.enhanced-input {
+  width: 100%;
+  padding: 14px 12px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  background-color: white;
+  font-size: 1rem;
+}
+
+.enhanced-input:focus {
+  outline: none;
+  border-color: #003087;
+  box-shadow: 0 0 8px rgba(0, 48, 135, 0.3);
+}
+
+.form-floating-input label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  padding: 0 5px;
+  color: #aaa;
+  pointer-events: none;
+  transition: 0.2s ease;
+}
+
+.enhanced-input:focus + label,
+.enhanced-input:not(:placeholder-shown) + label {
+  top: 0;
+  font-size: 0.75rem;
+  color: #003087;
+  transform: translateY(-50%) scale(0.9);
+}
+
+  </style>
+</head>
+<body >
+
+ <!-- 登录按钮 -->
+ <div class="form-floating-input">
+  <input type="email" id="email" class="form-control enhanced-input" placeholder="Enter your Student-email" required>
+  <label for="email">Enter your Student-email</label>
+</div>
+
+<div class="form-floating-input">
+  <input type="password" id="password" class="form-control enhanced-input" placeholder="Enter your password" required>
+  <label for="password">Enter your password</label>
+</div>
 
 </body>
 </html>
