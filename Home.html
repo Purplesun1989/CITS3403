@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="icon" href="imgs/icon.png" type="image/x-icon" />
   <link rel="stylesheet" href="Home_css.css">
   <title>Too much fun !</title>
@@ -12,22 +13,202 @@
 
 <body>
   <div class="container-fluid" id="main-box">
-    <div class="row navbar-box">
-      <div class="col-12 test-box ">
-        <p>this is a test</p>
+    <div class="navbar-box row">
+      <div class="navleft-box col-md-5">
+        <div class="Home-box zoom-box">
+
+        </div>
+      </div>
+      <div class="search-box col-md-2">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="Search a spot !">
+        <div class="divider"></div>
+        <i class="bi bi-trash"></i>
+      </div>
+      <div class="navright-box col-md-5">
+        <div class="oval-box zoom-box"> <strong>Let's go super !</strong></div>
+        <i class="bi bi-bell notification-icon"></i>
+        <div class="profile-box zoom-box"></div>
+        <p>Hi,</p>
+        <p><strong>Group 94</strong></p>
+        <i class="bi bi-chevron-down"></i>
+
       </div>
     </div>
-    <div class=" row content-row">
-      <div class="col-lg-3 liked-box test-box">
-        <p>this is a test</p>
+    <div class="flex-content-row">
+      <div class="liked-box ">
+        <div class="liked-box-title">
+          <h3 class="fw-bold">Your liked spots</h3>
+          <div class="row">
+            <div class="category col-md-5">
+              <div class="category-items zoom-box">Study</div>
+              <div class="category-items zoom-box">Grub</div>
+              <div class="category-items zoom-box">Snap</div>
+              <div class="category-items zoom-box">Fun</div>
+              <div class="category-items zoom-box">Shop</div>
+              <div class="category-items zoom-box">Chill</div>
+            </div>
+          </div>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            const likediconUrls = [
+              'Assets/Fun/AQWA/P1040827.JPG',
+              'Assets/Fun/Beach_Club/P1040031.JPG',
+              'Assets/Fun/Causeway_Bridge/P1038620.JPG',
+              'Assets/Grub/Bangkok_bros/图片_20250423152049.jpg',
+              'Assets/Study/Ezone/图片_20250423152245.jpg',
+              'Assets/Grub/The_shoe_bar/图片_20250423152248.jpg',
+              'Assets/Snap/City_of_Fremantle/P1039326.JPG',
+              'Assets/Fun/Governor_House_opening_day/P1039926.JPG',
+              'Assets/Fun/Italy_Festival/图片_20250423152304.jpg',
+              'Assets/Chill/Johns_national_park/图片_20250423152102.jpg',
+              'Assets/Chill/Hillarys_Beach/P1040862.JPG',
+              'Assets/Chill/Great_Court_South/P1038411.JPG',
+              'Assets/Snap/City_of_Perth/P1038754.JPG',
+              'Assets/Shop/London_Street/图片_20250423152302.jpg'
+            ];
+
+            const likedlisticons = document.querySelectorAll('.likedlist-icon');
+            likedlisticons.forEach((item, index) => {
+              if (likediconUrls[index]) {
+                item.style.backgroundImage = `url('${likediconUrls[index]}')`;
+              }
+            });
+          });
+        </script>
+
+        <div class="liked-box-content scroll-box">
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+        </div>
       </div>
-      <div class="col-lg-6 Gallery-box test-box">
-        <p>this is a test</p>
+      <div class=" gallery-box test-box">
       </div>
-      <div class="col-lg-3 lastviewd-box test-box">
-        <p>this is a test</p>
+      <div class="lastviewd-box test-box">
       </div>
     </div>
+    <footer class="footer-box">
+      <div class="container">
+        <div class="row text-white py-4">
+          <div class="col-12 col-md-4 mb-4 mb-md-0">
+            <h5 class="fw-bold">U-Pal</h5>
+            <p class="mb-1">Discover your best uni life —</p>
+            <p>explore, eat, learn, connect.</p>
+          </div>
+
+          <div class="col-6 col-md-4 mb-4 mb-md-0">
+            <h5 class="fw-bold">QUICK LINKS</h5>
+            <ul class="list-unstyled">
+              <li><a href="#" class="footer-link">Home</a></li>
+              <li><a href="#" class="footer-link">About</a></li>
+              <li><a href="#" class="footer-link">Careers</a></li>
+              <li><a href="#" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-md-4">
+            <h5 class="fw-bold">FOLLOW US</h5>
+            <div class="social-icons mt-2">
+              <i class="bi bi-facebook"></i>
+              <i class="bi bi-twitter"></i>
+              <i class="bi bi-instagram"></i>
+              <i class="bi bi-wechat"></i>
+            </div>
+          </div>
+        </div>
+
+        <hr class="border-secondary">
+
+        <div class="text-center text-white pb-3">
+          <small>© 2025 U-Pal. All rights reserved.</small>
+        </div>
+      </div>
+    </footer>
+
+
   </div>
 </body>
 

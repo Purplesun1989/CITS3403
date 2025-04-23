@@ -6,39 +6,308 @@ html,
 body {
   height: 100%;
   margin: 0;
-  /* 清除默认 margin */
   padding: 0;
-  /* 可选，保持干净 */
-}
 
-.test-box {
-  border: 5px solid #010101;
 }
 
 #main-box {
-  border: 5px solid #2dee0a;
   width: 100%;
+  height: 115%;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+}
+
+
+.test-box {
+  border: #0a8503 solid 10px;
+}
+
+.flex-content-row {
+  /* flex: 1; */
+  padding: 10px;
+  background-color: #121212;
+  display: flex;
+  justify-content: space-between;
+  height: 90%;
+}
+
+
+.navbar-box {
+  height: 4%;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-box {
+  background-color: #fffbf0;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  padding: 6px 20px;
+  gap: 5%;
+  margin-top: 3px;
+}
+
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: rgb(0, 0, 0);
+  outline: none;
+  padding: 6px 10px;
+}
+
+.search-box .divider {
+  height: 100%;
+  width: 1px;
+  background-color: #090909;
+}
+
+.navright-box {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: rgb(0, 0, 0);
+}
+
+.profile-box {
+  height: 70%;
+  aspect-ratio: 1 / 1;
+  background-color: #3498db;
+  border-radius: 50%;
+  background-image: url("imgs/Login/Default_user.jfif");
+  background-size: cover;
+  background-position: center;
+  margin-top: 3px;
+  /* border: #000000 solid 5px; */
+}
+
+.navright-box p {
+  color: #fffbf0;
+  font-size: 15px;
+  margin: 0 10px;
+}
+
+
+.notification-icon {
+  position: relative;
+  font-size: 30px;
+  cursor: pointer;
+  color: #fffbf0;
+  margin: 0 20px;
+}
+
+.notification-icon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.oval-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fffbf0;
+  border-radius: 999px;
+  margin: 0px 5px;
+  height: 55%;
+  aspect-ratio: 5/1;
+}
+
+.navleft-box {
+  background-color: rgb(0, 0, 0);
   height: 100%;
 }
-.content-row {
+
+.Home-box {
   display: flex;
-  height: 90%;
-  border: 10px solid #1b07b5;
-}
-.navbar-box {
-  border: 10px solid #2dee0a;
-  width: 100%;
-  height: 10%;
+  background-color: #fffbf0;
+  border-radius: 50%;
+  height: 70%;
+  aspect-ratio: 1 / 1;
+  margin-top: 10px;
+  margin-left: 20px;
+  background-image: url("imgs/icon.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .lastviewd-box {
   display: flex;
+  background-color: #121212;
+  border-radius: 10px;
+  width: 10%;
 }
 
 .liked-box {
   display: flex;
+  flex-direction: column;
+  background-color: #121212;
+  border-radius: 10px;
+  width: 20%;
+}
+
+.liked-box-title {
+  position: relative;
+  font-size: 20px;
+  margin-bottom: 8px;
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: 3px;
+  height: 10%;
+  border-radius: 10px;
+  background-color: #a42423;
+  color: #fffbf0;
+}
+
+.liked-box-title h3 {
+  margin: 10px 10px;
+}
+
+.category {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 40%;
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.category-items {
+  position: relative;
+  height: 70%;
+  aspect-ratio: 1.5/1;
+  border-radius: 999px;
+  background-color: #003153;
+  margin-left: 3px;
+  margin-right: 3px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.liked-box-content {
+  background-color: #121212;
+  height: 90%;
+  margin: 0px 3px;
+  color: #e0e0e0;
+}
+
+.liked-box-items {
+  height: 8%;
+  width: 100%;
+  margin: 3px 5px;
+  background-color: #121212;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 15px;
+  padding-right: 10%;
+}
+
+.liked-box-items:hover {
+  background-color: #2a2a2a;
+}
+
+.likedlist-icon {
+  height: 90%;
+  aspect-ratio: 1/1;
+  margin: 100px 3px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+}
+
+.likedlist-text {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10%;
+
+}
+
+.heart-icon {
+  font-size: 1 rem;
+  cursor: pointer;
+  color: #e63946;
+  margin-right: 20px;
 }
 
 .gallery-box {
   display: flex;
+  background-color: #121212;
+  border-radius: 10px;
+  margin: 0px 5px;
+  width: 70%;
+}
+
+.zoom-box {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.zoom-box:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.footer-box {
+  display: flex;
+  background-color: #1f1f1f;
+  height: auto;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: #e0e0e0;
+  transition: color 0.3s;
+}
+
+.footer-link:hover {
+  color: white;
+}
+
+.social-icons i {
+  font-size: 20px;
+  margin-right: 15px;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.social-icons i:hover {
+  transform: scale(1.2);
+  color: white;
+}
+
+.scroll-box {
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.scroll-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-box::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
 }
