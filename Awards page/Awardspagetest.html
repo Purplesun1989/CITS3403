@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="Styles_Test.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Awards page</title>
+
+</head>
+<body>
+    <div class="menu-bar">
+        <a href="#"><i class="fa fa-home"></i></a>
+        <a href="#"><i class="fa fa-trophy"></i></a>
+        <a href="#"><i class="fa fa-bookmark"></i></a>
+        <a href="#"><i class="fa fa-search"></i></a>
+    </div> 
+
+    <div class="image-container">
+        <img src="Header1.jpg" alt="Description of the image" class= "image_bar">
+        <div class="text-over-image">Awards</div>
+    </div>
+          
+    <div class="main-container">
+        <div class="selection-buttons">
+            <button id="unitAwardsButton">Unit Awards</button>
+            <button id="clubAwardsButton">Club Awards</button>
+            <button id="studySpotsButton">Study Spots</button>
+            <button id="sweetTreatsButton">Sweet Treats</button>
+        </div>
+
+        <div class="awards-container">
+
+            <div id="unitAwards">
+                <ul>
+                    <li>
+                        Free HD
+                        <br>
+                        <img src="CITS3403.png">
+                    </li>
+                    <li>
+                        Most Interactive
+                        <br>
+                        <img src="CITS3403.png">
+                    </li>
+                    <li>
+                        Most Tears
+                        <br>
+                        <img src="CITS3403.png">
+                    </li>
+                    <li>
+                        Best Prof
+                        <br>
+                        <img src="CITS3403.png">
+                    </li>
+                </ul>
+            </div>
+
+            <div id="clubAwards" style="display:none;">
+                <ul>
+                    <li>
+                        Best Events
+                        <br>
+                        <img src="Sober.png">
+                    </li>
+                    <li>
+                        Most Connections
+                        <br>
+                        <img src="DESI.jpg">
+                    </li>
+                    <li>
+                        Internship Finder
+                        <br>
+                        <img src="URC.png">
+                    </li>
+                    <li>
+                        Best Community
+                        <br>
+                        <img src="robogals.png">
+                    </li>
+                </ul>
+            </div>
+
+            <div id="studySpots" style="display:none;">
+                <ul>
+                    <li>
+                        Quiet Corner
+                        <br>
+                        <img src="quiet_corner.jpg">
+                    </li>
+                    <li>
+                        Best Wi-Fi
+                        <br>
+                        <img src="best_wifi.jpg">
+                    </li>
+                    <li>
+                        Comfy Seating
+                        <br>
+                        <img src="comfy_seating.jpg">
+                    </li>
+                    <li>
+                        Late Night Spot
+                        <br>
+                        <img src="late_night_spot.jpg">
+                    </li>
+                </ul>
+            </div>
+
+            <div id="sweetTreats" style="display:none;">
+                <ul>
+                    <li>
+                        Cheapest Meals
+                        <br>
+                        <img src="best_cookies.jpg">
+                    </li>
+                    <li>
+                        Top Quality
+                        <br>
+                        <img src="top_cupcakes.jpg">
+                    </li>
+                    <li>
+                        Best Sweet Treats
+                        <br>
+                        <img src="amazing_icecream.jpg">
+                    </li>
+                    <li>
+                        Best Vibe
+                        <br>
+                        <img src="delicious_donuts.jpg">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const unitAwardsButton = document.getElementById('unitAwardsButton');
+        const clubAwardsButton = document.getElementById('clubAwardsButton');
+        const studySpotsButton = document.getElementById('studySpotsButton');
+        const sweetTreatsButton = document.getElementById('sweetTreatsButton');
+
+        const unitAwards = document.getElementById('unitAwards');
+        const clubAwards = document.getElementById('clubAwards');
+        const studySpots = document.getElementById('studySpots');
+        const sweetTreats = document.getElementById('sweetTreats');
+
+        function hideAllAwards() {
+            unitAwards.style.display = 'none';
+            clubAwards.style.display = 'none';
+            studySpots.style.display = 'none';
+            sweetTreats.style.display = 'none';
+        }
+
+        unitAwardsButton.addEventListener('click', () => {
+            hideAllAwards();
+            unitAwards.style.display = 'block';
+        });
+
+        clubAwardsButton.addEventListener('click', () => {
+            hideAllAwards();
+            clubAwards.style.display = 'block';
+        });
+
+        studySpotsButton.addEventListener('click', () => {
+            hideAllAwards();
+            studySpots.style.display = 'block';
+        });
+
+        sweetTreatsButton.addEventListener('click', () => {
+            hideAllAwards();
+            sweetTreats.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
+
+
