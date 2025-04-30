@@ -33,24 +33,24 @@
             <div id="unitAwards">
                 <ul>
                     <li>
-                        Free HD
-                        <br>
                         <img src="CITS3403.png">
+                        <br>
+                        <button class="award-button" data-award="Free HD">Free HD</button>
                     </li>
                     <li>
-                        Most Interactive
-                        <br>
                         <img src="CITS3403.png">
+                        <br>
+                        <button class="award-button" data-award="Most Interactive">Most Interactive</button>
                     </li>
                     <li>
-                        Most Tears
-                        <br>
                         <img src="CITS3403.png">
+                        <br>
+                        <button class="award-button" data-award="Most Tears">Most Tears</button>
                     </li>
                     <li>
-                        Best Prof
-                        <br>
                         <img src="CITS3403.png">
+                        <br>
+                        <button class="award-button" data-award="Best Prof">Best Prof</button>
                     </li>
                 </ul>
             </div>
@@ -58,24 +58,24 @@
             <div id="clubAwards" style="display:none;">
                 <ul>
                     <li>
-                        Best Events
-                        <br>
                         <img src="Sober.png">
+                        <br>
+                        <button class="award-button" data-award="Best Events">Best Events</button>
                     </li>
                     <li>
-                        Most Connections
-                        <br>
                         <img src="DESI.jpg">
+                        <br>
+                        <button class="award-button" data-award="Most Connections">Most Connections</button>
                     </li>
                     <li>
-                        Internship Finder
-                        <br>
                         <img src="URC.png">
+                        <br>
+                        <button class="award-button" data-award="Internship Finder">Internship Finder</button>
                     </li>
                     <li>
-                        Best Community
-                        <br>
                         <img src="robogals.png">
+                        <br>
+                        <button class="award-button" data-award="Best Community">Best Community</button>
                     </li>
                 </ul>
             </div>
@@ -83,24 +83,24 @@
             <div id="studySpots" style="display:none;">
                 <ul>
                     <li>
-                        Quiet Corner
-                        <br>
                         <img src="quiet_corner.jpg">
+                        <br>
+                        <button class="award-button" data-award="Quiet Corner">Quiet Corner</button>
                     </li>
                     <li>
-                        Best Wi-Fi
-                        <br>
                         <img src="best_wifi.jpg">
+                        <br>
+                        <button class="award-button" data-award="Best Wi-Fi">Best Wi-Fi</button>
                     </li>
                     <li>
-                        Comfy Seating
-                        <br>
                         <img src="comfy_seating.jpg">
+                        <br>
+                        <button class="award-button" data-award="Comfy Seating">Comfy Seating</button>
                     </li>
                     <li>
-                        Late Night Spot
-                        <br>
                         <img src="late_night_spot.jpg">
+                        <br>
+                        <button class="award-button" data-award="Late Night Spot">Late Night Spot</button>
                     </li>
                 </ul>
             </div>
@@ -108,27 +108,34 @@
             <div id="sweetTreats" style="display:none;">
                 <ul>
                     <li>
-                        Cheapest Meals
-                        <br>
                         <img src="best_cookies.jpg">
+                        <br>
+                        <button class="award-button" data-award="Cheapest Meals">Cheapest Meals</button>
                     </li>
                     <li>
-                        Top Quality
-                        <br>
                         <img src="top_cupcakes.jpg">
+                        <br>
+                        <button class="award-button" data-award="Top Quality">Top Quality</button>
                     </li>
                     <li>
-                        Best Sweet Treats
-                        <br>
                         <img src="amazing_icecream.jpg">
+                        <br>
+                        <button class="award-button" data-award="Best Sweet Treats">Best Sweet Treats</button>
                     </li>
                     <li>
-                        Best Vibe
-                        <br>
                         <img src="delicious_donuts.jpg">
+                        <br>
+                        <button class="award-button" data-award="Best Vibe">Best Vibe</button>
                     </li>
                 </ul>
             </div>
+
+            <!-- Move the statistics container to the bottom -->
+            <div id="award-stats" style="display: none; margin-top: 20px; padding: 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+                <h3 id="award-title"></h3>
+                <p id="award-description"></p>
+            </div>
+
         </div>
     </div>
 
@@ -142,12 +149,16 @@
         const clubAwards = document.getElementById('clubAwards');
         const studySpots = document.getElementById('studySpots');
         const sweetTreats = document.getElementById('sweetTreats');
+        const awardStats = document.getElementById('award-stats');
+        const awardTitle = document.getElementById('award-title');
+        const awardDescription = document.getElementById('award-description');
 
         function hideAllAwards() {
             unitAwards.style.display = 'none';
             clubAwards.style.display = 'none';
             studySpots.style.display = 'none';
             sweetTreats.style.display = 'none';
+            awardStats.style.display = 'none';
         }
 
         unitAwardsButton.addEventListener('click', () => {
@@ -168,6 +179,15 @@
         sweetTreatsButton.addEventListener('click', () => {
             hideAllAwards();
             sweetTreats.style.display = 'block';
+        });
+
+        document.querySelectorAll('.award-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const award = button.getAttribute('data-award');
+                awardTitle.textContent = award;
+                awardDescription.textContent = `Statistics for ${award} will be displayed here.`;
+                awardStats.style.display = 'block';
+            });
         });
     </script>
 </body>
