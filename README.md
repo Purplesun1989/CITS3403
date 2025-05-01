@@ -6,6 +6,8 @@ Working Notes
 # Johen Notes
 4/19
 I finished the Login in page.
+4.30
+I conpressed the photos i provide before and finalized the home page.
 
 # Isaac Notes
 ## tue 29-04
