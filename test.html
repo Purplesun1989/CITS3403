@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>带下拉历史的搜索框示例</title>
+  <style>
+    /* 父容器相对定位 */
+    .search-wrapper {
+      position: relative;
+      width: 300px;
+      margin: 50px auto;
+    }
+
+    /* 搜索框样式 */
+    .search-wrapper input {
+      width: 100%;
+      padding: 8px 32px 8px 8px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    /* 下拉列表 */
+    .suggest-list {
+      position: absolute;
+      top: 100%;            /* 顶边对齐输入框底边 */
+      left: 0;
+      width: 100%;
+      max-height: 200px;    /* 超出可滚动 */
+      overflow-y: auto;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-top: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: none;        /* 默认隐藏 */
+      z-index: 10;
+    }
+
+    /* 每条建议 */
+    .suggest-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 8px;
+      cursor: pointer;
+    }
+    .suggest-item:hover {
+      background: #f5f5f5;
+    }
+
+    /* 左侧图标 */
+    .suggest-item .icon {
+      margin-right: 6px;
+      color: #666;
+      font-size: 12px;
+    }
+
+    /* 右侧“移除”按钮 */
+    .suggest-item .remove {
+      font-size: 12px;
+      color: #007bff;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+    .suggest-item .remove:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="search-wrapper">
+  <input type="text" id="search-input" placeholder="搜索..." autocomplete="off" />
+  <ul id="suggest-list" class="suggest-list"></ul>
+</div>
+
+<script>
+  (function() {
+    const input     = document.getElementById('search-input');
+    const listEl    = document.getElementById('suggest-list');
+    // 模拟历史数据，实际可从 localStorage 读取
+    let historyData = ['陆昊','王志安','刘仲敬','崔永元','uwa','文昭','官场'];
+
+    // 渲染列表
+    function renderList(filter = '') {
+      listEl.innerHTML = '';
+      historyData
+        .filter(item => item.includes(filter))
+        .forEach((item, idx) => {
+          const li = document.createElement('li');
+          li.className = 'suggest-item';
+          li.innerHTML = `
+            <span>
+              <span class="icon">⏱</span>
+              <span class="text">${item}</span>
+            </span>
+            <button class="remove" data-index="${idx}">移除</button>
+          `;
+          listEl.appendChild(li);
+        });
+      listEl.style.display = listEl.children.length ? 'block' : 'none';
+    }
+
+    // 输入框聚焦／输入时显示并过滤
+    input.addEventListener('focus', () => renderList(input.value.trim()));
+    input.addEventListener('input', () => renderList(input.value.trim()));
+
+    // 点击外部隐藏列表
+    document.addEventListener('click', e => {
+      if (!input.contains(e.target) && !listEl.contains(e.target)) {
+        listEl.style.display = 'none';
+      }
+    });
+
+    // 列表内委托：选中项 or 移除项
+    listEl.addEventListener('click', e => {
+      const li = e.target.closest('.suggest-item');
+      if (!li) return;
+
+      // 点击“移除”按钮
+      if (e.target.classList.contains('remove')) {
+        const idx = +e.target.dataset.index;
+        historyData.splice(idx, 1);
+        renderList(input.value.trim());
+      }
+      // 点击文字区：把内容填到输入框
+      else {
+        const text = li.querySelector('.text').textContent;
+        input.value = text;
+        listEl.style.display = 'none';
+        // 这里可以触发真正的搜索……
+        console.log('搜索：', text);
+      }
+    });
+
+    // 初次渲染（可省略，等 focus 时再渲染）
+    renderList();
+  })();
+</script>
+
+</body>
+</html>
