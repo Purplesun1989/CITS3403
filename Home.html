@@ -20,10 +20,10 @@
 <body>
   <div class="container-fluid" id="main-box">
     <div class="navbar-box row">
-      <div class="navleft-box col-md-5">
-        <div class="Home-box zoom-box">
+      <div class="navleft-box col-md-6">
+        <div class="Home-box zoom-box"></div>
+        <a href="data_entry.html"><i class="bi bi-star"></i></a>
 
-        </div>
       </div>
       <div class="search-box col-md-2">
         <i class="bi bi-search"></i>
@@ -32,7 +32,7 @@
         <i class="bi bi-trash"></i>
       </div>
 
-      <div class="navright-box col-md-5">
+      <div class="navright-box col-md-4">
         <i class="bi bi-bell notification-icon"></i>
         <div class="profile-box zoom-box"></div>
         <p>Hi,</p>
@@ -247,10 +247,18 @@
         </div>
       </div>
       <div class="when-search-box" style="display: none;">
+        
         <ul id="history-list" class="history-list"></ul>
+
+        <div class="filter-buttons">
+          <button class="filter-btn" data-category="study-spot"><i class="bi bi-book" style="padding-right: 10px;"></i>Study Spot</button>
+          <button class="filter-btn" data-category="food-places"><i class="bi bi-cup-straw" style="padding-right: 10px;"></i>Food Places</button>
+          <button class="filter-btn" data-category="units"><i class="bi bi-file-earmark-text" style="padding-right: 10px;"></i>Units</button>
+          <button class="filter-btn" data-category="events"><i class="bi bi-calendar-event" style="padding-right: 10px;"></i>Events</button>
+          <button class="filter-btn" data-category="organizations"><i class="bi bi-person-badge" style="padding-right: 10px;"></i>Organizations</button>
+        </div>
       </div>
     </div>
-
     <footer class="footer-box">
       <div class="container">
         <div class="row text-white py-4">
