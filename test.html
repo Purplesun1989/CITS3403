@@ -2,141 +2,56 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>带下拉历史的搜索框示例</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>简单数据分享 Demo</title>
   <style>
-    /* 父容器相对定位 */
-    .search-wrapper {
-      position: relative;
-      width: 300px;
-      margin: 50px auto;
-    }
-
-    /* 搜索框样式 */
-    .search-wrapper input {
-      width: 100%;
-      padding: 8px 32px 8px 8px;
-      box-sizing: border-box;
-      font-size: 14px;
-    }
-
-    /* 下拉列表 */
-    .suggest-list {
-      position: absolute;
-      top: 100%;            /* 顶边对齐输入框底边 */
-      left: 0;
-      width: 100%;
-      max-height: 200px;    /* 超出可滚动 */
-      overflow-y: auto;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-top: none;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      display: none;        /* 默认隐藏 */
-      z-index: 10;
-    }
-
-    /* 每条建议 */
-    .suggest-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 6px 8px;
-      cursor: pointer;
-    }
-    .suggest-item:hover {
-      background: #f5f5f5;
-    }
-
-    /* 左侧图标 */
-    .suggest-item .icon {
-      margin-right: 6px;
-      color: #666;
-      font-size: 12px;
-    }
-
-    /* 右侧“移除”按钮 */
-    .suggest-item .remove {
-      font-size: 12px;
-      color: #007bff;
-      border: none;
-      background: none;
-      cursor: pointer;
-    }
-    .suggest-item .remove:hover {
-      text-decoration: underline;
-    }
+    body { font-family: sans-serif; padding: 2rem; }
+    button { padding: 0.5rem 1rem; font-size: 1rem; }
+    pre { background: #f5f5f5; padding: 1rem; border-radius: 5px; }
   </style>
 </head>
 <body>
+  <h1>简单数据分享 Demo</h1>
+  <!-- 分享视图 -->
+  <div id="share-view">
+    <p>示例数据：<code>{ id: 'd123', text: '这是一段要分享的内容' }</code></p>
+    <button id="btnShare">生成分享链接</button>
+    <p id="result"></p>
+  </div>
 
-<div class="search-wrapper">
-  <input type="text" id="search-input" placeholder="搜索..." autocomplete="off" />
-  <ul id="suggest-list" class="suggest-list"></ul>
-</div>
+  <script>
+    // 示例数据
+    const sampleData = { id: 'd123', text: '这是一段要分享的内容' };
 
-<script>
-  (function() {
-    const input     = document.getElementById('search-input');
-    const listEl    = document.getElementById('suggest-list');
-    // 模拟历史数据，实际可从 localStorage 读取
-    let historyData = ['陆昊','王志安','刘仲敬','崔永元','uwa','文昭','官场'];
-
-    // 渲染列表
-    function renderList(filter = '') {
-      listEl.innerHTML = '';
-      historyData
-        .filter(item => item.includes(filter))
-        .forEach((item, idx) => {
-          const li = document.createElement('li');
-          li.className = 'suggest-item';
-          li.innerHTML = `
-            <span>
-              <span class="icon">⏱</span>
-              <span class="text">${item}</span>
-            </span>
-            <button class="remove" data-index="${idx}">移除</button>
-          `;
-          listEl.appendChild(li);
-        });
-      listEl.style.display = listEl.children.length ? 'block' : 'none';
+    // 生成短 Token
+    function genToken() {
+      return Math.random().toString(36).substr(2, 8);
     }
 
-    // 输入框聚焦／输入时显示并过滤
-    input.addEventListener('focus', () => renderList(input.value.trim()));
-    input.addEventListener('input', () => renderList(input.value.trim()));
+    // 获取元素
+    const btn = document.getElementById('btnShare');
+    const resultP = document.getElementById('result');
+    const shareView = document.getElementById('share-view');
 
-    // 点击外部隐藏列表
-    document.addEventListener('click', e => {
-      if (!input.contains(e.target) && !listEl.contains(e.target)) {
-        listEl.style.display = 'none';
-      }
-    });
+    // 点击生成分享链接
+    btn.onclick = () => {
+      const token = genToken();
+      // 存到 localStorage
+      localStorage.setItem('share_' + token, JSON.stringify(sampleData));
+      const link = window.location.origin + window.location.pathname + '?token=' + token;
+      resultP.innerHTML = `<a href="${link}" target="_blank">${link}</a>`;
+    };
 
-    // 列表内委托：选中项 or 移除项
-    listEl.addEventListener('click', e => {
-      const li = e.target.closest('.suggest-item');
-      if (!li) return;
-
-      // 点击“移除”按钮
-      if (e.target.classList.contains('remove')) {
-        const idx = +e.target.dataset.index;
-        historyData.splice(idx, 1);
-        renderList(input.value.trim());
-      }
-      // 点击文字区：把内容填到输入框
-      else {
-        const text = li.querySelector('.text').textContent;
-        input.value = text;
-        listEl.style.display = 'none';
-        // 这里可以触发真正的搜索……
-        console.log('搜索：', text);
-      }
-    });
-
-    // 初次渲染（可省略，等 focus 时再渲染）
-    renderList();
-  })();
-</script>
-
+    // 如果 URL 有 token 参数，展示分享内容
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('token')) {
+      const token = params.get('token');
+      const stored = localStorage.getItem('share_' + token);
+      document.body.innerHTML = `
+        <h1>查看分享内容</h1>
+        <pre>${stored ? JSON.stringify(JSON.parse(stored), null, 2) : '分享内容不存在或已过期'}</pre>
+      `;
+    }
+  </script>
 </body>
 </html>
