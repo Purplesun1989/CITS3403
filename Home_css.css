@@ -25,12 +25,12 @@ body {
 }
 
 .flex-content-row {
-  /* flex: 1; */
   padding: 10px;
   background-color: #121212;
   display: flex;
   justify-content: space-between;
   height: 90%;
+  margin-top: 15px;
 }
 
 
@@ -47,9 +47,10 @@ body {
   border-radius: 999px;
   display: flex;
   align-items: center;
-  padding: 6px 20px;
+  padding: 0px 20px;
   gap: 5%;
-  margin-top: 3px;
+  margin-top: 10px;
+  position: relative;
 }
 
 .search-box input {
@@ -66,6 +67,7 @@ body {
   width: 1px;
   background-color: #090909;
 }
+
 
 .navright-box {
   height: 100%;
@@ -117,11 +119,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fffbf0;
+  background-color: #ffbd09;
   border-radius: 999px;
-  margin: 0px 5px;
-  height: 55%;
-  aspect-ratio: 5/1;
+  height: 40px;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .navleft-box {
@@ -143,12 +148,6 @@ body {
   background-repeat: no-repeat;
 }
 
-.lastviewd-box {
-  display: flex;
-  background-color: #121212;
-  border-radius: 10px;
-  width: 10%;
-}
 
 .liked-box {
   display: flex;
@@ -253,22 +252,19 @@ body {
 }
 
 .gallery-box {
-  display: flex;
   flex-direction: column;
   background-color: #121212;
   border-radius: 10px;
   margin: 0px 5px;
-  width: 75%;
+  width: 85%;
+  max-height: 100vh;
+  display: block;
 }
 
-.gallery-category {
-  justify-content: flex-start;
-  display: flex;
-  padding: 0px 50px;
-  margin: 10px 0px;
-  height: 30vh;
-  position: relative;
-  color: #ffffff;
+.gallery-map-box {
+  height: 40%;
+  width: auto;
+  margin: 5% 15% 5% 15%;
 }
 
 .gallery-items {
@@ -281,31 +277,50 @@ body {
   flex-direction: column;
 }
 
-
-.gallery-category h2 {
-  position: sticky;
-  top: 0px;
-  left: 0px;
-  z-index: 1000;
-  color: rgba(255, 255, 255, 1);
-}
-
-.round-imgs {
-  border-radius: 50%;
-  border: #1f1f1f 10px solid;
-  height: 70%;
-  margin-bottom: 20px;
-  aspect-ratio: 1/1;
-}
-
 .square-imgs {
-  border-radius: 50%;
   border: #1f1f1f 5px solid;
-  height: 50%;
-  margin-bottom: 20px;
+  height: 100%;
   aspect-ratio: 1/1;
-  border-radius: 20px;
+  border-radius: 10px;
+  max-height: 150px;
 }
+
+.gallery-top5-box {
+  margin-left: 11%;
+  margin-right: 15%;
+  height: 40%;
+  margin-bottom: 20px;
+}
+
+.gallery-popular-box {
+  margin-top: 5%;
+  margin-left: 15%;
+  margin-right: 15%;
+  height: 15%;
+  display: flex;
+}
+
+.half {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50%;
+  color: #e0e0e0;
+}
+
+.gallery-linechart-box {
+  margin: 0 15%;
+  padding: 10px;
+  min-height: 300px;
+  position: relative;
+  height: 45%;
+}
+
+.gallery-linechart-box canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 
 .zoom-box {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -347,7 +362,7 @@ body {
 }
 
 .scroll-box {
-  max-height: 100vh;
+  max-height: 150vh;
   overflow-y: auto;
   border-radius: 8px;
   scrollbar-width: none;
