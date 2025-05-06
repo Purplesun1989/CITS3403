@@ -81,32 +81,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.querySelector('.search-box input');
-  const gallery = document.querySelector('.specific-display-boxx');
+  const gallery = document.querySelector('.specific-display-box');
   const when_search = document.querySelector('.when-search-box');
+  const comments = document.querySelector('.comment-section-box');
 
   input.addEventListener('focus', () => {
     gallery.style.display = 'none';
     when_search.style.display = 'block';
+    comments.style.display ='none';
   });
 
   document.addEventListener('click', e => {
     if (!input.contains(e.target) && !when_search.contains(e.target)) {
       when_search.style.display = 'none';
       gallery.style.display = 'block';
+      comments.style.display = 'block';
     }
   });
 });
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  var map = L.map('spe-map').setView([-31.97903, 115.81822], 16);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
 
-  var marker = L.marker([-31.9795, 115.8187]).addTo(map);
-  marker.bindPopup('<b>秃顶在此！</b>').openPopup();
-});
 
 document.addEventListener('DOMContentLoaded', function () {
   // 三张图各自的配置：容器 id、标题、和数据
@@ -195,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     wrapper.className = 'thumb-item';
     const img = document.createElement('img');
     img.src = src;
-    img.alt = `Thumb ${idx+1}`;
+    img.alt = `Thumb ${idx + 1}`;
     img.addEventListener('click', () => showImage(idx));
     wrapper.appendChild(img);
     thumbsContainer.appendChild(wrapper);
@@ -219,6 +214,91 @@ document.addEventListener('DOMContentLoaded', () => {
   // 初始化第一张
   showImage(0);
 });
+
+
+// Ratings Data
+const ratingsData = [
+  { name: "Cleanliness", left: "Dirty", right: "Spotless", score: 8 },
+  { name: "Atmosphere", left: "Unpleasant", right: "Welcoming", score: 7 },
+  { name: "Comfort", left: "Uncomfortable", right: "Cozy", score: 9 },
+  { name: "Accessibility", left: "Inconvenient", right: "Convenient", score: 8 },
+  { name: "Value", left: "Overpriced", right: "Worth It", score: 7 },
+  { name: "Service Quality", left: "Poor", right: "Excellent", score: 9 },
+  { name: "Noise Level", left: "Too Loud", right: "Quiet", score: 6 },
+  { name: "Crowdedness", left: "Too Crowded", right: "Spacious", score: 5 },
+];
+
+function createSlider(id, value) {
+  const slider = document.getElementById(id);
+  noUiSlider.create(slider, {
+    start: [value],
+    range: { min: 0, max: 10 },
+    step: 1,
+    connect: [true, false],
+    tooltips: true,
+    behaviour: "none",
+    format: { to: v => Math.round(v), from: v => Number(v) }
+  });
+  slider.setAttribute('disabled', true);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('ratings-container');
+  ratingsData.forEach((rating, idx) => {
+    const card = document.createElement('div');
+    card.className = 'rating-card';
+    card.innerHTML = `
+          <div class="rating-label">${rating.name}</div>
+          <div class="d-flex align-items-center">
+            <div class="label-left text-muted">${rating.left}</div>
+            <div id="slider${idx}" class="slider-wrapper"></div>
+            <div class="label-right text-muted">${rating.right}</div>
+          </div>
+        `;
+    container.appendChild(card);
+    createSlider(`slider${idx}`, rating.score);
+  });
+});
+
+function creatbar(id) {
+  const slider = document.getElementById(id);
+  noUiSlider.create(slider, {
+    start: [5],
+    range: { min: 0, max: 10 },
+    step: 1,
+    connect: [true, false],
+    tooltips: true,
+    format: { to: v => Math.round(v), from: v => Number(v) }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const uploadcontainer = document.getElementById('upload-bar-box');
+  ratingsData.forEach((upload, idx) => {
+    const card = document.createElement('div');
+    card.classList = 'rating-card';
+    card.innerHTML = `
+            <div class="rating-label">${upload.name}</div>
+            <div class="d-flex align-items-center">
+            <div class="label-left text-muted">${upload.left}</div>
+            <div id="upload-slider${idx}" class="slider-wrapper"></div>
+            <div class="label-right text-muted">${upload.right}</div>
+          </div>
+        `;
+    uploadcontainer.appendChild(card);
+    creatbar(`upload-slider${idx}`);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  var map = L.map('spe-map').setView([-31.97903, 115.81822], 16);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+  L.marker([-31.9795, 115.8187]).addTo(map)
+    .bindPopup('<b>I am here!</b>').openPopup();
+});
+
 
 
 

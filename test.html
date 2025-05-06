@@ -1,57 +1,134 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>简单数据分享 Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit Your Review</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- noUiSlider CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.css" rel="stylesheet"/>
+
+  <!-- AOS Animation CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+
   <style>
-    body { font-family: sans-serif; padding: 2rem; }
-    button { padding: 0.5rem 1rem; font-size: 1rem; }
-    pre { background: #f5f5f5; padding: 1rem; border-radius: 5px; }
+    body {
+      background-color: #f8f9fa;
+    }
+    .slider-label-left, .slider-label-right {
+      width: 80px;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    #sliders-container .mb-4 {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    textarea {
+      height: 120px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    button {
+      transition: transform 0.2s ease;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
-  <h1>简单数据分享 Demo</h1>
-  <!-- 分享视图 -->
-  <div id="share-view">
-    <p>示例数据：<code>{ id: 'd123', text: '这是一段要分享的内容' }</code></p>
-    <button id="btnShare">生成分享链接</button>
-    <p id="result"></p>
+  <div class="container my-5">
+    <h2 class="mb-4" data-aos="zoom-in">Submit Your Review</h2>
+    <form id="review-form" data-aos="fade-up">
+      <div id="sliders-container"></div>
+
+      <div class="mb-4" data-aos="fade-up">
+        <label for="comment" class="form-label">Your Comment</label>
+        <textarea class="form-control" id="comment" maxlength="100"></textarea>
+        <div id="char-count" class="form-text text-end">0/100</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" data-aos="zoom-in">Submit</button>
+    </form>
   </div>
 
+  <!-- noUiSlider JS -->
+  <script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init();</script>
+
   <script>
-    // 示例数据
-    const sampleData = { id: 'd123', text: '这是一段要分享的内容' };
+    const ratingsData = [
+      { name: "Cleanliness", left: "Dirty", right: "Spotless" },
+      { name: "Atmosphere", left: "Unpleasant", right: "Welcoming" },
+      { name: "Comfort", left: "Uncomfortable", right: "Cozy" },
+      { name: "Accessibility", left: "Inconvenient", right: "Convenient" },
+      { name: "Value", left: "Overpriced", right: "Worth It" },
+      { name: "Service Quality", left: "Poor", right: "Excellent" },
+      { name: "Noise Level", left: "Too Loud", right: "Quiet" },
+      { name: "Crowdedness", left: "Too Crowded", right: "Spacious" }
+    ];
 
-    // 生成短 Token
-    function genToken() {
-      return Math.random().toString(36).substr(2, 8);
-    }
+    const sliders = {};
 
-    // 获取元素
-    const btn = document.getElementById('btnShare');
-    const resultP = document.getElementById('result');
-    const shareView = document.getElementById('share-view');
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('sliders-container');
 
-    // 点击生成分享链接
-    btn.onclick = () => {
-      const token = genToken();
-      // 存到 localStorage
-      localStorage.setItem('share_' + token, JSON.stringify(sampleData));
-      const link = window.location.origin + window.location.pathname + '?token=' + token;
-      resultP.innerHTML = `<a href="${link}" target="_blank">${link}</a>`;
-    };
+      ratingsData.forEach((rating, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'mb-4';
+        wrapper.setAttribute('data-aos', 'fade-up');
+        wrapper.innerHTML = `
+          <label class="form-label fw-bold">${rating.name}</label>
+          <div class="d-flex align-items-center">
+            <div class="slider-label-left text-muted me-2">${rating.left}</div>
+            <div id="slider${idx}" class="flex-grow-1"></div>
+            <div class="slider-label-right text-muted ms-2">${rating.right}</div>
+          </div>
+        `;
+        container.appendChild(wrapper);
 
-    // 如果 URL 有 token 参数，展示分享内容
-    const params = new URLSearchParams(window.location.search);
-    if (params.has('token')) {
-      const token = params.get('token');
-      const stored = localStorage.getItem('share_' + token);
-      document.body.innerHTML = `
-        <h1>查看分享内容</h1>
-        <pre>${stored ? JSON.stringify(JSON.parse(stored), null, 2) : '分享内容不存在或已过期'}</pre>
-      `;
-    }
+        const sliderEl = document.getElementById(`slider${idx}`);
+        noUiSlider.create(sliderEl, {
+          start: [5],
+          connect: [true, false],
+          range: { min: 0, max: 10 },
+          step: 1,
+          tooltips: true,
+          format: {
+            to: v => Math.round(v),
+            from: v => Number(v)
+          }
+        });
+        sliders[rating.name] = sliderEl.noUiSlider;
+      });
+
+      const commentEl = document.getElementById('comment');
+      const countEl = document.getElementById('char-count');
+      commentEl.addEventListener('input', () => {
+        countEl.textContent = `${commentEl.value.length}/100`;
+      });
+
+      document.getElementById('review-form').addEventListener('submit', e => {
+        e.preventDefault();
+        const result = {};
+        for (const key in sliders) {
+          result[key] = sliders[key].get();
+        }
+        result.comment = commentEl.value;
+        console.log('Review submitted:', result);
+        alert('Review submitted!\n' + JSON.stringify(result, null, 2));
+      });
+    });
   </script>
 </body>
 </html>
