@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="data_entry.css">
+  <link rel="stylesheet" href="Data Entry/data_entry.css">
   <title>Submit a Review</title>
 </head>
 <body>
@@ -11,17 +11,23 @@
   <h1>Enter Your Review</h1>
 
   <div class="category-buttons">
-    <button onclick="showForm('studySpotForm')">Study Spot</button>
-    <button onclick="showForm('foodForm')">Food</button>
-    <button onclick="showForm('unitsForm')">Units</button>
-    <button onclick="showForm('eventsForm')">Events</button>
-    <button onclick="showForm('collegesForm')">Colleges</button>
+    <a href="Data Entry/data_entry-studySpot.html"><button>Study Spot</button></a>
+    <a href="Data Entry/data_entry-foodPlace.html"><button>Food</button></a>
+    <a href="Data Entry/data_entry-units.html"><button>Units</button></a>
+    <a href="Data Entry/data_entry-events.html"><button>Events</button></a>
+    <a href="Data Entry/data_entry-organizations.html"><button>Organizations</button></a>
   </div>
 
   <form id="studySpotForm" class="review-form" style="display:none;">
     <h2>Study Spots</h2>
-    <label for="studyPlaceName">Place Name:</label>
-    <input type="text" id="studyPlaceName" name="studyPlaceName" required>
+    <label for="studyPlaceName">Choose a study place:</label>
+    <select id="studyPlaceName" name="studyPlaceName" required>
+      <option value="">-- Select --</option>
+      <option value="Reid Library">Reid Library</option>
+      <option value="Law Library">Law Library</option>
+      <option value="EZONE">EZONE</option>
+      <option value="Business School">Business School</option>
+    </select>
     <label for="studyLocation">Location:</label>
     <input type="text" id="studyLocation" name="studyLocation" required>
 
@@ -44,11 +50,38 @@
     </div>
       
     <div class="likert-question">
-        <div class="likert-title">Number of Seats Available</div>
+        <div class="likert-title">Amount of People Usually</div>
         <div class="likert-row">
             <span class="likert-label">Never Available</span>
             <input type="range" class="likert-slider" min="1" max="100" step="1" />
             <span class="likert-label">Always Some Available</span>
+        </div>
+    </div>
+
+    <div class="likert-question">
+        <div class="likert-title">Wi-Fi Strength</div>
+        <div class="likert-row">
+            <span class="likert-label">Weak</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Strong</span>
+        </div>
+    </div>
+
+    <div class="likert-question">
+        <div class="likert-title">Comfort</div>
+        <div class="likert-row">
+            <span class="likert-label">Disturbed</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Comfortable</span>
+        </div>
+    </div>
+
+    <div class="likert-question">
+        <div class="likert-title">Food/Drink Availability</div>
+        <div class="likert-row">
+            <span class="likert-label">Not Available</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Always Available</span>
         </div>
     </div>
 

@@ -35,11 +35,26 @@ body {
 
 
 .navbar-box {
-  height: 4%;
+  height: 5%;
   background-color: rgb(0, 0, 0);
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.navleft-box {
+  display: flex;
+}
+
+.navleft-box i {
+  margin-left: 15px;
+  font-size: 40px;
+  color: #444;
+  text-decoration: none;
+}
+
+.navleft-box i:hover {
+  color: #007bff;
 }
 
 .search-box {
@@ -68,6 +83,32 @@ body {
   background-color: #090909;
 }
 
+.filter-buttons {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
+  height: 500px;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-btn {
+  background-color: #ddd; /* Primary blue color */
+  color: #333; /* White text */
+  border: none;
+  padding: 8px 15px;
+  gap: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.filter-btn:hover {
+  background-color: #aaa; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
 
 .navright-box {
   height: 100%;

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="data_entry.css">
+  <title>Submit a Review</title>
+</head>
+<body>
+
+  <h1>Enter Your Review</h1>
+
+  <div class="category-buttons">
+    <a href="data_entry-studySpot.html"><button>Study Spot</button></a>
+    <a href="data_entry-foodPlace.html"><button>Food</button></a>
+    <a href="data_entry-units.html"><button>Units</button></a>
+    <a href="data_entry-events.html"><button>Events</button></a>
+    <a href="data_entry-organizations.html"><button>Organizations</button></a>
+  </div>
+
+  <form id="eventsForm" class="review-form">
+    <h2>Event Review</h2>
+    <label for="eventName">Event Name:</label>
+    <select id="eventName" name="eventName" required>
+        <option value="">-- Select --</option>
+        <option value="O-Day">O-Day</option>
+        <option value="Open Day">Open Day</option>
+        <option value="Autumn Feast">Autumn Feast</option>
+        <option value="Spring Feast">Spring Feast</option>
+        <option value="PROSH">PROSH</option>
+      </select>
+    <label for="eventOrganizer">Organization:</label>
+    <input type="text" id="eventOrganizer" name="eventOrganizer" required>
+    <label for="eventType">Type of Event:</label>
+    <input type="text" id="eventType" name="eventType" required>
+    
+    
+    <div class="likert-question">
+        <div class="likert-title">Participant Enthusiasm</div>
+        <div class="likert-row">
+            <span class="likert-label">Bad</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Great</span>
+        </div>
+    </div>
+
+    <div class="likert-question">
+        <div class="likert-title">Reliance on Interaction</div>
+        <div class="likert-row">
+            <span class="likert-label">Not so much</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Very reliant</span>
+        </div>
+    </div>
+
+    <div class="likert-question">
+        <div class="likert-title">Venue Quality</div>
+        <div class="likert-row">
+            <span class="likert-label">Bad</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Great</span>
+        </div>
+    </div>
+
+    <label for="eventRating">Rating (out of 5):</label>
+    <div class="star-rating">
+        <input type="radio" id="star1" name="studyRating" value="1" />
+        <label for="star1" class="star">&#9733;</label>
+
+        <input type="radio" id="star2" name="studyRating" value="2" />
+        <label for="star2" class="star">&#9733;</label>
+
+        <input type="radio" id="star3" name="studyRating" value="3" />
+        <label for="star3" class="star">&#9733;</label>
+
+        <input type="radio" id="star4" name="studyRating" value="4" />
+        <label for="star4" class="star">&#9733;</label>
+
+        <input type="radio" id="star5" name="studyRating" value="5" />
+        <label for="star5" class="star">&#9733;</label>
+    </div>    
+    <label for="eventReview">Other Comments:</label>
+    <textarea id="eventReview" name="eventReview" placeholder="Place your review here..." rows="4"></textarea>
+    <button type="submit">Submit Event Review</button>
+  </form>
+</body>
+</html>
