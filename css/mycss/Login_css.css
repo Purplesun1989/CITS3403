@@ -7,7 +7,7 @@
 body {
   min-height: 100vh;
   background-color: #d8dbe3;
-  background-image: url("imgs/Login/img2.jpg");
+  background-image: url("../../imgs/Login/img2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -124,7 +124,7 @@ body {
   height: 140px;
   margin: 0px 0px 0px 0px;
   border-radius: 50%;
-  background-image: url("imgs/Login/Default_user.jfif");
+  background-image: url("../../imgs/Login/Default_user.jfif");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

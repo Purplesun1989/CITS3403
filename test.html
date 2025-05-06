@@ -1,142 +1,134 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>带下拉历史的搜索框示例</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit Your Review</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- noUiSlider CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.css" rel="stylesheet"/>
+
+  <!-- AOS Animation CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+
   <style>
-    /* 父容器相对定位 */
-    .search-wrapper {
-      position: relative;
-      width: 300px;
-      margin: 50px auto;
+    body {
+      background-color: #f8f9fa;
     }
-
-    /* 搜索框样式 */
-    .search-wrapper input {
-      width: 100%;
-      padding: 8px 32px 8px 8px;
-      box-sizing: border-box;
-      font-size: 14px;
+    .slider-label-left, .slider-label-right {
+      width: 80px;
+      font-size: 0.9rem;
+      text-align: center;
     }
-
-    /* 下拉列表 */
-    .suggest-list {
-      position: absolute;
-      top: 100%;            /* 顶边对齐输入框底边 */
-      left: 0;
-      width: 100%;
-      max-height: 200px;    /* 超出可滚动 */
-      overflow-y: auto;
+    #sliders-container .mb-4 {
       background: #fff;
-      border: 1px solid #ccc;
-      border-top: none;
+      padding: 15px;
+      border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      display: none;        /* 默认隐藏 */
-      z-index: 10;
     }
-
-    /* 每条建议 */
-    .suggest-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 6px 8px;
-      cursor: pointer;
+    textarea {
+      height: 120px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .suggest-item:hover {
-      background: #f5f5f5;
+    button {
+      transition: transform 0.2s ease;
     }
-
-    /* 左侧图标 */
-    .suggest-item .icon {
-      margin-right: 6px;
-      color: #666;
-      font-size: 12px;
-    }
-
-    /* 右侧“移除”按钮 */
-    .suggest-item .remove {
-      font-size: 12px;
-      color: #007bff;
-      border: none;
-      background: none;
-      cursor: pointer;
-    }
-    .suggest-item .remove:hover {
-      text-decoration: underline;
+    button:hover {
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
+  <div class="container my-5">
+    <h2 class="mb-4" data-aos="zoom-in">Submit Your Review</h2>
+    <form id="review-form" data-aos="fade-up">
+      <div id="sliders-container"></div>
 
-<div class="search-wrapper">
-  <input type="text" id="search-input" placeholder="搜索..." autocomplete="off" />
-  <ul id="suggest-list" class="suggest-list"></ul>
-</div>
+      <div class="mb-4" data-aos="fade-up">
+        <label for="comment" class="form-label">Your Comment</label>
+        <textarea class="form-control" id="comment" maxlength="100"></textarea>
+        <div id="char-count" class="form-text text-end">0/100</div>
+      </div>
 
-<script>
-  (function() {
-    const input     = document.getElementById('search-input');
-    const listEl    = document.getElementById('suggest-list');
-    // 模拟历史数据，实际可从 localStorage 读取
-    let historyData = ['陆昊','王志安','刘仲敬','崔永元','uwa','文昭','官场'];
+      <button type="submit" class="btn btn-primary" data-aos="zoom-in">Submit</button>
+    </form>
+  </div>
 
-    // 渲染列表
-    function renderList(filter = '') {
-      listEl.innerHTML = '';
-      historyData
-        .filter(item => item.includes(filter))
-        .forEach((item, idx) => {
-          const li = document.createElement('li');
-          li.className = 'suggest-item';
-          li.innerHTML = `
-            <span>
-              <span class="icon">⏱</span>
-              <span class="text">${item}</span>
-            </span>
-            <button class="remove" data-index="${idx}">移除</button>
-          `;
-          listEl.appendChild(li);
+  <!-- noUiSlider JS -->
+  <script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init();</script>
+
+  <script>
+    const ratingsData = [
+      { name: "Cleanliness", left: "Dirty", right: "Spotless" },
+      { name: "Atmosphere", left: "Unpleasant", right: "Welcoming" },
+      { name: "Comfort", left: "Uncomfortable", right: "Cozy" },
+      { name: "Accessibility", left: "Inconvenient", right: "Convenient" },
+      { name: "Value", left: "Overpriced", right: "Worth It" },
+      { name: "Service Quality", left: "Poor", right: "Excellent" },
+      { name: "Noise Level", left: "Too Loud", right: "Quiet" },
+      { name: "Crowdedness", left: "Too Crowded", right: "Spacious" }
+    ];
+
+    const sliders = {};
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('sliders-container');
+
+      ratingsData.forEach((rating, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'mb-4';
+        wrapper.setAttribute('data-aos', 'fade-up');
+        wrapper.innerHTML = `
+          <label class="form-label fw-bold">${rating.name}</label>
+          <div class="d-flex align-items-center">
+            <div class="slider-label-left text-muted me-2">${rating.left}</div>
+            <div id="slider${idx}" class="flex-grow-1"></div>
+            <div class="slider-label-right text-muted ms-2">${rating.right}</div>
+          </div>
+        `;
+        container.appendChild(wrapper);
+
+        const sliderEl = document.getElementById(`slider${idx}`);
+        noUiSlider.create(sliderEl, {
+          start: [5],
+          connect: [true, false],
+          range: { min: 0, max: 10 },
+          step: 1,
+          tooltips: true,
+          format: {
+            to: v => Math.round(v),
+            from: v => Number(v)
+          }
         });
-      listEl.style.display = listEl.children.length ? 'block' : 'none';
-    }
+        sliders[rating.name] = sliderEl.noUiSlider;
+      });
 
-    // 输入框聚焦／输入时显示并过滤
-    input.addEventListener('focus', () => renderList(input.value.trim()));
-    input.addEventListener('input', () => renderList(input.value.trim()));
+      const commentEl = document.getElementById('comment');
+      const countEl = document.getElementById('char-count');
+      commentEl.addEventListener('input', () => {
+        countEl.textContent = `${commentEl.value.length}/100`;
+      });
 
-    // 点击外部隐藏列表
-    document.addEventListener('click', e => {
-      if (!input.contains(e.target) && !listEl.contains(e.target)) {
-        listEl.style.display = 'none';
-      }
+      document.getElementById('review-form').addEventListener('submit', e => {
+        e.preventDefault();
+        const result = {};
+        for (const key in sliders) {
+          result[key] = sliders[key].get();
+        }
+        result.comment = commentEl.value;
+        console.log('Review submitted:', result);
+        alert('Review submitted!\n' + JSON.stringify(result, null, 2));
+      });
     });
-
-    // 列表内委托：选中项 or 移除项
-    listEl.addEventListener('click', e => {
-      const li = e.target.closest('.suggest-item');
-      if (!li) return;
-
-      // 点击“移除”按钮
-      if (e.target.classList.contains('remove')) {
-        const idx = +e.target.dataset.index;
-        historyData.splice(idx, 1);
-        renderList(input.value.trim());
-      }
-      // 点击文字区：把内容填到输入框
-      else {
-        const text = li.querySelector('.text').textContent;
-        input.value = text;
-        listEl.style.display = 'none';
-        // 这里可以触发真正的搜索……
-        console.log('搜索：', text);
-      }
-    });
-
-    // 初次渲染（可省略，等 focus 时再渲染）
-    renderList();
-  })();
-</script>
-
+  </script>
 </body>
 </html>

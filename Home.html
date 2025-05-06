@@ -6,10 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="Search_specific.css">
+  <link rel="stylesheet" href="css/mycss/Search_specific.css">
   <link rel="icon" href="imgs/icon.png" type="image/x-icon" />
+<<<<<<< HEAD
   <link rel="stylesheet" href="Home_css.css">
   <link rel="stylesheet" href="Navbar_css.css">
+=======
+  <link rel="stylesheet" href="css/mycss/Home_css.css">
+>>>>>>> fb8031871da2067194594d2b4fa9187baaed4df3
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -253,6 +257,9 @@
           <button class="filter-btn" data-category="organizations"><i class="bi bi-person-badge" style="padding-right: 10px;"></i>Organizations</button>
         </div>
       </div>
+      <div class="specific-display-box" style="display: none;">
+        <ul id="history-list" class="history-list"></ul>
+      </div>
     </div>
     <footer class="footer-box">
       <div class="container">
@@ -484,7 +491,7 @@
   }).addTo(map);
 
   var marker = L.marker([-31.9795, 115.8187]).addTo(map);
-  marker.bindPopup('<b>秃顶在此！</b>').openPopup();
+  marker.bindPopup('<b>I am here !!!</b>').openPopup();
 
 
 </script>
