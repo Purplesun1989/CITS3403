@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="data_entry.css">
+  <title>Submit a Review</title>
+</head>
+<body>
+
+  <h1>Enter Your Review</h1>
+
+  <div class="category-buttons">
+    <a href="data_entry-studySpot.html"><button>Study Spot</button></a>
+    <a href="data_entry-foodPlace.html"><button>Food</button></a>
+    <a href="data_entry-units.html"><button>Units</button></a>
+    <a href="data_entry-events.html"><button>Events</button></a>
+    <a href="data_entry-organizations.html"><button>Organizations</button></a>
+  </div>
+
+  <form id="organizationForm" class="review-form">
+    <h2>Organization Review</h2>
+    <label for="organizationName">Organization Name:</label>
+    <select id="organizationName" name="organizationName" required>
+        <option value="">-- Select --</option>
+        <option value="Robotics Club">Robotics Club</option>
+        <option value="Sober?">Sober?</option>
+        <option value="Coders for Cause">Coders for Cause</option>
+        <option value="Data Science Club">Data Science Club</option>
+        <option value="Computer Science Society">Computer Science Society</option>
+      </select>
+    <label for="organizationType">Type:</label>
+    <input type="text" id="organizationType" name="organizationType" required>
+
+    <div class="likert-question">
+        <div class="likert-title">Frequency of Events</div>
+        <div class="likert-row">
+            <span class="likert-label">Rare</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Really Frequent</span>
+        </div>
+    </div>
+      
+    <div class="likert-question">
+        <div class="likert-title">Quality of Events</div>
+        <div class="likert-row">
+            <span class="likert-label">Bad</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Great</span>
+        </div>
+    </div>
+      
+    <div class="likert-question">
+        <div class="likert-title">Quality of Committee</div>
+        <div class="likert-row">
+            <span class="likert-label">Bad</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Great</span>
+        </div>
+    </div>
+
+    <div class="likert-question">
+        <div class="likert-title">Quality of Community</div>
+        <div class="likert-row">
+            <span class="likert-label">Bad</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Great</span>
+        </div>
+    </div>
+    
+    <label for="organizationRating">Rating (out of 5):</label>
+    <div class="star-rating">
+        <input type="radio" id="star1" name="studyRating" value="1" />
+        <label for="star1" class="star">&#9733;</label>
+
+        <input type="radio" id="star2" name="studyRating" value="2" />
+        <label for="star2" class="star">&#9733;</label>
+
+        <input type="radio" id="star3" name="studyRating" value="3" />
+        <label for="star3" class="star">&#9733;</label>
+
+        <input type="radio" id="star4" name="studyRating" value="4" />
+        <label for="star4" class="star">&#9733;</label>
+
+        <input type="radio" id="star5" name="studyRating" value="5" />
+        <label for="star5" class="star">&#9733;</label>
+    </div>    
+    <label for="organizationReview">Other Comments:</label>
+    <textarea id="organizationReview" name="organizationReview" placeholder="Place your review here..." rows="4"></textarea>
+    <button type="submit">Submit Organization Review</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="data_entry.css">
+  <title>Submit a Review</title>
+</head>
+<body>
+
+  <h1>Enter Your Review</h1>
+
+  <div class="category-buttons">
+    <a href="data_entry-studySpot.html"><button>Study Spot</button></a>
+    <a href="data_entry-foodPlace.html"><button>Food</button></a>
+    <a href="data_entry-units.html"><button>Units</button></a>
+    <a href="data_entry-events.html"><button>Events</button></a>
+    <a href="data_entry-organizations.html"><button>Organizations</button></a>
+  </div>
+
+  <form id="studySpotForm" class="review-form">
+    <h2>Study Spots</h2>
+    <label for="studyPlaceName">Choose a study place:</label>
+    <select id="studyPlaceName" name="studyPlaceName" required>
+      <option value="">-- Select --</option>
+      <option value="Reid Library">Reid Library</option>
+      <option value="Law Library">Law Library</option>
+      <option value="EZONE">EZONE</option>
+      <option value="Business School">Business School</option>
+    </select>
+    <label for="studyLocation">Location:</label>
+    <input type="text" id="studyLocation" name="studyLocation" required>
+
+    <div class="likert-question">
+        <div class="likert-title">Noise Level</div>
+        <div class="likert-row">
+            <span class="likert-label">Quiet</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Loud</span>
+        </div>
+    </div>
+      
+    <div class="likert-question">
+        <div class="likert-title">Space</div>
+        <div class="likert-row">
+            <span class="likert-label">Spacious</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Cramped</span>
+        </div>
+    </div>
+      
+    <div class="likert-question">
+        <div class="likert-title">Amount of People Usually</div>
+        <div class="likert-row">
+            <span class="likert-label">Low</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">High</span>
+        </div>
+    </div>
+
+    <div class="likert-question">
+        <div class="likert-title">Wi-Fi Strength</div>
+        <div class="likert-row">
+            <span class="likert-label">Weak</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Strong</span>
+        </div>
+    </div>
+
+    <div class="likert-question">
+        <div class="likert-title">Comfort</div>
+        <div class="likert-row">
+            <span class="likert-label">Disturbed</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Comfortable</span>
+        </div>
+    </div>
+
+    <div class="likert-question">
+        <div class="likert-title">Food/Drink Availability</div>
+        <div class="likert-row">
+            <span class="likert-label">Not Available</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Always Available</span>
+        </div>
+    </div>
+
+    <label for="studyRating">Rating (out of 5):</label>
+    <div class="star-rating">
+        <input type="radio" id="star1" name="studyRating" value="1" />
+        <label for="star1" class="star">&#9733;</label>
+
+        <input type="radio" id="star2" name="studyRating" value="2" />
+        <label for="star2" class="star">&#9733;</label>
+
+        <input type="radio" id="star3" name="studyRating" value="3" />
+        <label for="star3" class="star">&#9733;</label>
+
+        <input type="radio" id="star4" name="studyRating" value="4" />
+        <label for="star4" class="star">&#9733;</label>
+
+        <input type="radio" id="star5" name="studyRating" value="5" />
+        <label for="star5" class="star">&#9733;</label>
+    </div>
+    <label for="studyReview">Other Comments:</label>
+    <textarea id="studyReview" name="studyReview" placeholder="Place your review here..." rows="4"></textarea>
+    <button type="submit">Submit Study Spot Review</button>
+  </form>
+</body>
+</html>

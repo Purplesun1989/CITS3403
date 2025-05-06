@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="Data Entry/data_entry.css">
+  <title>Submit a Review</title>
+</head>
+<body>
+
+  <h1>Enter Your Review</h1>
+
+  <div class="category-buttons">
+    <a href="Data Entry/data_entry-studySpot.html"><button>Study Spot</button></a>
+    <a href="Data Entry/data_entry-foodPlace.html"><button>Food</button></a>
+    <a href="Data Entry/data_entry-units.html"><button>Units</button></a>
+    <a href="Data Entry/data_entry-events.html"><button>Events</button></a>
+    <a href="Data Entry/data_entry-organizations.html"><button>Organizations</button></a>
+  </div>
+
+  <form id="studySpotForm" class="review-form" style="display:none;">
+    <h2>Study Spots</h2>
+    <label for="studyPlaceName">Choose a study place:</label>
+    <select id="studyPlaceName" name="studyPlaceName" required>
+      <option value="">-- Select --</option>
+      <option value="Reid Library">Reid Library</option>
+      <option value="Law Library">Law Library</option>
+      <option value="EZONE">EZONE</option>
+      <option value="Business School">Business School</option>
+    </select>
+    <label for="studyLocation">Location:</label>
+    <input type="text" id="studyLocation" name="studyLocation" required>
+
+    <div class="likert-question">
+        <div class="likert-title">Noise Level</div>
+        <div class="likert-row">
+            <span class="likert-label">Quiet</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Loud</span>
+        </div>
+    </div>
+      
+    <div class="likert-question">
+        <div class="likert-title">Space</div>
+        <div class="likert-row">
+            <span class="likert-label">Spacious</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Cramped</span>
+        </div>
+    </div>
+      
+    <div class="likert-question">
+        <div class="likert-title">Amount of People Usually</div>
+        <div class="likert-row">
+            <span class="likert-label">Never Available</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Always Some Available</span>
+        </div>
+    </div>
+
+    <div class="likert-question">
+        <div class="likert-title">Wi-Fi Strength</div>
+        <div class="likert-row">
+            <span class="likert-label">Weak</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Strong</span>
+        </div>
+    </div>
+
+    <div class="likert-question">
+        <div class="likert-title">Comfort</div>
+        <div class="likert-row">
+            <span class="likert-label">Disturbed</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Comfortable</span>
+        </div>
+    </div>
+
+    <div class="likert-question">
+        <div class="likert-title">Food/Drink Availability</div>
+        <div class="likert-row">
+            <span class="likert-label">Not Available</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Always Available</span>
+        </div>
+    </div>
+
+    <label for="studyRating">Rating (out of 5):</label>
+    <div class="star-rating">
+        <input type="radio" id="star1" name="studyRating" value="1" />
+        <label for="star1" class="star">&#9733;</label>
+
+        <input type="radio" id="star2" name="studyRating" value="2" />
+        <label for="star2" class="star">&#9733;</label>
+
+        <input type="radio" id="star3" name="studyRating" value="3" />
+        <label for="star3" class="star">&#9733;</label>
+
+        <input type="radio" id="star4" name="studyRating" value="4" />
+        <label for="star4" class="star">&#9733;</label>
+
+        <input type="radio" id="star5" name="studyRating" value="5" />
+        <label for="star5" class="star">&#9733;</label>
+    </div>
+    <label for="studyReview">Other Comments:</label>
+    <textarea id="studyReview" name="studyReview" placeholder="Place your review here..." rows="4"></textarea>
+    <button type="submit">Submit Study Spot Review</button>
+  </form>
+
+  <form id="foodForm" class="review-form" style="display:none;">
+    <h2>Food Spots</h2>
+    <label for="foodPlaceName">Place Name:</label>
+    <input type="text" id="foodPlaceName" name="foodPlaceName" required>
+    <label for="foodLocation">Location:</label>
+    <input type="text" id="foodLocation" name="foodLocation" required>
+    
+    <div class="likert-question">
+        <div class="likert-title">Food Quality</div>
+        <div class="likert-row">
+            <span class="likert-label">Bad</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Really Good</span>
+        </div>
+    </div>
+      
+    <div class="likert-question">
+        <div class="likert-title">Ambiance</div>
+        <div class="likert-row">
+            <span class="likert-label">Bad Vibes</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Good Vibes</span>
+        </div>
+    </div>
+      
+    <div class="likert-question">
+        <div class="likert-title">Customer Service</div>
+        <div class="likert-row">
+            <span class="likert-label">Bad Experiences</span>
+            <input type="range" class="likert-slider" min="1" max="100" step="1" />
+            <span class="likert-label">Really Nice Staff</span>
+        </div>
+    </div>
+
+    <label for="foodRating">Rating (out of 5):</label>
+    <div class="star-rating">
+        <input type="radio" id="star1" name="studyRating" value="1" />
+        <label for="star1" class="star">&#9733;</label>
+
+        <input type="radio" id="star2" name="studyRating" value="2" />
+        <label for="star2" class="star">&#9733;</label>
+
+        <input type="radio" id="star3" name="studyRating" value="3" />
+        <label for="star3" class="star">&#9733;</label>
+
+        <input type="radio" id="star4" name="studyRating" value="4" />
+        <label for="star4" class="star">&#9733;</label>
+
+        <input type="radio" id="star5" name="studyRating" value="5" />
+        <label for="star5" class="star">&#9733;</label>
+    </div>    
+    
+    <label for="foodItem">Recommended Food Item:</label>
+    <input type="text" id="foodItem" name="foodItem" >
+    <label for="foodReview">Other Comments:</label>
+    <textarea id="foodReview" name="foodReview" placeholder="Place your review here..." rows="4"></textarea>
+    <button type="submit">Submit Food Review</button>
+  </form>
+
+  <form id="unitsForm" class="review-form" style="display:none;">
+    <h2>Units Review</h2>
+    <label for="unitPlaceName">Unit Name:</label>
+    <input type="text" id="unitPlaceName" name="unitPlaceName" required>
+    <label for="unitStudy">Area of Study:</label>
+    <input type="text" id="unitStudy" name="unitStudy" required>
+    <label for="unitRating">Rating (out of 5):</label>
+    <div class="star-rating">
+        <input type="radio" id="star1" name="studyRating" value="1" />
+        <label for="star1" class="star">&#9733;</label>
+
+        <input type="radio" id="star2" name="studyRating" value="2" />
+        <label for="star2" class="star">&#9733;</label>
+
+        <input type="radio" id="star3" name="studyRating" value="3" />
+        <label for="star3" class="star">&#9733;</label>
+
+        <input type="radio" id="star4" name="studyRating" value="4" />
+        <label for="star4" class="star">&#9733;</label>
+
+        <input type="radio" id="star5" name="studyRating" value="5" />
+        <label for="star5" class="star">&#9733;</label>
+    </div>    
+    <label for="unitReview">Other Comments:</label>
+    <textarea id="unitReview" name="unitReview" placeholder="Place your review here..." rows="4"></textarea>
+    <button type="submit">Submit Unit Review</button>
+  </form>
+
+  <form id="eventsForm" class="review-form" style="display:none;">
+    <h2>Event Review</h2>
+    <label for="eventName">Event Name:</label>
+    <input type="text" id="eventName" name="eventName" required>
+    <label for="eventOrganizer">Organization:</label>
+    <input type="text" id="eventOrganizer" name="eventOrganizer" required>
+    <label for="eventType">Type of Event:</label>
+    <input type="text" id="eventType" name="eventType" required>
+    <label for="eventRating">Rating (out of 5):</label>
+    <div class="star-rating">
+        <input type="radio" id="star1" name="studyRating" value="1" />
+        <label for="star1" class="star">&#9733;</label>
+
+        <input type="radio" id="star2" name="studyRating" value="2" />
+        <label for="star2" class="star">&#9733;</label>
+
+        <input type="radio" id="star3" name="studyRating" value="3" />
+        <label for="star3" class="star">&#9733;</label>
+
+        <input type="radio" id="star4" name="studyRating" value="4" />
+        <label for="star4" class="star">&#9733;</label>
+
+        <input type="radio" id="star5" name="studyRating" value="5" />
+        <label for="star5" class="star">&#9733;</label>
+    </div>    
+    <label for="eventReview">Other Comments:</label>
+    <textarea id="eventReview" name="eventReview" placeholder="Place your review here..." rows="4"></textarea>
+    <button type="submit">Submit Event Review</button>
+  </form>
+
+  <form id="collegesForm" class="review-form" style="display:none;">
+    <h2>College Review</h2>
+    <label for="collegeName">College Name:</label>
+    <input type="text" id="collegeName" name="collegeName" required>
+    <label for="collegeLocation">Location:</label>
+    <input type="text" id="collegeLocation" name="collegeLocation" required>
+    <label for="collegeRating">Rating (out of 5):</label>
+    <div class="star-rating">
+        <input type="radio" id="star1" name="studyRating" value="1" />
+        <label for="star1" class="star">&#9733;</label>
+
+        <input type="radio" id="star2" name="studyRating" value="2" />
+        <label for="star2" class="star">&#9733;</label>
+
+        <input type="radio" id="star3" name="studyRating" value="3" />
+        <label for="star3" class="star">&#9733;</label>
+
+        <input type="radio" id="star4" name="studyRating" value="4" />
+        <label for="star4" class="star">&#9733;</label>
+
+        <input type="radio" id="star5" name="studyRating" value="5" />
+        <label for="star5" class="star">&#9733;</label>
+    </div>    
+    <label for="collegeReview">Other Comments:</label>
+    <textarea id="collegeReview" name="collegeReview" placeholder="Place your review here..." rows="4"></textarea>
+    <button type="submit">Submit College Review</button>
+  </form>
+
+  <script src="data_entry.js"></script>
+</body>
+</html>
