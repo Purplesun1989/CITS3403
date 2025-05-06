@@ -1,0 +1,72 @@
+
+/* Home bar styling */
+.menu-bar {
+  background-color: #081C8F;
+  padding: 1rem;               
+  display: flex;
+  align-items: center;
+  gap: 1rem;                    
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  min-height: 4rem;            
+}
+
+/* tocin styling */
+.menu-bar a {
+  color: white;
+  background-color: #1d1a6e;
+  text-align: center;
+  padding: 0.8rem;              
+  width: 3rem;              
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.3rem;
+}
+
+.menu-bar a:hover {
+  color: #15bde7;
+}
+
+/* search method styling */
+.search-box {
+  background-color: #ffffff;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+  gap: 5%;
+  position: relative;
+  width: 20rem;                
+  height: 3rem;
+}
+  
+.menu-bar i.bi-trash {
+  color: rgb(0, 0, 0);                 
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+
+.profile-image {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;        
+  object-fit: cover;
+  margin-left: auto;
+}
+
+
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: rgb(0, 0, 0);
+  outline: none;
+  padding: 6px 10px;
+}
+

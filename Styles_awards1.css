@@ -14,17 +14,18 @@ font-size: 2.5em;
 color: #33312E; 
 
 }
-/* Home bar styling */
+/* Home bar styling 
 .menu-bar {
-  background-color: #081C8F; /* Keep the original background color */
-  padding: 20px; /* Keep the original padding */
-  gap: 20px; /* Keep the original gap */
-  position: fixed; /* Fix the header to the top of the viewport */
-  top: 0; /* Align it to the top of the page */
-  left: 0; /* Align it to the left of the page */
-  width: 100%; /* Make it span the full width of the page */
-  z-index: 1000; /* Ensure it stays above other elements */
+  background-color: #081C8F; /* Keep the original background color 
+  padding: 20px; /* Keep the original padding 
+  gap: 20px; /* Keep the original gap 
+  position: fixed; /* Fix the header to the top of the viewport 
+  top: 0; /* Align it to the top of the page 
+  left: 0; /* Align it to the left of the page 
+  width: 100%; /* Make it span the full width of the page 
+  z-index: 1000; /* Ensure it stays above other elements 
 }
+
 
 .menu-bar a {
   color: white;
@@ -37,6 +38,73 @@ color: #33312E;
 .menu-bar a:hover {
   color: #15bde7;
 }
+*/
+
+
+
+/* Home bar styling */
+.menu-bar {
+  background-color: #081C8F;
+  padding: 1rem;               
+  display: flex;
+  align-items: center;
+  gap: 1rem;                    
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  min-height: 4rem;            
+}
+
+/* tocin styling */
+.menu-bar a {
+  color: white;
+  background-color: #1d1a6e;
+  text-align: center;
+  padding: 0.8rem;              
+  width: 3rem;              
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.3rem;
+}
+
+.menu-bar a:hover {
+  color: #15bde7;
+}
+
+/* search method styling */
+.search-box {
+  background-color: #fffbf0;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+  gap: 5%;
+  position: relative;
+  width: 20rem;                
+  height: 3rem;
+}
+  
+.menu-bar i.bi-trash {
+  color: rgb(0, 0, 0);                 
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+
+.profile-image {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;        
+  object-fit: cover;
+  margin-left: auto;
+}
+
+
+
 
 .image-container {
 position: relative;

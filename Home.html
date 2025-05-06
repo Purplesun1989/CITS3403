@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="Search_specific.css">
   <link rel="icon" href="imgs/icon.png" type="image/x-icon" />
   <link rel="stylesheet" href="Home_css.css">
+  <link rel="stylesheet" href="Navbar_css.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -19,28 +20,22 @@
 
 <body>
   <div class="container-fluid" id="main-box">
-    <div class="navbar-box row">
-      <div class="navleft-box col-md-6">
-        <div class="Home-box zoom-box"></div>
-        <a href="data_entry.html"><i class="bi bi-star"></i></a>
 
-      </div>
-      <div class="search-box col-md-2">
+    <div class="menu-bar">
+      <a href="Home.html"><i class="bi bi-house"></i></a>
+      <a href="AWARDS.html"><i class="bi bi-trophy"></i></a>
+      <a href="data_entry.html"><i class="bi bi-star"></i></a>
+      <div class="search-box">
         <i class="bi bi-search"></i>
         <input type="text" placeholder="Search a spot !">
         <div class="divider"></div>
         <i class="bi bi-trash"></i>
       </div>
-
-      <div class="navright-box col-md-4">
-        <i class="bi bi-bell notification-icon"></i>
-        <div class="profile-box zoom-box"></div>
-        <p>Hi,</p>
-        <p><strong>Group 94</strong></p>
-        <i class="bi bi-chevron-down"></i>
-
-      </div>
+      <img src="User.jfif" alt="Profile" class="profile-image" />
     </div>
+
+<!-- This is everything I have looked at so far -->
+
     <div class="flex-content-row">
       <div class="liked-box ">
         <div class="liked-box-title">
