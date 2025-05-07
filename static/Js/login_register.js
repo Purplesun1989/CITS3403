@@ -1,7 +1,4 @@
-
-
-    document.querySelector('body').addEventListener('mousemove', eyeball);
-
+  document.querySelector('body').addEventListener('mousemove', eyeball);
     function eyeball(event) {
       var eyes = document.querySelectorAll('.eye');
       eyes.forEach(function (eye) {

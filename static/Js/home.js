@@ -1,10 +1,28 @@
 
+  const top5 = [
+    { spot: 'AQWA', value: 162057403 },
+    { spot: 'Beach Club', value: 160388407 },
+    { spot: 'Causeway', value: 137052885 },
+    { spot: 'Ezone', value: 90569873 },
+    { spot: 'Shoe Bar', value: 85514673 }
+  ];
+
+  const top6 = [
+      '/static/Assets/Fun/AQWA/P1040827.webp',
+      '/static/Assets/Grub/Bangkok_bros/图片_20250423152049.webp',
+      '/static/Assets/Study/Ezone/图片_20250423152245.webp',
+      '/static/Assets/Chill/Great_Court_South/P1038411.webp',
+      '/static/Assets/Snap/City_of_Perth/P1038754.webp',
+      '/static/Assets/Shop/London_Street/图片_20250423152302.webp',
+    ];
+
+  const coordinates = [-31.97903, 115.81822]
+  const page_info = ["","",""]
+
   document.addEventListener('DOMContentLoaded', () => {
 
     const chartDom = document.getElementById('echart-line');
-
     const myChart = echarts.init(chartDom, null, { renderer: 'canvas' });
-
     const option = {
       title: {
         text: 'Tendency in last 5 days',
@@ -50,45 +68,30 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     const halfs = document.querySelectorAll('.gallery-popular-box .half');
-    const bgUrls = [
-      'Assets/Fun/AQWA/P1040827.webp',
-      'Assets/Grub/Bangkok_bros/图片_20250423152049.webp',
-      'Assets/Study/Ezone/图片_20250423152245.webp',
-      'Assets/Chill/Great_Court_South/P1038411.webp',
-      'Assets/Snap/City_of_Perth/P1038754.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-    ];
     halfs.forEach((half, idx) => {
       const imgDiv = half.querySelector('.square-imgs');
-      if (imgDiv && bgUrls[idx]) {
-        imgDiv.style.backgroundImage = `url('${bgUrls[idx]}')`;
+      if (imgDiv && top6[idx]) {
+        imgDiv.style.backgroundImage = `url('${top6[idx]}')`;
         imgDiv.style.backgroundSize = 'cover';
         imgDiv.style.backgroundPosition = 'center';
       }
     });
   });
   const ctx = document.getElementById('ranking-chart').getContext('2d');
-  const data = [
-    { spot: 'AQWA', value: 162057403 },
-    { spot: 'Beach Club', value: 160388407 },
-    { spot: 'Causeway', value: 137052885 },
-    { spot: 'Ezone', value: 90569873 },
-    { spot: 'Shoe Bar', value: 85514673 }
-  ];
 
   const chart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: data.map(d => d.spot),
+      labels: top5.map(d => d.spot),
       datasets: [{
         label: 'votes',
-        data: data.map(d => d.value),
+        data: top5.map(d => d.value),
         backgroundColor: [
-          '#fcbf49',
-          '#f77f00',
-          '#e85d04',
+          '#6a040f',
           '#d00000',
-          '#6a040f'
+          '#e85d04',
+          '#f77f00',
+          '#fcbf49',
         ],
         borderRadius: 10,
         borderSkipped: false
@@ -131,38 +134,6 @@
     }
   });
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const likediconUrls = [
-      'Assets/Fun/AQWA/P1040827.webp',
-      'Assets/Fun/Beach_Club/P1040031.webp',
-      'Assets/Fun/Causeway_Bridge/P1038620.webp',
-      'Assets/Grub/Bangkok_bros/图片_20250423152049.webp',
-      'Assets/Study/Ezone/图片_20250423152245.webp',
-      'Assets/Grub/The_shoe_bar/图片_20250423152248.webp',
-      'Assets/Snap/City_of_Fremantle/P1039326.webp',
-      'Assets/Fun/Governor_House_opening_day/P1039926.webp',
-      'Assets/Fun/Italy_Festival/图片_20250423152304.webp',
-      'Assets/Chill/Johns_national_park/图片_20250423152102.webp',
-      'Assets/Chill/Hillarys_Beach/P1040862.webp',
-      'Assets/Chill/Great_Court_South/P1038411.webp',
-      'Assets/Snap/City_of_Perth/P1038754.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-    ];
-
-    const likedlisticons = document.querySelectorAll('.likedlist-icon');
-    likedlisticons.forEach((item, index) => {
-      if (likediconUrls[index]) {
-        item.style.backgroundImage = `url('${likediconUrls[index]}')`;
-      }
-    });
-  });
-
   document.addEventListener('DOMContentLoaded', () => {
     const input = document.querySelector('.search-box input');
     const gallery = document.querySelector('.gallery-box');
@@ -173,7 +144,7 @@
       when_search.style.display = 'block';
     });
 
-    document.addEventListener('click', e => {
+  document.addEventListener('click', e => {
       if (!input.contains(e.target) && !when_search.contains(e.target)) {
         when_search.style.display = 'none';
         gallery.style.display = 'block';
@@ -182,11 +153,10 @@
   });
 
 
-  var map = L.map('map').setView([-31.97903, 115.81822], 16);
+  var map = L.map('map').setView(coordinates, 16);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
-
-  var marker = L.marker([-31.9795, 115.8187]).addTo(map);
+  var marker = L.marker(coordinates).addTo(map);
   marker.bindPopup('<b>I am here !!!</b>').openPopup();

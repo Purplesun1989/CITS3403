@@ -18,8 +18,7 @@ app.register_blueprint(spe_bp)
 
 @app.route('/')
 def hello_world():
-    return "this is a fuck"
-
+    return "this is a test"
 
 if __name__ == '__main__':
     app.run()
