@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Bootstrap & Icons -->
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+
+  <!-- 你的自定义样式 -->
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='mycss/Home_css.css') }}"
+  />
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='mycss/Search_specific.css') }}"
+  />
+
+  <!-- Leaflet 样式 -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
+
+  <!-- noUiSlider 样式 -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.css"
+  />
+
+  <!-- favicon -->
+  <link
+    rel="shortcut icon"
+    href="{{ url_for('static', filename='imgs/icon.png') }}"
+    type="image/png"
+    sizes="32x32"
+  />
+
+  <title>This a place holder</title>
+
+  <!-- Leaflet / Chart.js / ECharts -->
+  <script
+    src="https://unpkg.com/leaflet/dist/leaflet.js"
+    defer
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/chart.js"
+    defer
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"
+    defer
+  ></script>
+
+  <!-- noUiSlider 脚本（需先于业务脚本加载） -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.js"
+    defer
+  ></script>
+
+  <!-- jQuery -->
+  <script
+    src="{{ url_for('static', filename='Jquery/jquery.js') }}"
+    defer
+  ></script>
+
+  <!-- 你的业务脚本 -->
+  <script
+    src="{{ url_for('static', filename='Js/specific.js') }}"
+    defer
+  ></script>
+  <script
+    src="{{ url_for('static', filename='Js/search.js') }}"
+    defer
+  ></script>
+</head>
+
+
+<body>
+  <div class="container-fluid" id="main-box">
+    <div class="navbar-box row">
+      <div class="navleft-box col-md-5">
+        <div class="Home-box zoom-box">
+
+        </div>
+      </div>
+      <div class="search-box col-md-2">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="Search a spot !">
+        <div class="divider"></div>
+        <i class="bi bi-trash"></i>
+      </div>
+
+      <div class="navright-box col-md-5">
+        <i class="bi bi-bell notification-icon"></i>
+        <div class="profile-box zoom-box"></div>
+        <p>Hi,</p>
+        <p><strong>Group 94</strong></p>
+        <i class="bi bi-chevron-down"></i>
+
+      </div>
+    </div>
+    <div class="flex-content-row">
+      <div class="liked-box ">
+        <div class="liked-box-title">
+          <h3 class="fw-bold">Collections</h3>
+          <div class="row">
+            <div class="category col-md-5">
+              <div class="category-items zoom-box">Study</div>
+              <div class="category-items zoom-box">Grub</div>
+              <div class="category-items zoom-box">Snap</div>
+              <div class="category-items zoom-box">Fun</div>
+              <div class="category-items zoom-box">Shop</div>
+              <div class="category-items zoom-box">Chill</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="liked-box-content scroll-box">
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <div class="liked-box-items">
+            <div class="likedlist-icon"></div>
+            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
+            <i class="bi bi-heart-fill heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+        </div>
+      </div>
+      <div class="specific-display-box scroll-box ">
+        <div class="banner-box">
+          <div class="banner-text">
+            <h1><strong>U-pal</strong></h1>
+            <span></span>
+            <h4>this is a place holder</h4>
+          </div>
+        </div>
+
+        <div class="map-box" id="spe-map"></div>
+
+        <div class="charts-box">
+          <div class="chart " id="pie1">
+
+          </div>
+          <div class="chart " id="pie2">
+
+          </div>
+          <div class="chart " id="pie3">
+
+          </div>
+        </div>
+
+        <div class="pic-description-box">
+          <div class="pic-box ">
+            <div class="main-slider">
+              <img src="imgs/Awards/DESI.jpg" alt="Main view">
+            </div>
+            <div class="thumbs-slider">
+              <button class="thumb-prev">&lsaquo;</button>
+              <div class="thumbs-container"></div>
+              <button class="thumb-next">&rsaquo;</button>
+            </div>
+          </div>
+
+          <div class="description-box ">
+            <div id="ratings-container" class="scroll-box"></div>
+          </div>
+        </div>
+
+
+        <div class="data-entry-box" id="data-entry-box">
+          <div class="mb-1" style="text-align: center;">
+            <label for="comment" class="form-label"><h1>Your Review MATTERS !</h1></label>
+          </div>
+          <div id="upload-bar-box" class="scroll-box"></div>
+          <div class="mb-4">
+            <label for="comment" class="form-label">Your Comment</label>
+            <textarea class="form-control" id="comment" rows="3" maxlength="100"></textarea>
+            <div id="char-count" class="form-text text-end">0/100</div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+      <div class="comment-section-box scroll-box">
+        <div class="comment-box">
+          <div class="comment-text"></div>
+          <div class="starContainer">
+            <span class="rate-star" data-value="1">&#9733;</span>
+            <span class="rate-star" data-value="2">&#9733;</span>
+            <span class="rate-star" data-value="3">&#9733;</span>
+            <span class="rate-star" data-value="4">&#9733;</span>
+            <span class="rate-star" data-value="5">&#9733;</span>
+          </div>
+          <div class="comment-meta">
+            <span class="comment-author"></span>
+            <span class="comment-date"></span>
+          </div>
+        </div>
+
+        <div class="comment-box">
+          <div class="comment-text"></div>
+          <div class="starContainer">
+            <span class="rate-star" data-value="1">&#9733;</span>
+            <span class="rate-star" data-value="2">&#9733;</span>
+            <span class="rate-star" data-value="3">&#9733;</span>
+            <span class="rate-star" data-value="4">&#9733;</span>
+            <span class="rate-star" data-value="5">&#9733;</span>
+          </div>
+          <div class="comment-meta">
+            <span class="comment-author"></span>
+            <span class="comment-date"></span>
+          </div>
+        </div>
+
+        <div class="comment-box">
+          <div class="comment-text"></div>
+          <div class="starContainer">
+            <span class="rate-star" data-value="1">&#9733;</span>
+            <span class="rate-star" data-value="2">&#9733;</span>
+            <span class="rate-star" data-value="3">&#9733;</span>
+            <span class="rate-star" data-value="4">&#9733;</span>
+            <span class="rate-star" data-value="5">&#9733;</span>
+          </div>
+          <div class="comment-meta">
+            <span class="comment-author"></span>
+            <span class="comment-date"></span>
+          </div>
+        </div>
+
+        <div class="comment-box">
+          <div class="comment-text"></div>
+          <div class="starContainer">
+            <span class="rate-star" data-value="1">&#9733;</span>
+            <span class="rate-star" data-value="2">&#9733;</span>
+            <span class="rate-star" data-value="3">&#9733;</span>
+            <span class="rate-star" data-value="4">&#9733;</span>
+            <span class="rate-star" data-value="5">&#9733;</span>
+          </div>
+          <div class="comment-meta">
+            <span class="comment-author"></span>
+            <span class="comment-date"></span>
+          </div>
+        </div>
+
+        <div class="comment-box">
+          <div class="comment-text"></div>
+          <div class="starContainer">
+            <span class="rate-star" data-value="1">&#9733;</span>
+            <span class="rate-star" data-value="2">&#9733;</span>
+            <span class="rate-star" data-value="3">&#9733;</span>
+            <span class="rate-star" data-value="4">&#9733;</span>
+            <span class="rate-star" data-value="5">&#9733;</span>
+          </div>
+          <div class="comment-meta">
+            <span class="comment-author"></span>
+            <span class="comment-date"></span>
+          </div>
+        </div>
+
+        <div class="comment-box">
+          <div class="comment-text"></div>
+          <div class="starContainer">
+            <span class="rate-star" data-value="1">&#9733;</span>
+            <span class="rate-star" data-value="2">&#9733;</span>
+            <span class="rate-star" data-value="3">&#9733;</span>
+            <span class="rate-star" data-value="4">&#9733;</span>
+            <span class="rate-star" data-value="5">&#9733;</span>
+          </div>
+          <div class="comment-meta">
+            <span class="comment-author"></span>
+            <span class="comment-date"></span>
+          </div>
+        </div>
+
+        <div class="comment-box">
+          <div class="comment-text"></div>
+          <div class="starContainer">
+            <span class="rate-star" data-value="1">&#9733;</span>
+            <span class="rate-star" data-value="2">&#9733;</span>
+            <span class="rate-star" data-value="3">&#9733;</span>
+            <span class="rate-star" data-value="4">&#9733;</span>
+            <span class="rate-star" data-value="5">&#9733;</span>
+          </div>
+          <div class="comment-meta">
+            <span class="comment-author"></span>
+            <span class="comment-date"></span>
+          </div>
+        </div>
+
+        <div class="comment-box">
+          <div class="comment-text"></div>
+          <div class="starContainer">
+            <span class="rate-star" data-value="1">&#9733;</span>
+            <span class="rate-star" data-value="2">&#9733;</span>
+            <span class="rate-star" data-value="3">&#9733;</span>
+            <span class="rate-star" data-value="4">&#9733;</span>
+            <span class="rate-star" data-value="5">&#9733;</span>
+          </div>
+          <div class="comment-meta">
+            <span class="comment-author"></span>
+            <span class="comment-date"></span>
+          </div>
+        </div>
+
+        <div class="comment-box">
+          <div class="comment-text"></div>
+          <div class="starContainer">
+            <span class="rate-star" data-value="1">&#9733;</span>
+            <span class="rate-star" data-value="2">&#9733;</span>
+            <span class="rate-star" data-value="3">&#9733;</span>
+            <span class="rate-star" data-value="4">&#9733;</span>
+            <span class="rate-star" data-value="5">&#9733;</span>
+          </div>
+          <div class="comment-meta">
+            <span class="comment-author"></span>
+            <span class="comment-date"></span>
+          </div>
+        </div>
+
+        <div class="comment-box">
+          <div class="comment-text"></div>
+          <div class="starContainer">
+            <span class="rate-star" data-value="1">&#9733;</span>
+            <span class="rate-star" data-value="2">&#9733;</span>
+            <span class="rate-star" data-value="3">&#9733;</span>
+            <span class="rate-star" data-value="4">&#9733;</span>
+            <span class="rate-star" data-value="5">&#9733;</span>
+          </div>
+          <div class="comment-meta">
+            <span class="comment-author"></span>
+            <span class="comment-date"></span>
+          </div>
+        </div>
+      </div>
+      <div class="when-search-box" style="display: none;">
+        <ul id="history-list" class="history-list"></ul>
+      </div>
+    </div>
+
+    <footer class="footer-box">
+      <div class="container">
+        <div class="row text-white py-4">
+          <div class="col-12 col-md-4 mb-4 mb-md-0">
+            <h5 class="fw-bold">U-Pal</h5>
+            <p class="mb-1">Discover your best uni life —</p>
+            <p>explore, eat, learn, connect.</p>
+          </div>
+
+          <div class="col-6 col-md-4 mb-4 mb-md-0">
+            <h5 class="fw-bold">QUICK LINKS</h5>
+            <ul class="list-unstyled">
+              <li><a href="#" class="footer-link">Home</a></li>
+              <li><a href="#" class="footer-link">About</a></li>
+              <li><a href="#" class="footer-link">Careers</a></li>
+              <li><a href="#" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-md-4">
+            <h5 class="fw-bold">FOLLOW US</h5>
+            <div class="social-icons mt-2">
+              <i class="bi bi-facebook"></i>
+              <i class="bi bi-twitter"></i>
+              <i class="bi bi-instagram"></i>
+              <i class="bi bi-wechat"></i>
+            </div>
+          </div>
+        </div>
+
+        <hr class="border-secondary">
+
+        <div class="text-center text-white pb-3">
+          <small>© 2025 U-Pal. All rights reserved.</small>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>
