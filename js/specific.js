@@ -49,28 +49,27 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const likediconUrls = [
-    'Assets/Fun/AQWA/P1040827.JPG',
-    'Assets/Fun/Beach_Club/P1040031.JPG',
-    'Assets/Fun/Causeway_Bridge/P1038620.JPG',
-    'Assets/Grub/Bangkok_bros/图片_20250423152049.jpg',
-    'Assets/Study/Ezone/图片_20250423152245.jpg',
-    'Assets/Grub/The_shoe_bar/图片_20250423152248.jpg',
-    'Assets/Snap/City_of_Fremantle/P1039326.JPG',
-    'Assets/Fun/Governor_House_opening_day/P1039926.JPG',
-    'Assets/Fun/Italy_Festival/图片_20250423152304.jpg',
-    'Assets/Chill/Johns_national_park/图片_20250423152102.jpg',
-    'Assets/Chill/Hillarys_Beach/P1040862.JPG',
-    'Assets/Chill/Great_Court_South/P1038411.JPG',
-    'Assets/Snap/City_of_Perth/P1038754.JPG',
-    'Assets/Shop/London_Street/图片_20250423152302.jpg',
-    'Assets/Shop/London_Street/图片_20250423152302.jpg',
-    'Assets/Shop/London_Street/图片_20250423152302.jpg',
-    'Assets/Shop/London_Street/图片_20250423152302.jpg',
-    'Assets/Shop/London_Street/图片_20250423152302.jpg',
-    'Assets/Shop/London_Street/图片_20250423152302.jpg',
-    'Assets/Shop/London_Street/图片_20250423152302.jpg',
+    'Assets/Fun/AQWA/P1040827.webp',
+    'Assets/Fun/Beach_Club/P1040031.webp',
+    'Assets/Fun/Causeway_Bridge/P1038620.webp',
+    'Assets/Grub/Bangkok_bros/图片_20250423152049.webp',
+    'Assets/Study/Ezone/图片_20250423152245.webp',
+    'Assets/Grub/The_shoe_bar/图片_20250423152248.webp',
+    'Assets/Snap/City_of_Fremantle/P1039326.webp',
+    'Assets/Fun/Governor_House_opening_day/P1039926.webp',
+    'Assets/Fun/Italy_Festival/图片_20250423152304.webp',
+    'Assets/Chill/Johns_national_park/图片_20250423152102.webp',
+    'Assets/Chill/Hillarys_Beach/P1040862.webp',
+    'Assets/Chill/Great_Court_South/P1038411.webp',
+    'Assets/Snap/City_of_Perth/P1038754.webp',
+    'Assets/Shop/London_Street/图片_20250423152302.webp',
+    'Assets/Shop/London_Street/图片_20250423152302.webp',
+    'Assets/Shop/London_Street/图片_20250423152302.webp',
+    'Assets/Shop/London_Street/图片_20250423152302.webp',
+    'Assets/Shop/London_Street/图片_20250423152302.webp',
+    'Assets/Shop/London_Street/图片_20250423152302.webp',
+    'Assets/Shop/London_Street/图片_20250423152302.webp',
   ];
-
   const likedlisticons = document.querySelectorAll('.likedlist-icon');
   likedlisticons.forEach((item, index) => {
     if (likediconUrls[index]) {
@@ -172,10 +171,10 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', () => {
   // 要展示的图片路径数组
   const pics = [
-    'Assets/Fun/AQWA/P1040827.JPG',
-    'Assets/Fun/Beach_Club/P1040031.JPG',
-    'Assets/Fun/Causeway_Bridge/P1038620.JPG',
-    'Assets/Grub/Bangkok_bros/图片_20250423152049.jpg'
+    'Assets/Fun/AQWA/P1040827.webp',
+    'Assets/Fun/Beach_Club/P1040031.webp',
+    'Assets/Fun/Causeway_Bridge/P1038620.webp',
+    'Assets/Grub/Bangkok_bros/图片_20250423152049.webp'
   ];
   let currentIndex = 0;
 
