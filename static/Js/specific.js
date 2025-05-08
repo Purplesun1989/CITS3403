@@ -53,7 +53,7 @@ const likeData = [
   { name: "City_of_Fremantle",         path: "/static/Assets/Snap/City_of_Fremantle/P1039411.webp",              likes: 532 },
   { name: "City_of_Mandurah",          path: "/static/Assets/Snap/City_of_Mandurah/P1039669.webp",               likes: 178 },
   { name: "City_of_Perth",             path: "/static/Assets/Snap/City_of_Perth/P1038740.webp",                  likes: 419 },
-  { name: "UWA_tower",                 path: "/static/Assets/Snap/UWA_tower/P1038027.webp",                      likes: 246 },
+  { name: "UWA_tower",                 path: "/static/Assets/Snap/UWAtower/P1038027.webp",                      likes: 246 },
 
   { name: "Ezone",                     path: "/static/Assets/Study/Ezone/图片_20250423152245.webp",               likes: 389 }
 ];
@@ -173,6 +173,12 @@ charts.forEach(cfg => {
     const img = document.createElement('img');
     img.src = src;
     img.alt = `Thumb ${idx + 1}`;
+
+    const needsRotation = rotatedImages.some(filename => src.includes(filename));
+    if (needsRotation) {
+      img.classList.add('rotate-90');
+    }
+
     img.addEventListener('click', () => showImage(idx));
     wrapper.appendChild(img);
     thumbsContainer.appendChild(wrapper);
@@ -180,10 +186,17 @@ charts.forEach(cfg => {
 
   function showImage(idx) {
     currentIndex = idx;
-    mainImg.src = pics[idx];
+    const src = pics[idx];
+    mainImg.src = src;
+
+    // Handle rotation class
+    const needsRotation = rotatedImages.some(filename => src.includes(filename));
+    mainImg.classList.toggle('rotate-90', needsRotation);
+
+    // Scroll into view
     thumbsContainer.children[idx]
       .scrollIntoView({ behavior: 'smooth', inline: 'center' });
-  }
+}
 
   btnPrev.addEventListener('click', () => {
     if (currentIndex > 0) showImage(currentIndex - 1);
@@ -285,22 +298,59 @@ document.addEventListener('DOMContentLoaded', () => {
     .bindPopup('<b>I am here!</b>').openPopup();
 });
 
-document.addEventListener('DOMContentLoaded',()=>{
+
+const rotatedImages = [
+  "P1040614.webp", "P1040619.webp", "P1040624.webp", "P1040646.webp", "P1040655.webp",
+  "P1040661.webp", "P1040675.webp", "P1040697.webp", "P1040703.webp", "P1040704.webp",
+  "P1040711.webp", "P1040774.webp", "P1040780.webp", "P1040784.webp", "P1040851.webp",
+  "P1040855.webp", "P1040859.webp", "P1040862.webp", "P1040868.webp",
+  "P1040875.webp", "P1040879.webp", "P1038326.webp", "P1038352.webp", "P1040808.webp",
+  "P1040824.webp", "P1040826.webp", "P1040827.webp", "P1040847.webp", "P1040031.webp",
+  "P1040060.webp", "P1040063.webp", "P1040104.webp", "P1038559.webp", "P1038561.webp",
+  "P1038567.webp", "P1038572.webp", "P1038613.webp", "P1038619.webp", "P1038620.webp",
+  "P1038625.webp", "P1038632.webp", "P1040915.webp", "P1040942.webp", "P1040943.webp",
+  "P1040967.webp", "P1041031.webp", "P1041064.webp", "P1041081.webp", "P1041091.webp",
+  "P1041094.webp", "P1041098.webp", "P1041123.webp", "P1041125.webp", "P1041133.webp",
+  "P1041142.webp", "P1041167.webp", "P1041174.webp", "P1041202.webp", "P1041218.webp",
+  "P1041241.webp", "P1041243.webp", "P1041270.webp", "P1041292.webp", "P1041309.webp",
+  "P1041335.webp", "P1041342.webp", "P1041348.webp", "P1039848.webp", "P1039860.webp",
+  "P1039862.webp", "P1039865.webp", "P1039868.webp", "P1039869.webp", "P1039875.webp",
+  "P1039882.webp", "P1039887.webp", "P1039925.webp", "P1039926.webp", "P1039933.webp",
+  "P1038760.webp", "P1038766.webp", "P1038880.webp", "P1038894.webp", "P1038909.webp",
+  "P1038932.webp", "P1038959.webp", "P1039079.webp", "P1039089.webp", "P1039092.webp",
+  "P1039253.webp", "P1039254.webp", "P1040317.webp", "P1040361.webp", "P1040385.webp",
+  "P1040483.webp", "P1040484.webp", "P1040492.webp", "P1040510.webp", "P1040549.webp",
+  "P1040569.webp", "P1038672.webp",
+  "P1039326.webp", "P1039367.webp", "P1039381.webp", "P1039411.webp", "P1039424.webp",
+  "P1039470.webp", "P1039511.webp", "P1039549.webp", "P1040592.webp", "P1040597.webp",
+  "P1040602.webp",
+  "P1039637.webp", "P1039642.webp", "P1039653.webp", "P1039662.webp", "P1039669.webp",
+  "P1039676.webp", "P1039691.webp", "P1039695.webp", "P1039698.webp",
+  "P1037997.webp", "P1038013.webp", "P1038016.webp", "P1038740.webp", "P1038754.webp",
+  "P1039828.webp",
+  "P1038027.webp"
+];
+
+document.addEventListener('DOMContentLoaded', () => {
   const likebox = document.querySelector(".liked-box-content");
-  likeData.forEach((items,idx)=>{
+
+  likeData.forEach((item) => {
     const likecard = document.createElement('div');
-    likecard.classList='liked-box-items';
+    likecard.className = 'liked-box-items';
+
+    const needsRotation = rotatedImages.some(filename => item.path.includes(filename));
+    const rotationClass = needsRotation ? "rotate-90" : "";
+
     likecard.innerHTML = `
-        <div class="likedlist-icon"  style="background: url('${items.path}') center/cover no-repeat;">></div>
-            <div class="likedlist-text" >${items.name}<br><span class="text-muted-sm"></span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-        </div>
+      <div class="likedlist-icon ${rotationClass}" style="background: url('${item.path}') center/cover no-repeat;"></div>
+      <div class="likedlist-text">${item.name}<br><span class="text-muted-sm"></span></div>
+      <i class="bi bi-heart-fill heart-icon"></i>
+      <i class="bi bi-chat-dots"></i>
     `;
-    likebox.appendChild(likecard)
+
+    likebox.appendChild(likecard);
   });
 });
-
 
 
 

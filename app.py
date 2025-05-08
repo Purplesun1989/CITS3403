@@ -4,6 +4,7 @@ from flask import Flask
 from BluePrint.auth import auth_bp;
 from BluePrint.home import home_bp;
 from BluePrint.specific import spe_bp;
+from flask import render_template
 
 
 import config
@@ -20,5 +21,13 @@ app.register_blueprint(spe_bp)
 def hello_world():
     return "this is a test"
 
+@app.route('/home')
+def home():
+    return render_template("Home.html")
+
+@app.route('/specific')
+def specific():
+    return render_template("Specific.html")
+
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
