@@ -1,5 +1,9 @@
 from flask import Blueprint,render_template,request,jsonify,redirect, url_for,session
 from models import UserModel;
+from werkzeug.utils import secure_filename
+from exts import db
+from datetime import datetime
+import os
 
 auth_bp = Blueprint("auth",__name__,url_prefix="/auth")
 
@@ -30,6 +34,53 @@ def register():
     if request.method == "GET":
         return render_template("Login.html")
 
+    username = request.form.get("register_username").lower()
+    email = request.form.get("register_email").lower()
+    password = request.form.get("register_password")
+    age = request.form.get("register_age")
+    birthday = request.form.get("register_birthday")
+    birthday = datetime.strptime(birthday, "%Y-%m-%d").date()
+    gender = request.form.get("gender")
+
+    avatar_file = request.files.get("avatar")
+
+    if avatar_file:
+        filename = secure_filename(avatar_file.filename)
+        save_path = os.path.join("static", "profiles", filename)
+        avatar_file.save(save_path)
+        avatar_url = url_for("static", filename=f"profiles/{filename}")
+
+    print({
+        "username": username,
+        "email": email,
+        "password": password,
+        "age": age,
+        "birthday": birthday,
+        "gender": gender,
+        "avatar_url": avatar_url,
+    })
+
+    if not email.endswith("@student.uwa.edu.au"):
+        return render_template("Login.html", error="This site is for UWA students only")
+
+    user = UserModel.query.filter_by(uwa_email=email).first()
+    if user:
+        return render_template("Login.html", error="You have a account already!"+ user.profile_path)
+
+    user = UserModel(
+        username=username,
+        uwa_email=email,
+        age=int(age) ,
+        birthday=birthday,
+        gender=gender,
+        profile_path=avatar_url
+    )
+    user.password = password;
+
+    db.session.add(user)
+    db.session.commit()
+
+    return redirect(url_for("auth.login"))
 
 
 

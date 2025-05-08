@@ -12,33 +12,10 @@
    document.addEventListener('DOMContentLoaded', () => {
       const avatarInput = document.getElementById('avatarInput');
       const preview = document.getElementById('avatarPreview');
-      const form = document.getElementById('avatarForm');
 
       avatarInput.addEventListener('change', () => {
         const file = avatarInput.files[0];
         if (file) preview.src = URL.createObjectURL(file);
-      });
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const formData = new FormData(form);
-        try {
-          const res = await fetch('/upload_avatar', { method: 'POST', body: formData });
-          const data = await res.json();
-          if (res.ok) {
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Upload Successful',
-              text: 'Your avatar has been updated.',
-              timer: 2000,
-              showConfirmButton: false
-            });
-            preview.src = data.url;
-          } else throw new Error(data.error || 'Upload failed');
-        } catch (err) {
-          Swal.fire({ position: 'center', icon: 'error', title: 'Error', text: err.message });
-        }
       });
     });
 

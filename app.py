@@ -1,6 +1,5 @@
 from flask import Flask
 from exts import db
-from models import UserModel;
 from BluePrint.auth import auth_bp;
 from BluePrint.home import home_bp;
 from BluePrint.specific import spe_bp;
