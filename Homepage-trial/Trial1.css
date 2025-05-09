@@ -1,5 +1,74 @@
 /*edits */
-/* i did this before any edits */
+
+/* Home bar styling */
+.menu-bar {
+  background-color: #081C8F;
+  padding: 1rem;               
+  display: flex;
+  align-items: center;
+  gap: 1rem;                    
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  min-height: 4rem;            
+}
+
+/* tocin styling */
+.menu-bar a {
+  color: white;
+  background-color: #1d1a6e;
+  text-align: center;
+  padding: 0.8rem;              
+  width: 3rem;              
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.3rem;
+}
+
+.menu-bar a:hover {
+  color: #15bde7;
+}
+
+/* search method styling */
+.search-box {
+  background-color: #ffffff;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+  gap: 5%;
+  position: relative;
+  width: 20rem;                
+  height: 3rem;
+}
+  
+.menu-bar i.bi-trash {
+  color: rgb(0, 0, 0);                 
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+.profile-image {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;        
+  object-fit: cover;
+  margin-left: auto;
+}
+
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: rgb(0, 0, 0);
+  outline: none;
+  padding: 6px 10px;
+}
+
 
 #liked-box {
 display: none !important;
@@ -10,11 +79,12 @@ display: none !important;
   padding: 20px;
   width: 90%;
   margin: 50px auto;
-  background-color: none;
   font-family: Arial, sans-serif;
   text-align: center;
   align-items: center;
-  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  background-color: rgba(255, 215, 56, 0.7); /* change this */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .chart-container {
@@ -43,6 +113,51 @@ display: none !important;
 
 }
 
+.winner-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 90%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(255, 0, 127, 0.7); /* change this */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  gap: 1rem;
+}
+
+.award-section {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 45%; /* Each section takes up 45% of the container width */
+  padding: 15px;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%; /* Each section takes up 45% of the container width */
+  padding: 15px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  background-color: #ffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.image-container img {
+  width: 100%; /* Make the image responsive */
+  border-radius: 10px;
+}
+
+.overlay-text {
+  margin-top: 10px;
+  font-size: 2rem;
+  color: #000;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
 
 
 canvas {
@@ -63,6 +178,13 @@ body {
 }
 
 h2 {
+  font-family: Arial, sans-serif;
+  padding: 0.2rem;
+  margin:0.2em;
+  color: white;
+}
+
+h3 {
   font-family: Arial, sans-serif;
   padding: 0.2rem;
   margin:0.2em;
@@ -111,8 +233,8 @@ button:hover {
   align-items: center; /* Center align the text and button */
   text-align: center; /* Center align the text */
   margin-top: 20px; /* Add spacing above the section */
+  width: 100%;
 }
-
 
 #main-box {
   width: 100%;
@@ -132,32 +254,8 @@ button:hover {
   margin-top: 15px;
 }
 
-
-.navbar-box {
-  height: 5%;
-  background-color: rgb(0, 0, 0);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navleft-box {
-  display: flex;
-}
-
-.navleft-box i {
-  margin-left: 15px;
-  font-size: 40px;
-  color: #444;
-  text-decoration: none;
-}
-
-.navleft-box i:hover {
-  color: #007bff;
-}
-
 .search-box {
-  background-color: #fffbf0;
+  background-color: #ffff;
   border-radius: 999px;
   display: flex;
   align-items: center;
@@ -209,85 +307,6 @@ button:hover {
   transform: scale(1.05); /* Slight zoom effect on hover */
 }
 
-.navright-box {
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background-color: rgb(0, 0, 0);
-}
-
-.profile-box {
-  height: 70%;
-  aspect-ratio: 1 / 1;
-  background-color: #3498db;
-  border-radius: 50%;
-  background-image: url("imgs/Login/Default_user.jfif");
-  background-size: cover;
-  background-position: center;
-  margin-top: 3px;
-  /* border: #000000 solid 5px; */
-}
-
-.navright-box p {
-  color: #fffbf0;
-  font-size: 15px;
-  margin: 0 10px;
-}
-
-
-.notification-icon {
-  position: relative;
-  font-size: 30px;
-  cursor: pointer;
-  color: #fffbf0;
-  margin: 0 20px;
-}
-
-.notification-icon::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 8px;
-  height: 8px;
-  background-color: red;
-  border-radius: 50%;
-}
-
-.oval-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffbd09;
-  border-radius: 999px;
-  height: 40px;
-  padding: 0 20px;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.navleft-box {
-  background-color: rgb(0, 0, 0);
-  height: 100%;
-}
-
-.Home-box {
-  display: flex;
-  background-color: #fffbf0;
-  border-radius: 50%;
-  height: 70%;
-  aspect-ratio: 1 / 1;
-  margin-top: 10px;
-  margin-left: 20px;
-  background-image: url("imgs/icon.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 .gallery-box {
   display: flex;
   flex-direction: column;
@@ -295,7 +314,7 @@ button:hover {
   align-items: center;
   background-color: #fff;
   border-radius: 10px;
-  margin: 0px 5px;
+  margin-top: 50px;
   width: 90%;
   max-height: 100vh;
   display: block;
