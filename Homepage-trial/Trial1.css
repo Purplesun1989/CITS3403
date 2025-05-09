@@ -1,4 +1,4 @@
-/*edits */
+/*Award page*/
 
 /* Home bar styling */
 .menu-bar {
@@ -82,7 +82,7 @@ display: none !important;
   font-family: Arial, sans-serif;
   text-align: center;
   align-items: center;
-  background-color: rgba(255, 215, 56, 0.7); /* change this */
+  background-color:#FFD42A; /* change this */
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -113,51 +113,6 @@ display: none !important;
 
 }
 
-.winner-container {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  width: 90%;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: rgba(255, 0, 127, 0.7); /* change this */
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  gap: 1rem;
-}
-
-.award-section {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  width: 45%; /* Each section takes up 45% of the container width */
-  padding: 15px;
-}
-
-.image-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 45%; /* Each section takes up 45% of the container width */
-  padding: 15px;
-  border: 2px solid #fff;
-  border-radius: 10px;
-  background-color: #ffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.image-container img {
-  width: 100%; /* Make the image responsive */
-  border-radius: 10px;
-}
-
-.overlay-text {
-  margin-top: 10px;
-  font-size: 2rem;
-  color: #000;
-  text-align: center;
-  font-family: Arial, sans-serif;
-}
 
 
 canvas {
@@ -169,6 +124,93 @@ canvas {
   box-sizing: border-box;
 }
 
+.winner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 90%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(255, 0, 127, 0.7); /* change this */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  gap: 1rem;
+  align-items: center;
+}
+
+.winners-text {
+  text-align: center; /* Centers the text */
+  margin-bottom: 10px; /* Adds space below the text */
+  width: 90%;
+}
+
+.awards-container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: Arial, sans-serif;
+  background: white;
+  margin: 40px;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  border: 2px solid #fff; /* Add a border around the chart item */
+  border-radius: 10px; /* Optional: round the corners */
+  background-color: #ffff; /* Optional: light background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow */
+    }
+
+.award {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 200px;
+  }
+
+.awards-circle {
+  background-color: #FFD42A;
+  color: white;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  }
+
+.awardscircle .title {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 1.2;
+  word-wrap: break-word;
+}
+
+.awardscircle .code {
+  font-size: 14px;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
+.label {
+  margin-top: 20px;
+  background-color: #0A188C;
+  color: white;
+  padding: 15px 20px;
+  font-size: 16px;
+  text-align: center;
+  min-width: 160px;
+  border-radius: 6px;
+
+}
+
+
 html,
 body {
   height: 100%;
@@ -177,12 +219,14 @@ body {
 
 }
 
-h2 {
-  font-family: Arial, sans-serif;
-  padding: 0.2rem;
-  margin:0.2em;
-  color: white;
+h2 { 
+  font-size: 24px !important; 
+  font-weight: bold !important;
+  color: #fff;
+  margin: 3px !important;
+  font-family: Arial, sans-serif !important;
 }
+
 
 h3 {
   font-family: Arial, sans-serif;
@@ -229,10 +273,10 @@ button:hover {
 
 .review-section {
   display: flex;
-  flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Center align the text and button */
-  text-align: center; /* Center align the text */
-  margin-top: 20px; /* Add spacing above the section */
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
+  margin-top: 20px; 
   width: 100%;
 }
 
