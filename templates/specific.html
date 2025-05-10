@@ -102,10 +102,10 @@
 
       <div class="navright-box col-md-5">
         <i class="bi bi-bell notification-icon"></i>
-        <div class="profile-box zoom-box"></div>
-        <p>Hi,</p>
-        <p><strong>Group 94</strong></p>
-        <i class="bi bi-chevron-down"></i>
+         <img alt="Profile Avatar" class="profile-box zoom-box">
+         <p>Hi,</p>
+         <p><strong></strong></p>
+         <i class="bi bi-chevron-down"></i>
 
       </div>
     </div>
@@ -145,7 +145,7 @@
         <div class="pic-description-box">
           <div class="pic-box ">
             <div class="main-slider">
-              <img src="imgs/Awards/DESI.jpg" alt="Main view">
+              <img src="../static/imgs/Awards/DESI.jpg" alt="Main view">
             </div>
             <div class="thumbs-slider">
               <button class="thumb-prev">&lsaquo;</button>
@@ -164,166 +164,18 @@
           <div class="mb-1" style="text-align: center;">
             <label for="comment" class="form-label"><h1>Your review MATTERs !</h1></label>
           </div>
-          <div id="upload-bar-box" class="scroll-box"></div>
+          <form method="post" action="/index/insert_reviews">
+          <div id="upload-bar-box" class="scroll-box" style="height: 500px"></div>
           <div class="mb-4">
             <label for="comment" class="form-label">Your Comment</label>
-            <textarea class="form-control" id="comment" rows="3" maxlength="100"></textarea>
+            <textarea class="form-control" id="comment" rows="3" maxlength="100" name="comment"></textarea>
             <div id="char-count" class="form-text text-end">0/100</div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class=" btn-review">rate it now</button>
           </div>
+          </form>
         </div>
       </div>
-      <div class="comment-section-box scroll-box">
-        <div class="comment-box">
-          <div class="comment-text"></div>
-          <div class="starContainer">
-            <span class="rate-star" data-value="1">&#9733;</span>
-            <span class="rate-star" data-value="2">&#9733;</span>
-            <span class="rate-star" data-value="3">&#9733;</span>
-            <span class="rate-star" data-value="4">&#9733;</span>
-            <span class="rate-star" data-value="5">&#9733;</span>
-          </div>
-          <div class="comment-meta">
-            <span class="comment-author"></span>
-            <span class="comment-date"></span>
-          </div>
-        </div>
-
-        <div class="comment-box">
-          <div class="comment-text"></div>
-          <div class="starContainer">
-            <span class="rate-star" data-value="1">&#9733;</span>
-            <span class="rate-star" data-value="2">&#9733;</span>
-            <span class="rate-star" data-value="3">&#9733;</span>
-            <span class="rate-star" data-value="4">&#9733;</span>
-            <span class="rate-star" data-value="5">&#9733;</span>
-          </div>
-          <div class="comment-meta">
-            <span class="comment-author"></span>
-            <span class="comment-date"></span>
-          </div>
-        </div>
-
-        <div class="comment-box">
-          <div class="comment-text"></div>
-          <div class="starContainer">
-            <span class="rate-star" data-value="1">&#9733;</span>
-            <span class="rate-star" data-value="2">&#9733;</span>
-            <span class="rate-star" data-value="3">&#9733;</span>
-            <span class="rate-star" data-value="4">&#9733;</span>
-            <span class="rate-star" data-value="5">&#9733;</span>
-          </div>
-          <div class="comment-meta">
-            <span class="comment-author"></span>
-            <span class="comment-date"></span>
-          </div>
-        </div>
-
-        <div class="comment-box">
-          <div class="comment-text"></div>
-          <div class="starContainer">
-            <span class="rate-star" data-value="1">&#9733;</span>
-            <span class="rate-star" data-value="2">&#9733;</span>
-            <span class="rate-star" data-value="3">&#9733;</span>
-            <span class="rate-star" data-value="4">&#9733;</span>
-            <span class="rate-star" data-value="5">&#9733;</span>
-          </div>
-          <div class="comment-meta">
-            <span class="comment-author"></span>
-            <span class="comment-date"></span>
-          </div>
-        </div>
-
-        <div class="comment-box">
-          <div class="comment-text"></div>
-          <div class="starContainer">
-            <span class="rate-star" data-value="1">&#9733;</span>
-            <span class="rate-star" data-value="2">&#9733;</span>
-            <span class="rate-star" data-value="3">&#9733;</span>
-            <span class="rate-star" data-value="4">&#9733;</span>
-            <span class="rate-star" data-value="5">&#9733;</span>
-          </div>
-          <div class="comment-meta">
-            <span class="comment-author"></span>
-            <span class="comment-date"></span>
-          </div>
-        </div>
-
-        <div class="comment-box">
-          <div class="comment-text"></div>
-          <div class="starContainer">
-            <span class="rate-star" data-value="1">&#9733;</span>
-            <span class="rate-star" data-value="2">&#9733;</span>
-            <span class="rate-star" data-value="3">&#9733;</span>
-            <span class="rate-star" data-value="4">&#9733;</span>
-            <span class="rate-star" data-value="5">&#9733;</span>
-          </div>
-          <div class="comment-meta">
-            <span class="comment-author"></span>
-            <span class="comment-date"></span>
-          </div>
-        </div>
-
-        <div class="comment-box">
-          <div class="comment-text"></div>
-          <div class="starContainer">
-            <span class="rate-star" data-value="1">&#9733;</span>
-            <span class="rate-star" data-value="2">&#9733;</span>
-            <span class="rate-star" data-value="3">&#9733;</span>
-            <span class="rate-star" data-value="4">&#9733;</span>
-            <span class="rate-star" data-value="5">&#9733;</span>
-          </div>
-          <div class="comment-meta">
-            <span class="comment-author"></span>
-            <span class="comment-date"></span>
-          </div>
-        </div>
-
-        <div class="comment-box">
-          <div class="comment-text"></div>
-          <div class="starContainer">
-            <span class="rate-star" data-value="1">&#9733;</span>
-            <span class="rate-star" data-value="2">&#9733;</span>
-            <span class="rate-star" data-value="3">&#9733;</span>
-            <span class="rate-star" data-value="4">&#9733;</span>
-            <span class="rate-star" data-value="5">&#9733;</span>
-          </div>
-          <div class="comment-meta">
-            <span class="comment-author"></span>
-            <span class="comment-date"></span>
-          </div>
-        </div>
-
-        <div class="comment-box">
-          <div class="comment-text"></div>
-          <div class="starContainer">
-            <span class="rate-star" data-value="1">&#9733;</span>
-            <span class="rate-star" data-value="2">&#9733;</span>
-            <span class="rate-star" data-value="3">&#9733;</span>
-            <span class="rate-star" data-value="4">&#9733;</span>
-            <span class="rate-star" data-value="5">&#9733;</span>
-          </div>
-          <div class="comment-meta">
-            <span class="comment-author"></span>
-            <span class="comment-date"></span>
-          </div>
-        </div>
-
-        <div class="comment-box">
-          <div class="comment-text"></div>
-          <div class="starContainer">
-            <span class="rate-star" data-value="1">&#9733;</span>
-            <span class="rate-star" data-value="2">&#9733;</span>
-            <span class="rate-star" data-value="3">&#9733;</span>
-            <span class="rate-star" data-value="4">&#9733;</span>
-            <span class="rate-star" data-value="5">&#9733;</span>
-          </div>
-          <div class="comment-meta">
-            <span class="comment-author"></span>
-            <span class="comment-date"></span>
-          </div>
-        </div>
-      </div>
+      <div class="comment-section-box scroll-box"></div>
       <div class="when-search-box" style="display: none;">
         <ul id="history-list" class="history-list"></ul>
       </div>

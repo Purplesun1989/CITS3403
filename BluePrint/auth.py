@@ -1,4 +1,5 @@
 from flask import Blueprint,render_template,request,jsonify,redirect, url_for,session
+from flask_login import login_user
 from models import UserModel;
 from werkzeug.utils import secure_filename
 from exts import db
@@ -13,21 +14,19 @@ def login():
     if request.method == "GET":
         return render_template("Login.html")
 
-    uwa_email = request.form.get('uwa_email');
-    password  = request.form.get('password');
+    uwa_email = request.form.get('uwa_email', '').strip().lower()
+    password = request.form.get('password', '')
 
     if not uwa_email or not password:
         return render_template("Login.html", error="Missing credentials")
 
-
     user = UserModel.query.filter_by(uwa_email=uwa_email).first()
 
-    if user and user.verify_password:
-        session['user_id'] = user.id
+    if user and user.verify_password(password):
+        login_user(user)
         return redirect(url_for('Home.home'))
     else:
-        return render_template("Login.html",error="Invalid email or password")
-
+        return render_template("Login.html", error="Invalid email or password")
 
 @auth_bp.route("/register",methods = ["GET", "POST"])
 def register():
@@ -50,15 +49,15 @@ def register():
         avatar_file.save(save_path)
         avatar_url = url_for("static", filename=f"profiles/{filename}")
 
-    print({
-        "username": username,
-        "email": email,
-        "password": password,
-        "age": age,
-        "birthday": birthday,
-        "gender": gender,
-        "avatar_url": avatar_url,
-    })
+    # print({
+    #     "username": username,
+    #     "email": email,
+    #     "password": password,
+    #     "age": age,
+    #     "birthday": birthday,
+    #     "gender": gender,
+    #     "avatar_url": avatar_url,
+    # })
 
     if not email.endswith("@student.uwa.edu.au"):
         return render_template("Login.html", error="This site is for UWA students only")

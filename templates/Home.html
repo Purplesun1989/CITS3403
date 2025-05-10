@@ -55,6 +55,14 @@
   ></script>
 
   <!-- 页面脚本 -->
+
+  <script>
+  const top5 = {{ top5 | tojson }};
+  const top6 = {{ top6 | tojson }};
+  const likeData = {{ likeData | tojson }};
+  const metainfo = {{ metainfo | tojson }};
+  const tendency = {{ tendency | tojson }};
+  </script>
   <script
     src="{{ url_for('static', filename='Js/search.js') }}"
     defer
@@ -64,19 +72,14 @@
     defer
   ></script>
 
-  <script
-    src="{{ url_for('static', filename='Js/specific.js') }}"
-    defer
-  ></script>
 </head>
 
 
 <body>
   <div class="container-fluid" id="main-box">
     <div class="navbar-box row">
-      <div class="navleft-box col-md-6">
-        <!-- <div class="Home-box zoom-box"></div> -->
-        <a href="data_entry.html"><i class="bi bi-star"></i></a>
+      <div class="navleft-box col-md-5">
+
       </div>
       <div class="search-box col-md-2">
         <i class="bi bi-search"></i>
@@ -85,19 +88,21 @@
         <i class="bi bi-trash"></i>
       </div>
 
-      <div class="navright-box col-md-4">
-        <i class="bi bi-bell notification-icon"></i>
-        <div class="profile-box zoom-box"></div>
-        <p>Hi,</p>
-        <p><strong>Group 94</strong></p>
-        <i class="bi bi-chevron-down"></i>
+      <div class="navright-box col-md-5">
+         <i class="bi bi-bell notification-icon"></i>
+         <a href="{{ url_for('share.personal', userid=metainfo[1]) }}">
+         <img alt="Profile Avatar" class="profile-box zoom-box" style="max-width: 50px">
+         </a>
+         <p>Hi,</p>
+         <p><strong></strong></p>
+         <i class="bi bi-chevron-down"></i>
 
       </div>
     </div>
     <div class="flex-content-row">
       <div class="liked-box ">
         <div class="liked-box-title">
-          <h3 class="fw-bold">Collections</h3>
+          <h3 class="fw-bold">Top guns</h3>
           <div class="row">
             <div class="category col-md-5">
               <div class="category-items zoom-box">Study</div>
