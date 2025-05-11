@@ -2,27 +2,83 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/mycss/Search_specific.css">
-  <link rel="icon" href="imgs/icon.png" type="image/x-icon" />
-  <link rel="stylesheet" href="css/mycss/Home_css.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Bootstrap 样式 -->
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}"
+  />
+
+  <!-- Bootstrap Icons（CDN）-->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+
+  <!-- Search Specific 自定义样式 -->
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='mycss/Search_specific.css') }}"
+  />
+
+  <!-- Home 自定义样式 -->
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='mycss/Home_css.css') }}"
+  />
+
+  <!-- Favicon -->
+  <link
+    rel="shortcut icon"
+    href="{{ url_for('static', filename='imgs/icon.png') }}"
+    type="image/png"
+    sizes="32x32"
+  />
+
+  <title>Too much fun!</title>
+
+  <!-- 第三方库 -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="js/search.js"></script>
-  <title>Too much fun !</title>
+
+  <!-- jQuery -->
+  <script
+    src="{{ url_for('static', filename='Jquery/jquery.js') }}"
+    defer
+  ></script>
+
+  <!-- 页面脚本 -->
+
+  <script>
+  const top5 = {{ top5 | tojson }};
+  const top6 = {{ top6 | tojson }};
+  const likeData = {{ likeData | tojson }};
+  const metainfo = {{ metainfo | tojson }};
+  const tendency = {{ tendency | tojson }};
+  </script>
+  <script
+    src="{{ url_for('static', filename='Js/search.js') }}"
+    defer
+  ></script>
+  <script
+    src="{{ url_for('static', filename='Js/home.js') }}"
+    defer
+  ></script>
+
 </head>
+
 
 <body>
   <div class="container-fluid" id="main-box">
     <div class="navbar-box row">
-      <div class="navleft-box col-md-6">
-        <div class="Home-box zoom-box"></div>
-        <a href="data_entry.html"><i class="bi bi-star"></i></a>
+      <div class="navleft-box col-md-5">
 
       </div>
       <div class="search-box col-md-2">
@@ -32,19 +88,21 @@
         <i class="bi bi-trash"></i>
       </div>
 
-      <div class="navright-box col-md-4">
-        <i class="bi bi-bell notification-icon"></i>
-        <div class="profile-box zoom-box"></div>
-        <p>Hi,</p>
-        <p><strong>Group 94</strong></p>
-        <i class="bi bi-chevron-down"></i>
+      <div class="navright-box col-md-5">
+         <i class="bi bi-bell notification-icon"></i>
+         <a href="{{ url_for('share.personal', userid=metainfo[1]) }}">
+         <img alt="Profile Avatar" class="profile-box zoom-box" style="max-width: 50px">
+         </a>
+         <p>Hi,</p>
+         <p><strong></strong></p>
+         <i class="bi bi-chevron-down"></i>
 
       </div>
     </div>
     <div class="flex-content-row">
       <div class="liked-box ">
         <div class="liked-box-title">
-          <h3 class="fw-bold">Collections</h3>
+          <h3 class="fw-bold">Top guns</h3>
           <div class="row">
             <div class="category col-md-5">
               <div class="category-items zoom-box">Study</div>
@@ -56,130 +114,7 @@
             </div>
           </div>
         </div>
-
-
-        <div class="liked-box-content scroll-box">
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-          <div class="liked-box-items">
-            <div class="likedlist-icon"></div>
-            <div class="likedlist-text">刀郎<br><span class="text-muted-sm">艺人</span></div>
-            <i class="bi bi-heart-fill heart-icon"></i>
-            <i class="bi bi-chat-dots"></i>
-          </div>
-        </div>
+        <div class="liked-box-content scroll-box"></div>
       </div>
 
       <div class="gallery-box scroll-box ">
@@ -301,200 +236,4 @@
     </footer>
   </div>
 </body>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-
-    const chartDom = document.getElementById('echart-line');
-
-    const myChart = echarts.init(chartDom, null, { renderer: 'canvas' });
-
-    const option = {
-      title: {
-        text: 'Tendency in last 5 days',
-        left: 'center',
-        textStyle: { color: '#fff' }
-      },
-      tooltip: { trigger: 'axis' },
-      legend: {
-        right: 10,
-        top: 'middle',
-        orient: 'vertical',
-        textStyle: { color: '#eee' },
-        data: ['Snap', 'Chill', 'Study', 'Shop', 'Grub', 'Fun']
-      },
-      grid: {
-        top: 60, bottom: 30, left: 50, right: 150
-      },
-      xAxis: {
-        type: 'category',
-        data: ['1', '2', '3', '4', '5'],
-        axisLine: { lineStyle: { color: '#444' } },
-        axisLabel: { color: '#ccc' }
-      },
-      yAxis: {
-        type: 'value',
-        axisLine: { lineStyle: { color: '#444' } },
-        splitLine: { lineStyle: { color: '#444' } },
-        axisLabel: { color: '#ccc' }
-      },
-      series: [
-        { name: 'Snap', type: 'line', smooth: true, data: [12, 19, 3, 5, 2] },
-        { name: 'Chill', type: 'line', smooth: true, data: [2, 29, 5, 5, 20] },
-        { name: 'Study', type: 'line', smooth: true, data: [3, 10, 13, 15, 22] },
-        { name: 'Shop', type: 'line', smooth: true, data: [5, 15, 8, 12, 16] },
-        { name: 'Grub', type: 'line', smooth: true, data: [7, 6, 18, 3, 10] },
-        { name: 'Fun', type: 'line', smooth: true, data: [8, 14, 6, 18, 12] }
-      ]
-    };
-    myChart.setOption(option);
-    window.addEventListener('resize', () => myChart.resize());
-  });
-
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const halfs = document.querySelectorAll('.gallery-popular-box .half');
-    const bgUrls = [
-      'Assets/Fun/AQWA/P1040827.webp',
-      'Assets/Grub/Bangkok_bros/图片_20250423152049.webp',
-      'Assets/Study/Ezone/图片_20250423152245.webp',
-      'Assets/Chill/Great_Court_South/P1038411.webp',
-      'Assets/Snap/City_of_Perth/P1038754.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-    ];
-    halfs.forEach((half, idx) => {
-      const imgDiv = half.querySelector('.square-imgs');
-      if (imgDiv && bgUrls[idx]) {
-        imgDiv.style.backgroundImage = `url('${bgUrls[idx]}')`;
-        imgDiv.style.backgroundSize = 'cover';
-        imgDiv.style.backgroundPosition = 'center';
-      }
-    });
-  });
-  const ctx = document.getElementById('ranking-chart').getContext('2d');
-  const data = [
-    { spot: 'AQWA', value: 162057403 },
-    { spot: 'Beach Club', value: 160388407 },
-    { spot: 'Causeway', value: 137052885 },
-    { spot: 'Ezone', value: 90569873 },
-    { spot: 'Shoe Bar', value: 85514673 }
-  ];
-
-  const chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: data.map(d => d.spot),
-      datasets: [{
-        label: 'votes',
-        data: data.map(d => d.value),
-        backgroundColor: [
-          '#fcbf49',
-          '#f77f00',
-          '#e85d04',
-          '#d00000',
-          '#6a040f'
-        ],
-        borderRadius: 10,
-        borderSkipped: false
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true,
-      plugins: {
-        legend: {
-          display: false
-        },
-      },
-      scales: {
-        x: {
-          ticks: {
-            color: 'white'
-          },
-          grid: {
-            color: '#444'
-          }
-        },
-        y: {
-          ticks: {
-            color: 'white'
-          },
-          grid: {
-            color: '#444'
-          },
-          barPercentage: 0.4,
-          categoryPercentage: 0.5
-        }
-      },
-      elements: {
-        bar: {
-          barThickness: 10
-        }
-
-      }
-    }
-  });
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const likediconUrls = [
-      'Assets/Fun/AQWA/P1040827.webp',
-      'Assets/Fun/Beach_Club/P1040031.webp',
-      'Assets/Fun/Causeway_Bridge/P1038620.webp',
-      'Assets/Grub/Bangkok_bros/图片_20250423152049.webp',
-      'Assets/Study/Ezone/图片_20250423152245.webp',
-      'Assets/Grub/The_shoe_bar/图片_20250423152248.webp',
-      'Assets/Snap/City_of_Fremantle/P1039326.webp',
-      'Assets/Fun/Governor_House_opening_day/P1039926.webp',
-      'Assets/Fun/Italy_Festival/图片_20250423152304.webp',
-      'Assets/Chill/Johns_national_park/图片_20250423152102.webp',
-      'Assets/Chill/Hillarys_Beach/P1040862.webp',
-      'Assets/Chill/Great_Court_South/P1038411.webp',
-      'Assets/Snap/City_of_Perth/P1038754.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-      'Assets/Shop/London_Street/图片_20250423152302.webp',
-    ];
-
-    const likedlisticons = document.querySelectorAll('.likedlist-icon');
-    likedlisticons.forEach((item, index) => {
-      if (likediconUrls[index]) {
-        item.style.backgroundImage = `url('${likediconUrls[index]}')`;
-      }
-    });
-  });
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const input = document.querySelector('.search-box input');
-    const gallery = document.querySelector('.gallery-box');
-    const when_search = document.querySelector('.when-search-box');
-
-    input.addEventListener('focus', () => {
-      gallery.style.display = 'none';
-      when_search.style.display = 'block';
-    });
-
-    document.addEventListener('click', e => {
-      if (!input.contains(e.target) && !when_search.contains(e.target)) {
-        when_search.style.display = 'none';
-        gallery.style.display = 'block';
-      }
-    });
-  });
-
-
-  var map = L.map('map').setView([-31.97903, 115.81822], 16);
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-
-  var marker = L.marker([-31.9795, 115.8187]).addTo(map);
-  marker.bindPopup('<b>I am here !!!</b>').openPopup();
-
-
-</script>
-
 </html>
