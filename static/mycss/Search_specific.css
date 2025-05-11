@@ -313,8 +313,19 @@
 
 #ratings-container {
   display: block;
-  height: 85%;
+  height: 50%;
   width: 95%;
+}
+
+.spe-decription-box{
+
+  height: 40%;
+  width: 95%;
+  margin-top: 10px;
+  border: #6a1a21 5px solid;
+  border-radius: 15px;
+
+  padding: 5%;
 }
 
 .btn-review {
@@ -378,3 +389,55 @@
     color: inherit;
     text-decoration: none;
   }
+
+.index-like-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      gap: 20px;
+      align-items: center;
+      font-size: 24px;
+      margin-top : 5% ;
+      position: relative;
+}
+
+    .index-heart-btn, .index-dislike-btn {
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .index-liked {
+      color: red;
+    }
+
+    .index-disliked {
+      color: gray;
+    }
+
+    .index-count {
+      margin-left: 8px;
+      font-weight: bold;
+    }
+
+    .index-float-number {
+      position: absolute;
+      font-size: 18px;
+      font-weight: bold;
+      animation: index-floatUp 1s ease-out forwards;
+      opacity: 1;
+      pointer-events: none;
+    }
+
+    @keyframes index-floatUp {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-30px);
+        opacity: 0;
+      }
+    }

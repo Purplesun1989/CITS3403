@@ -1,101 +1,4 @@
-// ==================== 全局数据定义 ====================
-
-const fakeData = [
-  {
-    author: 'Alice Johnson', date: 'May 1, 2025', comment: `It's not as easy as some of the reviews say, still requires a lot of work. This is expected, but among all my biomed units this unit needed a lot more attention…`, rating: 5
-  },
-  { author: 'Bob Smith', date: 'May 2, 2025', comment: 'Quite good, but could use more details.', rating: 4 },
-  { author: 'Carol Williams', date: 'May 3, 2025', comment: 'It was okay, nothing special.', rating: 3 },
-  { author: 'David Brown', date: 'May 4, 2025', comment: 'Too short, please expand next time.', rating: 2 },
-  { author: 'Eve Davis', date: 'May 5, 2025', comment: 'Not very satisfied with the content.', rating: 1 },
-  { author: 'Frank Miller', date: 'May 6, 2025', comment: 'Visited again—still love it!', rating: 5 },
-  { author: 'Grace Wilson', date: 'May 7, 2025', comment: 'Thumbs up to the author 👍', rating: 5 },
-  { author: 'Henry Moore', date: 'May 8, 2025', comment: 'Learned a lot, thanks for sharing.', rating: 4 },
-  { author: 'Ivy Taylor', date: 'May 9, 2025', comment: 'Felt it lacked depth.', rating: 3 },
-  { author: 'Jack Anderson', date: 'May 10, 2025', comment: 'Stars ⭐ all around!', rating: 5 }
-];
-
-const ratingsData = [
-  { name: "Cleanliness", left: "Dirty", right: "Spotless", score: 8 },
-  { name: "Atmosphere", left: "Unpleasant", right: "Welcoming", score: 7 },
-  { name: "Comfort", left: "Uncomfortable", right: "Cozy", score: 9 },
-  { name: "Accessibility", left: "Inconvenient", right: "Convenient", score: 8 },
-  { name: "Value", left: "Overpriced", right: "Worth It", score: 7 },
-  { name: "Service Quality", left: "Poor", right: "Excellent", score: 9 },
-  { name: "Noise Level", left: "Too Loud", right: "Quiet", score: 6 },
-  { name: "Crowdedness", left: "Too Crowded", right: "Spacious", score: 5 },
-];
-
-const likeData = [
-  { name: "Fremantle_Quey_Beach", path: "/static/Assets/Chill/Fremantle_Quey_Beach/P1040614.webp", likes: 124 },
-  { name: "Great_Court_South", path: "/static/Assets/Chill/Great_Court_South/P1038411.webp", likes: 385 },
-  { name: "Hillarys_Beach", path: "/static/Assets/Chill/Hillarys_Beach/P1040852.webp", likes: 276 },
-  { name: "Johns_national_park", path: "/static/Assets/Chill/Johns_national_park/图片_20250423152225.webp", likes: 499 },
-  { name: "Scarborough", path: "/static/Assets/Chill/Scarborough/P1038320.webp", likes: 213 },
-  { name: "AQWA", path: "/static/Assets/Fun/AQWA/P1040824.webp", likes: 578 },
-  { name: "Beach_Club", path: "/static/Assets/Fun/Beach_Club/P1040060.webp", likes: 44 },
-  { name: "Causeway_Bridge", path: "/static/Assets/Fun/Causeway_Bridge/P1038572.webp", likes: 337 },
-  { name: "Caversham_Wildlife_park", path: "/static/Assets/Fun/Caversham_Wildlife_park/P1041098.webp", likes: 450 },
-  { name: "Governor_House_opening_day", path: "/static/Assets/Fun/Governor_House_opening_day/P1039862.webp", likes: 159 },
-  { name: "Italy_Festival", path: "/static/Assets/Fun/Italy_Festival/图片_20250423152308.webp", likes: 521 },
-  { name: "Japanese_Festival", path: "/static/Assets/Fun/Japanese_Festival/P1038927.webp", likes: 310 },
-  { name: "Royal_show", path: "/static/Assets/Fun/Royal_show/图片_20250423152324.webp", likes: 89 },
-  { name: "Street_Artist", path: "/static/Assets/Fun/Street_Artist/P1040483.webp", likes: 392 },
-  { name: "UWA_Tennis_court", path: "/static/Assets/Fun/UWA_Tennis_court/P1038672.webp", likes: 267 },
-  { name: "Bangkok_bros", path: "/static/Assets/Grub/Bangkok_bros/图片_20250423152310.webp", likes: 146 },
-  { name: "Sushi_Hub", path: "/static/Assets/Grub/Sushi_Hub/图片_20250423152314.webp", likes: 223 },
-  { name: "The_shoe_bar", path: "/static/Assets/Grub/The_shoe_bar/图片_20250423152247.webp", likes: 587 },
-  { name: "London_Street", path: "/static/Assets/Shop/London_Street/图片_20250423152302.webp", likes: 301 },
-  { name: "Art_museum_wa", path: "/static/Assets/Snap/Art_museum_wa/图片_20250423152255.webp", likes: 68 },
-  { name: "City_of_Fremantle", path: "/static/Assets/Snap/City_of_Fremantle/P1039411.webp", likes: 532 },
-  { name: "City_of_Mandurah", path: "/static/Assets/Snap/City_of_Mandurah/P1039669.webp", likes: 178 },
-  { name: "City_of_Perth", path: "/static/Assets/Snap/City_of_Perth/P1038740.webp", likes: 419 },
-  { name: "UWA_tower", path: "/static/Assets/Snap/UWA_tower/P1038027.webp", likes: 246 },
-  { name: "Ezone", path: "/static/Assets/Study/Ezone/图片_20250423152245.webp", likes: 389 }
-];
-
-const charts = [
-  {
-    id: 'pie1',
-    title: 'Agepalooza',
-    data: [
-      { value: 335, name: '12-18' },
-      { value: 310, name: '18-25' },
-      { value: 234, name: '25+' }
-    ]
-  },
-  {
-    id: 'pie2',
-    title: 'Genderpalooza',
-    data: [
-      { value: 524, name: 'male' },
-      { value: 635, name: 'female' },
-      { value: 235, name: 'none binary' }
-    ]
-  },
-  {
-    id: 'pie3',
-    title: 'WeekiVisits',
-    data: [
-      { value: 1548, name: '1' },
-      { value: 535, name: '<3' },
-      { value: 510, name: '3+' }
-    ]
-  }
-];
-
-const pics = [
-  '/static/Assets/Fun/AQWA/P1040827.webp',
-  '/static/Assets/Fun/Beach_Club/P1040031.webp',
-  '/static/Assets/Fun/Causeway_Bridge/P1038620.webp',
-  '/static/Assets/Grub/Bangkok_bros/图片_20250423152049.webp'
-];
-
-var coordinates = [-31.97903, 115.81822];
-var metainfo = ["Stranger", 'profiles/Default_user.jfif', "notification"];
-
-// ==================== 功能函数定义 ====================
-
+const pics = metainfo.slice(4, 10);
 
 function creatbar(sliderId, inputId, startValue = 5) {
   const sliderEl = document.getElementById(sliderId);
@@ -104,7 +7,7 @@ function creatbar(sliderId, inputId, startValue = 5) {
 
   noUiSlider.create(sliderEl, {
     start: [ startValue ],
-    range: { min: 0, max: 10 },
+    range: { min: 0, max: 5 },
     step: 1,
     connect: [ true, false ],
     tooltips: true,
@@ -126,7 +29,7 @@ function createSlider(id, value) {
   if (!slider) return;
   noUiSlider.create(slider, {
     start: [value],
-    range: { min: 0, max: 10 },
+    range: { min: 0, max: 5 },
     step: 1,
     connect: [true, false],
     tooltips: true,
@@ -141,6 +44,7 @@ function createSlider(id, value) {
 // ==================== DOM 渲染逻辑 ====================
 
 document.addEventListener('DOMContentLoaded', async () => {
+
   //评论区
 const comment_box = document.querySelector(".comment-section-box");
 if (comment_box) {
@@ -152,6 +56,7 @@ if (comment_box) {
     }).join('');
 
     return `
+    <a>
       <div class="comment-box">
         <div class="comment-text">${item.comment}</div>
         <div class="starContainer">${stars}</div>
@@ -160,6 +65,7 @@ if (comment_box) {
           <span class="comment-date">${item.date}</span>
         </div>
       </div>
+    </a>
     `;
   }).join('');
 }
@@ -268,41 +174,108 @@ if (comment_box) {
     </div>
   `;
     uploadcontainer?.appendChild(card);
-    creatbar(sliderId, inputId, 5);
+    creatbar(sliderId, inputId, 2);
   });
 
   // 地图
   const mapContainer = document.getElementById('spe-map');
   if (mapContainer) {
-    const map = L.map('spe-map').setView([-31.97903, 115.81822], 16);
+    const map = L.map('spe-map').setView([metainfo[11], metainfo[12]], 16);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
-    L.marker([-31.9795, 115.8187]).addTo(map).bindPopup('<b>I am here!</b>').openPopup();
+    L.marker([metainfo[11], metainfo[12]]).addTo(map).bindPopup('<b>I am here!</b>').openPopup();
   }
 
   // 点赞列表
 const likebox = document.querySelector(".liked-box-content");
 if (likebox) {
   likebox.innerHTML = likeData.map(item => `
+   <a href="/index/${item.spotid}">
     <div class="liked-box-items">
       <img src="${item.path}" alt="${item.name}" class="likedlist-icon" loading="lazy">
       <div class="likedlist-text">${item.name}<br><span class="text-muted-sm"></span></div>
       <i class="bi bi-heart-fill liked-heart-icon"></i>
       <i class="bi bi-chat-dots"></i>
-    </div>`).join('');
+    </div> </a>
+`).join('');
 }
 
-  //用户名称，头像，消息渲染
+  //用户名称，头像，消息渲染,地点名称加载
 const profile_pic = document.querySelector(".profile-box");
 const secondP = document.querySelector(".navright-box p:nth-of-type(2)");
-
+const h4Element = document.querySelector(".banner-box .banner-text h4")
+const likenum = document.getElementById("index-like-count")
+h4Element.textContent = metainfo[10];
+likenum.textContent = metainfo[13]
 if (profile_pic) {
-  profile_pic.src = `/static/${metainfo[1]}`;
+  profile_pic.src = metainfo[2];
 }
 
 if (secondP) {
   secondP.textContent = metainfo[0];
 }
+// 地点描述
+  const distxt = document.querySelector(".spe-decription-box")
+  distxt.textContent = metainfo[14]
+//like dislike
+
+    const likeBtn = document.getElementById("index-like");
+    const dislikeBtn = document.getElementById("index-dislike");
+    const likeCount = document.getElementById("index-like-count");
+
+    let liked = false;
+    let disliked = false;
+
+    function showFloatNumber(target, text) {
+      const floatNum = document.createElement("div");
+      floatNum.className = "index-float-number";
+      floatNum.textContent = text;
+      floatNum.style.left = target.offsetLeft + "px";
+      floatNum.style.top = "-20px";
+      target.appendChild(floatNum);
+      setTimeout(() => {
+        target.removeChild(floatNum);
+      }, 1000);
+    }
+
+    likeBtn.addEventListener("click", () => {
+      if (liked) {
+        likeCount.textContent = parseInt(likeCount.textContent) - 1;
+        likeBtn.classList.remove("index-liked");
+        showFloatNumber(likeBtn, "-1");
+        liked = false;
+      } else {
+        likeCount.textContent = parseInt(likeCount.textContent) + 1;
+        likeBtn.classList.add("index-liked");
+        showFloatNumber(likeBtn, "+1");
+        liked = true;
+
+        if (disliked) {
+          // 如果之前点了 dislike，取消 dislike 样式
+          dislikeBtn.classList.remove("index-disliked");
+          disliked = false;
+        }
+      }
+    });
+
+    dislikeBtn.addEventListener("click", () => {
+      if (disliked) {
+
+        dislikeBtn.classList.remove("index-disliked");
+        disliked = false;
+      } else {
+        dislikeBtn.classList.add("index-disliked");
+        disliked = true;
+
+        if (parseInt(likeCount.textContent) > 0) {
+          likeCount.textContent = parseInt(likeCount.textContent) - 1;
+          likeBtn.classList.remove("index-liked");
+          showFloatNumber(likeBtn, "-1");
+          liked = false;
+        }
+      }
+    });
+
 
 });

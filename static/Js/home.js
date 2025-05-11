@@ -160,9 +160,9 @@ if (mapContainer && coordinates.length > 0) {
     // const marker = L.marker([item.lat, item.lon]).addTo(map);
     // marker.bindPopup(`<a href="/index/${item.id}"><b>${item.spot}</b></a>`);
 
-     const offset = idx * 0.00005;  // 每个点轻微偏移
+    const offset = idx * 0.00005;  // 每个点轻微偏移
     const marker = L.marker([item.lat + offset, item.lon + offset]).addTo(map);
-    marker.bindPopup(`<b>${item.spot}</b>`);
+    marker.bindPopup(`<a href="/index/${item.id}"><b>${item.spot}</b></a>`);
   }
   });
 }

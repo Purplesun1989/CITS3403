@@ -66,6 +66,14 @@
     src="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.js"
     defer
   ></script>
+   <script>
+        const metainfo = {{ metainfo | tojson }};
+        const ratingsData = {{ ratingsData | tojson }};
+        const fakeData = {{ commentsection | tojson }};
+        const likeData = {{ likeData | tojson }};
+        const charts = {{ charts | tojson }};
+   </script>
+
 
   <!-- jQuery -->
   <script
@@ -89,9 +97,6 @@
   <div class="container-fluid" id="main-box">
     <div class="navbar-box row">
       <div class="navleft-box col-md-5">
-        <div class="Home-box zoom-box">
-
-        </div>
       </div>
       <div class="search-box col-md-2">
         <i class="bi bi-search"></i>
@@ -102,7 +107,9 @@
 
       <div class="navright-box col-md-5">
         <i class="bi bi-bell notification-icon"></i>
-         <img alt="Profile Avatar" class="profile-box zoom-box">
+          <a href="{{ url_for('share.personal', userid=metainfo[1]) }}">
+         <img alt="Profile Avatar" class="profile-box zoom-box" style="max-width: 50px">
+         </a>
          <p>Hi,</p>
          <p><strong></strong></p>
          <i class="bi bi-chevron-down"></i>
@@ -156,6 +163,17 @@
 
           <div class="description-box ">
             <div id="ratings-container" class="scroll-box"></div>
+             <div class = "spe-decription-box">
+
+             </div>
+            <div class="index-like-container">
+                <a href="{{ url_for('spe.like', spot_id=metainfo[1]) }}">
+               <div id="index-like" class="index-heart-btn">❤️ <span class="index-count" id="index-like-count">0</span></div>
+                </a>
+                <a href="{{ url_for('spe.dislike', spot_id=metainfo[1]) }}">
+               <div id="index-dislike" class="index-dislike-btn">💔</div>
+                </a>
+            </div>
           </div>
         </div>
 
@@ -164,7 +182,7 @@
           <div class="mb-1" style="text-align: center;">
             <label for="comment" class="form-label"><h1>Your review MATTERs !</h1></label>
           </div>
-          <form method="post" action="/index/insert_reviews">
+          <form method="post" action="{{ url_for('spe.insert_review', spot_id=metainfo[1]) }}">
           <div id="upload-bar-box" class="scroll-box" style="height: 500px"></div>
           <div class="mb-4">
             <label for="comment" class="form-label">Your Comment</label>

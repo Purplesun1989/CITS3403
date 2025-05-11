@@ -1,8 +1,9 @@
-
 from exts import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from datetime import date, datetime
+from datetime import datetime
+
+
 
 class UserModel(db.Model,UserMixin):
     __tablename__ = 'user_table'
@@ -71,6 +72,7 @@ class reviewstModel(db.Model):
     rank_noise_level = db.Column(db.Integer)
     rank_crowdedness = db.Column(db.Integer)
 
+    rank_visitfrequency = db.Column(db.Integer)
     rank_overall = db.Column(db.Integer)
 
     created_at =db. Column(db.DateTime, default=datetime.utcnow)
