@@ -5,7 +5,7 @@ from sqlalchemy import func
 import random
 
 from exts import db;
-from models import relationRequestModel, UserModel, SpotModel, LikeModel, ImgModel, TendencyModel;
+from models import relationRequestModel, UserModel, SpotModel, LikeModel, ImgModel, TendencyModel, collectionModel;
 from datetime import date, datetime, timedelta
 
 home_bp = Blueprint("Home",__name__,)
@@ -33,7 +33,6 @@ def home():
         for name, likes, spot_id, lat, lon in top5_query
     ]
 
-    print(top5)
 
     # 获取点赞数前六名的地点以及图片
     top_spots = (
@@ -85,7 +84,24 @@ def home():
                 "likes": spot.num_likes
             })
 
-    # 推荐列表数据获取
+    # 页面元数据
+    default = ["Stranger","0" ,'/static/profiles/Default_user.jfif', "true"];
+
+    if not current_user.is_authenticated:
+        return render_template("Home.html",top5=top5,top6=top6, metainfo = default, tendency = tendency)
+
+    current = UserModel.query.get(current_user.id)
+    exists = relationRequestModel.query.filter_by(receiver_id=current_user.id).first() is not None
+    userinfo = [current_user.username, current_user.id, current_user.profile_path, str(exists).lower()]
+
+
+
+
+
+    return render_template("Home.html",top5=top5,top6=top6, user=current,metainfo = userinfo,tendency = tendency)
+
+@home_bp.route('/index/get_liked_data')
+def get_recommend_data():
     num = random.randint(15, 25)
     spots = SpotModel.query.order_by(func.random()).limit(num).all()
     recommond = []
@@ -102,19 +118,4 @@ def home():
             "path": selected_image
         })
 
-
-    # 页面元数据
-    default = ["Stranger","0" ,'/static/profiles/Default_user.jfif', "true"];
-
-    if not current_user.is_authenticated:
-        return render_template("Home.html",top5=top5,top6=top6, metainfo = default, tendency = tendency,likeData = recommond)
-
-    current = UserModel.query.get(current_user.id)
-    exists = relationRequestModel.query.filter_by(receiver_id=current_user.id).first() is not None
-    userinfo = [current_user.username, current_user.id, current_user.profile_path, str(exists).lower()]
-
-
-
-
-
-    return render_template("Home.html",top5=top5,top6=top6, user=current,metainfo = userinfo,tendency = tendency,likeData = recommond)
+    return jsonify(recommond)

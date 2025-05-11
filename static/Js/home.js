@@ -109,24 +109,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // 4. 推荐
-  const likebox = document.querySelector(".liked-box-content");
-  if (likebox) {
-    let html = '';
-    likeData.forEach(items => {
-      html += `
-   <a href= "/index/${items.id}">
-    <div class="liked-box-items">
-      <img src="${items.path}" alt="${items.name}" class="likedlist-icon" loading="lazy">
-      <div class="likedlist-text">${items.name.slice(0,10)}<br><span class="text-muted-sm"></span></div>
-      <i class="bi bi-heart-fill heart-icon"></i>
-      <i class="bi bi-chat-dots"></i>
-    </div>
-   </a>
-  `;
-});
+const likebox = document.querySelector(".liked-box-content");
+if (likebox) {
+  fetch("/index/get_liked_data")
+    .then(res => res.json())
+    .then(likeData => {
+      let html = '';
 
-    likebox.innerHTML = html;
-  }
+      likeData.forEach(items => {
+        html += `
+          <a href="/index/${items.id}">
+            <div class="liked-box-items">
+              <img src="${items.path}" alt="${items.name}" class="likedlist-icon" loading="lazy">
+              <div class="likedlist-text">${items.name.slice(0, 10)}<br><span class="text-muted-sm"></span></div>
+              <i class="bi bi-heart-fill heart-icon"></i>
+              <i class="bi bi-chat-dots"></i>
+            </div>
+          </a>
+        `;
+      });
+
+      likebox.innerHTML = html;
+    })
+    .catch(error => console.error("failed loading", error));
+}
 
   // 5. 搜索框交互
   const input = document.querySelector('.search-box input');
