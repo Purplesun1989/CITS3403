@@ -192,7 +192,7 @@ const likebox = document.querySelector(".liked-box-content");
 if (likebox) {
   likebox.innerHTML = likeData.map(item => `
    <a href="/index/${item.spotid}">
-    <div class="liked-box-items">
+    <div class="liked-box-items" id="${item.spotid}">
       <img src="${item.path}" alt="${item.name.slice(0,10)}" class="likedlist-icon" loading="lazy">
       <div class="likedlist-text">${item.name.slice(0, 10)}<br><span class="text-muted-sm"></span></div>
       <i class="bi bi-heart-fill liked-heart-icon"></i>
@@ -250,9 +250,24 @@ if (secondP) {
         likeBtn.classList.add("index-liked");
         showFloatNumber(likeBtn, "+1");
         liked = true;
-
+        if (likebox) {
+          fetch(`/index/like/${metainfo[1]}`)
+          .then(res => res.json())
+          .then(likeData => {
+          likebox.innerHTML = likeData.map(item => `
+        <a href="/index/${item.spotid}">
+          <div class="liked-box-items" id="like-${item.spotid}">
+            <img src="${item.path}" alt="${item.name.slice(0,10)}" class="likedlist-icon" loading="lazy">
+            <div class="likedlist-text">${item.name.slice(0, 10)}<br><span class="text-muted-sm"></span></div>
+            <i class="bi bi-heart-fill liked-heart-icon"></i>
+            <i class="bi bi-chat-dots"></i>
+          </div>
+        </a>
+      `).join('');
+    })
+    .catch(error => console.error("Failed to load liked data:", error));
+}
         if (disliked) {
-          // 如果之前点了 dislike，取消 dislike 样式
           dislikeBtn.classList.remove("index-disliked");
           disliked = false;
         }
@@ -261,12 +276,15 @@ if (secondP) {
 
     dislikeBtn.addEventListener("click", () => {
       if (disliked) {
-
         dislikeBtn.classList.remove("index-disliked");
         disliked = false;
       } else {
+
         dislikeBtn.classList.add("index-disliked");
         disliked = true;
+        const box = document.getElementById(metainfo[1]);
+        if (box) box.remove();
+        fetch(`/index/dislike/${metainfo[1]}`).then(res => { /* … */ });
 
         if (parseInt(likeCount.textContent) > 0) {
           likeCount.textContent = parseInt(likeCount.textContent) - 1;

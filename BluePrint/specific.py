@@ -196,7 +196,26 @@ def like(spot_id):
         else:
             db.session.rollback()
 
-    return Response(status=204)
+    liked_entries = collectionModel.query.filter_by(user_id=current_user.id).all()
+    likeData = []
+    for entry in liked_entries:
+        s = SpotModel.query.get(entry.item_ID)
+        if not s:
+            continue
+        first_img = (
+            ImgModel.query
+            .filter_by(spot_ID=s.spot_ID)
+            .order_by(ImgModel.img_ID)
+            .first()
+        )
+        likeData.append({
+            'name': s.spot_name,
+            'path': first_img.path if first_img else '',
+            'likes': s.num_likes or 0,
+            'spotid': s.spot_ID
+        })
+
+    return jsonify(likeData)
 
 @spe_bp.route('/dislike/<int:spot_id>')
 def dislike(spot_id):
