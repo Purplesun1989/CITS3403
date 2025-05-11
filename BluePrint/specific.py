@@ -53,7 +53,7 @@ def specific(spot_id):
             .first()
         )
         likeData.append({
-            'name': s.spot_name[:10],
+            'name': s.spot_name,
             'path': first_img.path if first_img else '',
             'likes': s.num_likes or 0,
             'spotid': s.spot_ID

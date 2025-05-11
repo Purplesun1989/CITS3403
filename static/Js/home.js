@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
    <a href= "/index/${items.id}">
     <div class="liked-box-items">
       <img src="${items.path}" alt="${items.name}" class="likedlist-icon" loading="lazy">
-      <div class="likedlist-text">${items.name}<br><span class="text-muted-sm"></span></div>
+      <div class="likedlist-text">${items.name.slice(0,10)}<br><span class="text-muted-sm"></span></div>
       <i class="bi bi-heart-fill heart-icon"></i>
       <i class="bi bi-chat-dots"></i>
     </div>
@@ -157,10 +157,8 @@ if (mapContainer && coordinates.length > 0) {
 
   top5.forEach((item, idx)=> {
    if (item.lat !== undefined && item.lon !== undefined) {
-    // const marker = L.marker([item.lat, item.lon]).addTo(map);
-    // marker.bindPopup(`<a href="/index/${item.id}"><b>${item.spot}</b></a>`);
 
-    const offset = idx * 0.00005;  // 每个点轻微偏移
+    const offset = idx * 0.00005;
     const marker = L.marker([item.lat + offset, item.lon + offset]).addTo(map);
     marker.bindPopup(`<a href="/index/${item.id}"><b>${item.spot}</b></a>`);
   }

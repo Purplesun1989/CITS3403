@@ -96,7 +96,7 @@ def home():
 
         recommond.append({
             "id": spot.spot_ID,
-            "name": spot.spot_name[:10],
+            "name": spot.spot_name,
             "locationx": spot.locationx,
             "locationy": spot.locationy,
             "path": selected_image

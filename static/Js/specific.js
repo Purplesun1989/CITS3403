@@ -193,8 +193,8 @@ if (likebox) {
   likebox.innerHTML = likeData.map(item => `
    <a href="/index/${item.spotid}">
     <div class="liked-box-items">
-      <img src="${item.path}" alt="${item.name}" class="likedlist-icon" loading="lazy">
-      <div class="likedlist-text">${item.name}<br><span class="text-muted-sm"></span></div>
+      <img src="${item.path}" alt="${item.name.slice(0,10)}" class="likedlist-icon" loading="lazy">
+      <div class="likedlist-text">${item.name.slice(0, 10)}<br><span class="text-muted-sm"></span></div>
       <i class="bi bi-heart-fill liked-heart-icon"></i>
       <i class="bi bi-chat-dots"></i>
     </div> </a>

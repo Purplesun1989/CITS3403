@@ -322,9 +322,12 @@
   height: 40%;
   width: 95%;
   margin-top: 10px;
-  border: #6a1a21 5px solid;
+  box-shadow: 2px 2px 6px #4f5050;
   border-radius: 15px;
-
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
   padding: 5%;
 }
 
