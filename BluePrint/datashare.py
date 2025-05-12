@@ -20,7 +20,7 @@ def personal(userid):
         current.id
     ]
 
-    # 好友列表（双向匹配）
+
     friend_relations = relationModel.query.filter(
         ((relationModel.user_id_1 == current.id) | (relationModel.user_id_2 == current.id)),
         relationModel.status == 1
@@ -150,7 +150,7 @@ def confirmrequest(userid):
 @datashare_bp.route("/decline/<int:userid>",  methods=["GET"])
 
 def declinerequest(userid):
-    # 查找 sender 为 userid，receiver 为当前用户，且 status==1 的请求
+
     request_row = relationRequestModel.query.filter(
         and_(
             relationRequestModel.sender_id == userid,
