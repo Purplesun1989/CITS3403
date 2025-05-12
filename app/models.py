@@ -2,8 +2,9 @@ from app import db
 from datetime import date, datetime
 
 class Winner:
-    def __init__(self, spots):
+    def __init__(self, spots, score):
         self.spots = spots
+        self.score = score
         
 class UserModel(db.Model):
     __tablename__ = 'user_table'

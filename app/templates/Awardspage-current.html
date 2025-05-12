@@ -36,7 +36,8 @@
                         <br>
                         <img src="static/Placeholder.png" alt="{{ award }}">
                         <br>
-                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}')">{{ award }}</button>
+                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}', '{{ winner.score }}')">{{ award }}</button>
+
                     </li>
                     {% endfor %}
                 </ul>
@@ -51,7 +52,7 @@
                         <br>
                         <img src="static/Placeholder.png" alt="{{ award }}">
                         <br>
-                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}')">{{ award }}</button>
+                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}', '{{ winner.score }}')">{{ award }}</button>
                     </li>
                     {% endfor %}
                 </ul>
@@ -66,7 +67,7 @@
                         <br>
                         <img src="static/Placeholder.png" alt="{{ award }}">
                         <br>
-                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}')">{{ award }}</button>
+                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}', '{{ winner.score }}')">{{ award }}</button>
                     </li>
                     {% endfor %}
                 </ul>
@@ -81,7 +82,7 @@
                         <br>
                         <img src="static/Placeholder.png" alt="{{ award }}">
                         <br>
-                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}')">{{ award }}</button>
+                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}', '{{ winner.score }}')">{{ award }}</button>
                     </li>
                     {% endfor %}
                 </ul>
@@ -96,7 +97,7 @@
                         <br>
                         <img src="static/Placeholder.png" alt="{{ award }}">
                         <br>
-                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}')">{{ award }}</button>
+                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}', '{{ winner.score }}')">{{ award }}</button>
                     </li>
                     {% endfor %}
                 </ul>
@@ -111,7 +112,7 @@
                         <br>
                         <img src="static/Placeholder.png" alt="{{ award }}">
                         <br>
-                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}')">{{ award }}</button>
+                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}', '{{ winner.score }}')">{{ award }}</button>
                     </li>
                     {% endfor %}
                 </ul>
@@ -119,7 +120,7 @@
 
             <div id="award-stats">
                 <h3 id="award-title"></h3>
-                <p id="award-description">This is some texts</p>
+                <p id="award-description"></p>
             </div>
         </div>
     </div>
@@ -183,11 +184,12 @@
             chill.style.display = 'block';
         });
 
-        function showWinner(winner, award) {
+        function showWinner(winner, award, score) {
             awardStats.style.display = 'block';
             awardTitle.textContent = award;
-            awardDescription.textContent = `${winner} is the winner of the "${award}" award.`;
+            awardDescription.textContent = `${winner} is the winner of the "${award}" award with a score of ${score}/5.`;
         }
+
     </script>
 </body>
 </html>
