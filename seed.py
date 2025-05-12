@@ -1,10 +1,10 @@
-from app import db, application  # import your Flask app and db
+from app import db, application
 from app.models import UserModel, CategoryModel, SpotModel, ReviewModel
 from datetime import date
 import random
 
 with application.app_context():
-    # Optional: clear existing data
+    # Clear existing data
     ReviewModel.query.delete()
     SpotModel.query.delete()
     UserModel.query.delete()
@@ -13,10 +13,12 @@ with application.app_context():
 
     # Insert categories
     category_data = [
-        CategoryModel(name="study", total_likes=0),
+        CategoryModel(name="Shop", total_likes=0),
         CategoryModel(name="grub", total_likes=0),
         CategoryModel(name="snap", total_likes=0),
-        CategoryModel(name="fun", total_likes=0)
+        CategoryModel(name="fun", total_likes=0),
+        CategoryModel(name="chill", total_likes=0),
+        CategoryModel(name="study", total_likes=0),
     ]
     db.session.add_all(category_data)
     db.session.commit()
@@ -36,20 +38,23 @@ with application.app_context():
     db.session.add_all(users)
     db.session.commit()
 
-    # Insert spots (only for snap and fun)
-    snap_fun_spots = []
-    for category_id in [3, 4]:  # 3 = snap, 4 = fun
+    # Map category names to their IDs
+    categories = {cat.name.lower(): cat.category_ID for cat in CategoryModel.query.all()}
+
+    # Insert spots for each category
+    spots = []
+    for category_name in ['snap', 'fun', 'grub', 'shop', 'chill', 'study']:
         for i in range(5):
             spot = SpotModel(
-                spot_name=f"{'Snap' if category_id == 3 else 'Fun'} Spot {i + 1}",
-                category_ID=category_id,
+                spot_name=f"{category_name.capitalize()} Spot {i + 1}",
+                category_ID=categories[category_name],
                 locationx=random.uniform(115.8, 115.9),
                 locationy=random.uniform(-31.9, -31.95),
-                description=f"Great place for {'photos' if category_id == 3 else 'fun'}!",
+                description=f"Nice place for {category_name}.",
                 num_likes=random.randint(0, 50)
             )
-            snap_fun_spots.append(spot)
-    db.session.add_all(snap_fun_spots)
+            spots.append(spot)
+    db.session.add_all(spots)
     db.session.commit()
 
     # Insert reviews
@@ -57,7 +62,7 @@ with application.app_context():
     all_spots = SpotModel.query.all()
     reviews = []
     for spot in all_spots:
-        for _ in range(3):
+        for _ in range(3):  # at least 3 reviews per spot
             ranks = {
                 "rank_cleanliness": random.randint(1, 5),
                 "rank_atmosphere": random.randint(1, 5),
@@ -82,3 +87,4 @@ with application.app_context():
     db.session.commit()
 
     print("✅ Seeded database with categories, users, spots, and reviews!")
+

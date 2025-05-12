@@ -5,7 +5,6 @@
     <title>Awards Page</title>
     <link rel="stylesheet" href="static/Awardspage-current.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 <body>
     <div class="menu-bar">
@@ -28,62 +27,40 @@
         </div>
 
         <div class="awards-container">
-
+            <!-- STUDY -->
             <div id="study">
                 <ul>
+                    {% for winner, award in study_zipped_winners %}
                     <li>
-                        <h2>Winner Placeholder</h2>
+                        <h2>{{ winner.spots }}</h2>
                         <br>
-                        <img src="static/Placeholder.jpg" alt="Best Reviews">
+                        <img src="static/Placeholder.jpg" alt="{{ award }}">
                         <br>
-                        <button class="award-button" data-award="Best Reviews">Best Reviews</button>
+                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}')">{{ award }}</button>
                     </li>
-                    <li>
-                        <h2>Winner Placeholder</h2>
-                        <br>
-                        <img src="static/Placeholder.jpg" alt="Best Lighting">
-                        <br>
-                        <button class="award-button" data-award="Best Lighting">Best Lighting</button>
-                    </li>
-                    <li>
-                        <h2>Winner Placeholder</h2>
-                        <br>
-                        <img src="static/Placeholder.jpg" alt="Quietest">
-                        <br>
-                        <button class="award-button" data-award="Quietest">Quietest</button>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
 
+            <!-- GRUB -->
             <div id="grub" style="display:none;">
                 <ul>
+                    {% for winner, award in grub_zipped_winners %}
                     <li>
-                        <h2>Winner Placeholder</h2>
+                        <h2>{{ winner.spots }}</h2>
                         <br>
-                        <img src="static/Placeholder.jpg" alt="Tastiest Grub">
+                        <img src="static/Placeholder.jpg" alt="{{ award }}">
                         <br>
-                        <button class="award-button" data-award="Tastiest Grub">Tastiest Grub</button>
+                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}')">{{ award }}</button>
                     </li>
-                    <li>
-                        <h2>Winner Placeholder</h2>
-                        <br>
-                        <img src="static/Placeholder.jpg" alt="Budget Bites">
-                        <br>
-                        <button class="award-button" data-award="Budget Bites">Budget Bites</button>
-                    </li>
-                    <li>
-                        <h2>Winner Placeholder</h2>
-                        <br>
-                        <img src="static/Placeholder.jpg" alt="Best Coffee">
-                        <br>
-                        <button class="award-button" data-award="Best Coffee">Best Coffee</button>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
 
+            <!-- SNAP -->
             <div id="snap" style="display:none;">
                 <ul>
-                    {% for winner, award in snap_zipped_winners%}
+                    {% for winner, award in snap_zipped_winners %}
                     <li>
                         <h2>{{ winner.spots }}</h2>
                         <br>
@@ -95,9 +72,10 @@
                 </ul>
             </div>
 
+            <!-- FUN -->
             <div id="fun" style="display:none;">
                 <ul>
-                    {% for winner, award in fun_zipped_winners%}
+                    {% for winner, award in fun_zipped_winners %}
                     <li>
                         <h2>{{ winner.spots }}</h2>
                         <br>
@@ -109,55 +87,33 @@
                 </ul>
             </div>
 
+            <!-- SHOP -->
             <div id="shop" style="display:none;">
                 <ul>
+                    {% for winner, award in shop_zipped_winners %}
                     <li>
-                        <h2>Winner Placeholder</h2>
+                        <h2>{{ winner.spots }}</h2>
                         <br>
-                        <img src="static/Placeholder.jpg" alt="Most Affordable">
+                        <img src="static/Placeholder.jpg" alt="{{ award }}">
                         <br>
-                        <button class="award-button" data-award="Most Affordable">Most Affordable</button>
+                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}')">{{ award }}</button>
                     </li>
-                    <li>
-                        <h2>Winner Placeholder</h2>
-                        <br>
-                        <img src="static/Placeholder.jpg" alt="Best Variety">
-                        <br>
-                        <button class="award-button" data-award="Best Variety">Best Variety</button>
-                    </li>
-                    <li>
-                        <h2>Winner Placeholder</h2>
-                        <br>
-                        <img src="static/Placeholder.jpg" alt="Fastest Service">
-                        <br>
-                        <button class="award-button" data-award="Fastest Service">Fastest Service</button>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
 
+            <!-- CHILL -->
             <div id="chill" style="display:none;">
                 <ul>
+                    {% for winner, award in chill_zipped_winners %}
                     <li>
-                        <h2>Winner Placeholder</h2>
+                        <h2>{{ winner.spots }}</h2>
                         <br>
-                        <img src="static/Placeholder.jpg" alt="Best Hangout">
+                        <img src="static/Placeholder.jpg" alt="{{ award }}">
                         <br>
-                        <button class="award-button" data-award="Best Hangout">Best Hangout</button>
+                        <button onclick="showWinner('{{ winner.spots }}', '{{ award }}')">{{ award }}</button>
                     </li>
-                    <li>
-                        <h2>Winner Placeholder</h2>
-                        <br>
-                        <img src="static/Placeholder.jpg" alt="Most Relaxing">
-                        <br>
-                        <button class="award-button" data-award="Most Relaxing">Most Relaxing</button>
-                    </li>
-                    <li>
-                        <h2>Winner Placeholder</h2>
-                        <br>
-                        <img src="static/Placeholder.jpg" alt="Peaceful Vibes">
-                        <br>
-                        <button class="award-button" data-award="Peaceful Vibes">Peaceful Vibes</button>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
 
@@ -165,7 +121,6 @@
                 <h3 id="award-title"></h3>
                 <p id="award-description">This is some texts</p>
             </div>
-
         </div>
     </div>
 
