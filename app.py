@@ -8,6 +8,8 @@ from BluePrint.auth import auth_bp
 from BluePrint.home import home_bp
 from BluePrint.specific import spe_bp
 from BluePrint.datashare import datashare_bp
+from BluePrint.awards_study import awards_bp
+from BluePrint.awards_grub import awards_bp
 
 import config
 
@@ -32,6 +34,7 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(home_bp)
 app.register_blueprint(spe_bp)
 app.register_blueprint(datashare_bp)
+app.register_blueprint(awards_bp)
 
 @app.route('/', methods=["POST", "GET"])
 def hello_world():
