@@ -1,10 +1,6 @@
 from app import db
 from datetime import date, datetime
 
-class Winner:
-    def __init__(self, spots):
-        self.spots = spots
-        
 class UserModel(db.Model):
     __tablename__ = 'user_table'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
