@@ -7,24 +7,52 @@ function renderUsers(filteredUsers) {
   filteredUsers.forEach(user => {
     const div = document.createElement("div");
     div.className = "friendcard d-flex align-items-center mb-2";
+
     div.innerHTML = `
       <img src="${user.path}" alt="${user.name}" class="rounded-circle me-2" width="30" height="30">
       <span class="friend-name">${user.name}</span>
-      <input type="text" placeholder="say something to him/her" class="w-75 ms-2">
-      <i class="bi bi-check-circle action-icon text-success ms-2"></i>
+      <input type="text" value="Hi, let's be friends!" class="msg-input w-75 ms-2">
+      <i class="bi bi-send-fill action-icon text-success ms-2" style="cursor:pointer;"></i>
     `;
+
+    const input = div.querySelector(".msg-input");
+    const sendIcon = div.querySelector(".bi-send-fill");
+
+    sendIcon.addEventListener("click", () => {
+      const message = input.value;
+      fetch(`/profile/enlistfriend/${user.uid}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message: message })
+      }).then(res => {
+        if (res.status === 204) {
+          sendIcon.classList.remove("bi-send-fill");
+          sendIcon.classList.add("bi-check-circle");
+          sendIcon.style.color = "gray";
+          input.disabled = true;
+        } else {
+          console.warn("failed：" + res.status);
+        }
+      }).catch(err => {
+        console.error("network fai：", err);
+      });
+    });
+
     findBox.appendChild(div);
   });
 }
 
+
 document.addEventListener('DOMContentLoaded', async () => {
-  // 设置壁纸
+
   const wallpaperImg = document.querySelector(".wall-paper-box img");
   if (wallpaperImg) {
     wallpaperImg.src = user[2];
   }
 
-  // 设置头像
+
   const avatarImg = document.querySelector(".profile-box img");
   if (avatarImg) {
     avatarImg.src = user[1];
@@ -63,12 +91,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const rejectIcon = div.querySelector(".bi-x-circle");
 
     acceptIcon.addEventListener("click", () => {
-      div.style.display = "none";
       alert("confirmed");
     });
 
     rejectIcon.addEventListener("click", () => {
-      div.style.display = "none";
       alert("declined");
     });
 

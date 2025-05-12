@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 const comment_box = document.querySelector(".comment-section-box");
 if (comment_box) {
   comment_box.innerHTML = fakeData.map(item => {
-    // 动态生成星星：根据 rating 加上 active 类
     const stars = Array.from({ length: 5 }, (_, i) => {
       const active = i < item.rating ? 'active' : '';
       return `<span class="rate-star ${active}" data-value="${i + 1}">&#9733;</span>`;
@@ -256,7 +255,7 @@ if (secondP) {
           .then(likeData => {
           likebox.innerHTML = likeData.map(item => `
         <a href="/index/${item.spotid}">
-          <div class="liked-box-items" id="like-${item.spotid}">
+          <div class="liked-box-items" id="${item.spotid}">
             <img src="${item.path}" alt="${item.name.slice(0,10)}" class="likedlist-icon" loading="lazy">
             <div class="likedlist-text">${item.name.slice(0, 10)}<br><span class="text-muted-sm"></span></div>
             <i class="bi bi-heart-fill liked-heart-icon"></i>
@@ -283,7 +282,7 @@ if (secondP) {
         dislikeBtn.classList.add("index-disliked");
         disliked = true;
         const box = document.getElementById(metainfo[1]);
-        if (box) box.remove();
+        box.remove();
         fetch(`/index/dislike/${metainfo[1]}`).then(res => { /* … */ });
 
         if (parseInt(likeCount.textContent) > 0) {

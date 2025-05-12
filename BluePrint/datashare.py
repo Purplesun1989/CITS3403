@@ -1,7 +1,10 @@
-from flask import Blueprint,render_template,request
+from flask import Blueprint, render_template, request, jsonify,Response
 from flask_login import current_user, login_required
+
+
 from exts import db;
 from models import UserModel,relationModel,relationRequestModel;
+from datetime import datetime, timedelta
 
 datashare_bp = Blueprint("share",__name__,url_prefix="/profile")
 
@@ -14,7 +17,7 @@ def personal(userid):
     user = [
         current.username,
         current.profile_path,
-        current.wallpaper.path if hasattr(current, 'wallpaper') else "/static/default.jpg"
+        current.wallpaper.path if hasattr(current, 'wallpaper') else "/static/wallpaper/P1040675.webp"
     ]
 
     # 好友列表（双向匹配）
@@ -65,3 +68,33 @@ def personal(userid):
                            friend=friend,
                            allUsers=allUsers,
                            newrequest=newrequest)
+
+@datashare_bp.route("/enlistfriend/<int:userid>",  methods=["POST"])
+
+def enlist(userid):
+    sender_id = current_user.id
+    receiver_id = userid
+    data = request.get_json()
+    message = data.get("message", "Hi, let's be friends!")
+    existing = relationRequestModel.query.filter_by(
+        sender_id=sender_id,
+        receiver_id=receiver_id,
+        status=1
+    ).first()
+
+    if not existing:
+        now = datetime.utcnow()
+
+        new_request = relationRequestModel(
+            sender_id=sender_id,
+            receiver_id=receiver_id,
+            status=1,
+            request_text=message,
+            created_at=datetime.utcnow(),
+            expired_at=now + timedelta(days=7)
+        )
+
+        db.session.add(new_request)
+        db.session.commit()
+    return Response(status=204)
+

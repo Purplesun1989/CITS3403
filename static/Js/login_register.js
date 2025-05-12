@@ -31,6 +31,10 @@ function switch_box() {
 
  document.addEventListener('DOMContentLoaded', () => {
   const registerBtn = document.getElementById('register-btn');
+  const profie = document.querySelector(".icon")
+  if(profie){
+      profie.style.backgroundImage = `url("${path[0]}")`
+  }
   if(registerBtn){
       registerBtn.addEventListener('click',switch_box)
      }

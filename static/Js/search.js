@@ -103,8 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // 全局点击，点击输入框或历史列表外时隐藏
   document.addEventListener('click', e => {
     if (!input.contains(e.target) && !historyBox.contains(e.target)) {
-      historyBox.style.display = 'none';
-      gallery.style.display    = 'block';
+      // historyBox.style.display = 'none';
+      // gallery.style.display    = 'block';
     }
 
   // 历史列表内点击：选中 vs 删除

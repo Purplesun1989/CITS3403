@@ -32,7 +32,9 @@
 
 
   <title>Join us!</title>
-
+    <script>
+        const path = {{ path | default(["/static/profiles/Default_user.jfif"]) | tojson }};
+    </script>
   <script
     src="{{ url_for('static', filename='Jquery/jquery.js') }}"
     defer
@@ -144,19 +146,6 @@
               required
               minlength="8"
               title="8 character at least"
-            >
-          </div>
-
-          <div class="mb-3">
-            <label for="age" class="form-label">age</label>
-            <input
-              type="number"
-              class="form-control"
-              id="age"
-              name="register_age"
-              min="0"
-              max="120"
-              required
             >
           </div>
 

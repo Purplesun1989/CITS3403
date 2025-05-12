@@ -3,7 +3,7 @@ from flask_login import login_user
 from models import UserModel;
 from werkzeug.utils import secure_filename
 from exts import db
-from datetime import datetime
+from datetime import datetime, date
 import os
 
 auth_bp = Blueprint("auth",__name__,url_prefix="/auth")
@@ -11,8 +11,11 @@ auth_bp = Blueprint("auth",__name__,url_prefix="/auth")
 
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
+    raw_path = request.args.get("path")
+    path = [raw_path] if raw_path else ["/static/profiles/Default_user.jfif"]
     if request.method == "GET":
-        return render_template("Login.html")
+
+        return render_template("Login.html",path=path)
 
     uwa_email = request.form.get('uwa_email', '').strip().lower()
     password = request.form.get('password', '')
@@ -36,9 +39,10 @@ def register():
     username = request.form.get("register_username").lower()
     email = request.form.get("register_email").lower()
     password = request.form.get("register_password")
-    age = request.form.get("register_age")
     birthday = request.form.get("register_birthday")
     birthday = datetime.strptime(birthday, "%Y-%m-%d").date()
+    today = date.today()
+    age = today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
     gender = request.form.get("gender")
 
     avatar_file = request.files.get("avatar")
@@ -64,7 +68,7 @@ def register():
 
     user = UserModel.query.filter_by(uwa_email=email).first()
     if user:
-        return render_template("Login.html", error="You have a account already!"+ user.profile_path)
+        return render_template("Login.html", error="You have a account already!",path = [user.profile_path])
 
     user = UserModel(
         username=username,
@@ -79,7 +83,7 @@ def register():
     db.session.add(user)
     db.session.commit()
 
-    return redirect(url_for("auth.login"))
+    return redirect(url_for("auth.login",path = avatar_url))
 
 
 
