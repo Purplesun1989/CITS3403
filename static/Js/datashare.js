@@ -77,29 +77,74 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   // 渲染好友请求
-  const requestContainer = document.getElementById("requests");
-  newrequest.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "friendcard d-flex align-items-center";
-    div.innerHTML = `
-      <img src="${item.path}" alt="avatar" class="friend-avatar">
-      <span class="friend-name">${item.name} : ${item.message}</span>
-      <i class="bi bi-check-circle action-icon text-success"></i>
-      <i class="bi bi-x-circle action-icon"></i>
+const requestContainer = document.getElementById("requests");
+
+newrequest.forEach(item => {
+  const div = document.createElement("div");
+  div.className = "friendcard d-flex align-items-center";
+
+  div.innerHTML = `
+    <img src="${item.path}" alt="avatar" class="friend-avatar">
+    <span class="friend-name">${item.name} : ${item.message}</span>
+    <i class="bi bi-check-circle action-icon text-success" style="cursor:pointer;"></i>
+    <i class="bi bi-x-circle action-icon" style="cursor:pointer;"></i>
+  `;
+
+  const acceptIcon = div.querySelector(".bi-check-circle");
+  const rejectIcon = div.querySelector(".bi-x-circle");
+
+  // 点击确认请求
+acceptIcon.addEventListener("click", async () => {
+  try {
+    // 1. 发起 GET 请求
+    const res = await fetch(`/profile/confirm/${item.uid}`);
+    if (!res.ok) throw new Error(`networks errors：${res.status}`);
+
+    // 2. 解析成 JS 数组
+    const users = await res.json();
+
+
+    // 3. 找到当前点击对应的那条记录
+    const uidNum = Number(item.uid);
+    const me = users.find(u => u.uid === uidNum);
+    if (!me) {
+      console.warn("返回列表中没有找到 uid =", uidNum);
+      return;
+    }
+
+
+    const { uid, name, path } = me;
+    const container = document.getElementById("friends");
+    const friendDiv = document.createElement("div");
+    friendDiv.className = "friendcard d-flex align-items-center";
+    friendDiv.dataset.uid = uid;
+    friendDiv.innerHTML = `
+      <img src="${path}" alt="avatar" class="friend-avatar">
+      <span class="friend-name">${name}</span>
+      <i class="bi bi-x-circle action-icon" style="cursor:pointer;"></i>
     `;
-    const acceptIcon = div.querySelector(".bi-check-circle");
-    const rejectIcon = div.querySelector(".bi-x-circle");
+    friendDiv
+      .querySelector(".action-icon")
+      .addEventListener("click", () => friendDiv.remove());
+    container.appendChild(friendDiv);
 
-    acceptIcon.addEventListener("click", () => {
-      alert("confirmed");
-    });
 
-    rejectIcon.addEventListener("click", () => {
-      alert("declined");
-    });
+    div.remove();
 
-    requestContainer.appendChild(div);
+  } catch (err) {
+    console.error("确认好友失败：", err);
+  }
+});
+
+
+  rejectIcon.addEventListener("click", () => {
+    fetch(`/profile/decline/${item.uid}`)
+    div.remove();
   });
+
+  requestContainer.appendChild(div);
+});
+
 
   renderUsers(allUsers);
 

@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify,Response
 from flask_login import current_user, login_required
-
-
+from sqlalchemy import or_,and_
 from exts import db;
 from models import UserModel,relationModel,relationRequestModel;
 from datetime import datetime, timedelta
@@ -17,7 +16,8 @@ def personal(userid):
     user = [
         current.username,
         current.profile_path,
-        current.wallpaper.path if hasattr(current, 'wallpaper') else "/static/wallpaper/P1040675.webp"
+        current.wallpaper.path if hasattr(current, 'wallpaper') else "/static/wallpaper/P1040675.webp",
+        current.id
     ]
 
     # 好友列表（双向匹配）
@@ -51,13 +51,14 @@ def personal(userid):
     ]
 
 
-    requests = relationRequestModel.query.filter_by(receiver_id=current.id, status=0).all()
+    requests = relationRequestModel.query.filter_by(receiver_id=current.id, status=1).all()
     newrequest = [
         {
             "name": UserModel.query.get(r.sender_id).username,
             "date": r.created_at.strftime('%Y-%m-%d'),
             "message": r.request_text or "please confirm",
-            "path": UserModel.query.get(r.sender_id).profile_path
+            "path": UserModel.query.get(r.sender_id).profile_path,
+            "uid": str(r.sender_id),
         }
         for r in requests
     ]
@@ -98,3 +99,72 @@ def enlist(userid):
         db.session.commit()
     return Response(status=204)
 
+@datashare_bp.route("/confirm/<int:userid>",  methods=["POST","GET"])
+
+def confirmrequest(userid):
+    sender_id = userid
+    receiver_id = current_user.id
+
+    request_row = relationRequestModel.query.filter_by(
+        sender_id=sender_id,
+        receiver_id=receiver_id,
+
+        status=1
+    ).first()
+
+    if request_row:
+
+        db.session.delete(request_row)
+
+        new_relation = relationModel(
+            user_id_1=sender_id,
+            user_id_2=receiver_id,
+            status=1
+        )
+        db.session.add(new_relation)
+        db.session.commit()
+
+    relations = relationModel.query.filter(
+        or_(
+            relationModel.user_id_1 == current_user.id,
+            relationModel.user_id_2 == current_user.id
+        ),
+        relationModel.status == 1
+    ).all()
+
+    friends = []
+    for rel in relations:
+
+        friend_id = rel.user_id_2 if rel.user_id_1 == current_user.id else rel.user_id_1
+        user = UserModel.query.get(friend_id)
+        if not user:
+            continue
+        friends.append({
+            "uid":    user.id,
+            "name":   user.username,
+            "path":   user.profile_path
+        })
+    print(friends)
+    return jsonify(friends)
+
+@datashare_bp.route("/decline/<int:userid>",  methods=["GET"])
+
+def declinerequest(userid):
+    # 查找 sender 为 userid，receiver 为当前用户，且 status==1 的请求
+    request_row = relationRequestModel.query.filter(
+        and_(
+            relationRequestModel.sender_id == userid,
+            relationRequestModel.receiver_id == current_user.id,
+            relationRequestModel.status == 1
+        )
+    ).first()
+
+    if not request_row:
+
+        return Response(status=404)
+
+
+    db.session.delete(request_row)
+    db.session.commit()
+
+    return Response(status=204)
