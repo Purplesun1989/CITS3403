@@ -1,4 +1,5 @@
 from flask import Flask
+from BluePrint.awards import awards_grub
 from exts import db
 from flask_migrate import Migrate
 from flask_login import LoginManager
@@ -8,8 +9,8 @@ from BluePrint.auth import auth_bp
 from BluePrint.home import home_bp
 from BluePrint.specific import spe_bp
 from BluePrint.datashare import datashare_bp
-from BluePrint.awards_study import awards_bp
-from BluePrint.awards_grub import awards_bp
+from BluePrint.awards import awards_bp
+from BluePrint.awards import awards_study, awards_grub, top_reviews_data
 
 import config
 
