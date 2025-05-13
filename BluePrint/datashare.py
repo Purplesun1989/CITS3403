@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, request, jsonify,Response
 from flask_login import current_user, login_required
 from sqlalchemy import or_,and_
-from exts import db;
 from models import UserModel,relationModel,relationRequestModel;
 from datetime import datetime, timedelta
+
+from exts import db,csrf;
 
 datashare_bp = Blueprint("share",__name__,url_prefix="/profile")
 
@@ -71,7 +72,7 @@ def personal(userid):
                            newrequest=newrequest)
 
 @datashare_bp.route("/enlistfriend/<int:userid>",  methods=["POST"])
-
+@csrf.exempt
 def enlist(userid):
     sender_id = current_user.id
     receiver_id = userid
@@ -100,7 +101,7 @@ def enlist(userid):
     return Response(status=204)
 
 @datashare_bp.route("/confirm/<int:userid>",  methods=["POST","GET"])
-
+@csrf.exempt
 def confirmrequest(userid):
     sender_id = userid
     receiver_id = current_user.id
@@ -144,11 +145,10 @@ def confirmrequest(userid):
             "name":   user.username,
             "path":   user.profile_path
         })
-    print(friends)
     return jsonify(friends)
 
 @datashare_bp.route("/decline/<int:userid>",  methods=["GET"])
-
+@csrf.exempt
 def declinerequest(userid):
     request_row = relationRequestModel.query.filter(
         and_(
@@ -169,7 +169,7 @@ def declinerequest(userid):
     return Response(status=204)
 
 @datashare_bp.route("/remove/<int:userid>",  methods=["GET"])
-
+@csrf.exempt
 def removefriend(userid):
     uid = current_user.id
 

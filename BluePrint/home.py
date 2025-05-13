@@ -3,7 +3,7 @@ from flask_login import current_user
 from sqlalchemy import func
 import random
 from collections import defaultdict
-from exts import db;
+from exts import db,csrf;
 from models import relationRequestModel, UserModel, SpotModel, LikeModel, ImgModel, TendencyModel, collectionModel;
 from datetime import date, datetime, timedelta
 
@@ -133,6 +133,7 @@ def get_recommend_data():
     return jsonify(recommond)
 
 @home_bp.route('/index/search',methods = ["POST"])
+@csrf.exempt
 def search():
     data = request.get_json()
     input_value = data.get('inputValue')

@@ -2,7 +2,7 @@ from flask import Blueprint,render_template,request,jsonify,Response
 from flask_login import current_user, login_required
 from sqlalchemy import func
 
-from exts import db;
+from exts import db,csrf;
 from models import reviewstModel, SpotModel, ImgModel, collectionModel, UserModel,CategoryModel,TendencyModel;
 from datetime import datetime, date
 
@@ -276,6 +276,7 @@ def dislike(spot_id):
     return Response(status=204)
 
 @spe_bp.route('/insert_review/<int:spot_id>',methods= ["POST"])
+@csrf.exempt
 def insert_review(spot_id):
 
     cleanliness = request.form.get('cleanliness')

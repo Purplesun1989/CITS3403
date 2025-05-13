@@ -40,9 +40,6 @@ function createSlider(id, value) {
 }
 
 
-
-// ==================== DOM 渲染逻辑 ====================
-
 document.addEventListener('DOMContentLoaded', async () => {
 
   //评论区
