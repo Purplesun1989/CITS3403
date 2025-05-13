@@ -47,7 +47,7 @@ def personal(userid):
             "path": u.profile_path,
             "uid": str(u.id)
         }
-        for u in UserModel.query.all() if u.id != current.id
+        for u in UserModel.query.all() if u.id != current.id and u.id not in friend_ids
     ]
 
 
@@ -150,7 +150,6 @@ def confirmrequest(userid):
 @datashare_bp.route("/decline/<int:userid>",  methods=["GET"])
 
 def declinerequest(userid):
-
     request_row = relationRequestModel.query.filter(
         and_(
             relationRequestModel.sender_id == userid,
@@ -165,6 +164,27 @@ def declinerequest(userid):
 
 
     db.session.delete(request_row)
+    db.session.commit()
+
+    return Response(status=204)
+
+@datashare_bp.route("/remove/<int:userid>",  methods=["GET"])
+
+def removefriend(userid):
+    uid = current_user.id
+
+    rel = relationModel.query.filter(
+        or_(
+            and_(relationModel.user_id_1 == uid,      relationModel.user_id_2 == userid),
+            and_(relationModel.user_id_1 == userid,   relationModel.user_id_2 == uid)
+        ),
+        relationModel.status == 1
+    ).first()
+
+    if not rel:
+        return Response(status=404)
+
+    db.session.delete(rel)
     db.session.commit()
 
     return Response(status=204)

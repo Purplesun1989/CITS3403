@@ -3,13 +3,12 @@ from flask_login import current_user, login_required
 from sqlalchemy import func
 
 from exts import db;
-from models import reviewstModel, SpotModel, ImgModel, collectionModel, UserModel;
-from datetime import datetime
-
+from models import reviewstModel, SpotModel, ImgModel, collectionModel, UserModel,CategoryModel,TendencyModel;
+from datetime import datetime, date
 
 spe_bp = Blueprint("spe",__name__,url_prefix="/index")
 
-@spe_bp.route('/<int:spot_id>')
+@spe_bp.route('/<int:spot_id>' ,methods = ["POST","GET"])
 @login_required
 def specific(spot_id):
     # 1. 获取 spot 及其随机图片
@@ -192,6 +191,24 @@ def like(spot_id):
         spot = SpotModel.query.get(spot_id)
         if spot:
             spot.num_likes = (spot.num_likes or 0) + 1
+            category = CategoryModel.query.get(spot.category_ID)
+            if category:
+                category.total_likes = (category.total_likes or 0) + 1
+            today = date.today()
+            tendency = TendencyModel.query.filter_by(
+                category_ID=spot.category_ID,
+                snapshot_date=today
+            ).first()
+
+            if tendency:
+                tendency.like_count += 1
+            else:
+                new_tendency = TendencyModel(
+                    category_ID=spot.category_ID,
+                    snapshot_date=today,
+                    like_count=1
+                )
+                db.session.add(new_tendency)
             db.session.commit()
         else:
             db.session.rollback()

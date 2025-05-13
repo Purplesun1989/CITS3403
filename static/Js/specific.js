@@ -192,8 +192,8 @@ if (likebox) {
   likebox.innerHTML = likeData.map(item => `
    <a href="/index/${item.spotid}">
     <div class="liked-box-items" id="${item.spotid}">
-      <img src="${item.path}" alt="${item.name.slice(0,10)}" class="likedlist-icon" loading="lazy">
-      <div class="likedlist-text">${item.name.slice(0, 10)}<br><span class="text-muted-sm"></span></div>
+      <img src="${item.path}" alt="${item.name.slice(0,10).replaceAll("_", " ")}" class="likedlist-icon" loading="lazy">
+      <div class="likedlist-text">${item.name.slice(0, 10).replaceAll("_", " ")}<br><span class="text-muted-sm"></span></div>
       <i class="bi bi-heart-fill liked-heart-icon"></i>
       <i class="bi bi-chat-dots"></i>
     </div> </a>
@@ -205,7 +205,7 @@ const profile_pic = document.querySelector(".profile-box");
 const secondP = document.querySelector(".navright-box p:nth-of-type(2)");
 const h4Element = document.querySelector(".banner-box .banner-text h4")
 const likenum = document.getElementById("index-like-count")
-h4Element.textContent = metainfo[10];
+h4Element.textContent = metainfo[10].replaceAll("_", " ");;
 likenum.textContent = metainfo[13]
 if (profile_pic) {
   profile_pic.src = metainfo[2];

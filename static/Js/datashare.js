@@ -58,11 +58,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     avatarImg.src = user[1];
   }
 
-  // 渲染好友卡片
+
   const container = document.getElementById("friends");
   friend.forEach(item => {
     const div = document.createElement("div");
     div.className = "friendcard d-flex align-items-center";
+    div.dataset.uid = item.uid
     div.innerHTML = `
       <img src="${item.path}" alt="avatar" class="friend-avatar">
       <span class="friend-name">${item.name}</span>
@@ -70,11 +71,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     `;
     const decline = div.querySelector(".bi-x-circle");
     decline.addEventListener("click", () => {
-      div.style.display = "none";
-      alert("removed");
+      fetch(`/profile/remove/${item.uid}`, {
+        method: "GET",
+     })
+      .then(res => {
+      if (res.ok) {
+      div.remove();
+      } else {
+      alert("failed", res.status);
+    }
+    })
+      .catch(err => {
+    console.error("failed", err);
+     });
     });
     container.appendChild(div);
+
   });
+
 
   // 渲染好友请求
 const requestContainer = document.getElementById("requests");
@@ -108,7 +122,7 @@ acceptIcon.addEventListener("click", async () => {
     const uidNum = Number(item.uid);
     const me = users.find(u => u.uid === uidNum);
     if (!me) {
-      console.warn("返回列表中没有找到 uid =", uidNum);
+      console.warn("no user uid =", uidNum);
       return;
     }
 
@@ -132,7 +146,7 @@ acceptIcon.addEventListener("click", async () => {
     div.remove();
 
   } catch (err) {
-    console.error("确认好友失败：", err);
+    console.error("failed：", err);
   }
 });
 
@@ -141,7 +155,6 @@ acceptIcon.addEventListener("click", async () => {
     fetch(`/profile/decline/${item.uid}`)
     div.remove();
   });
-
   requestContainer.appendChild(div);
 });
 

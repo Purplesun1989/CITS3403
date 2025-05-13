@@ -1,9 +1,8 @@
-from collections import defaultdict
 from flask import Blueprint, render_template, request, session, jsonify
 from flask_login import current_user
 from sqlalchemy import func
 import random
-
+from collections import defaultdict
 from exts import db;
 from models import relationRequestModel, UserModel, SpotModel, LikeModel, ImgModel, TendencyModel, collectionModel;
 from datetime import date, datetime, timedelta
@@ -43,7 +42,7 @@ def home():
     )
 
     #趋势图
-    # 获取最近五天的日期
+    # # 获取最近五天的日期
     today = date.today()
     days = [today - timedelta(days=i) for i in range(4, -1, -1)]  # 从5天前到今天（升序）
 
@@ -55,18 +54,31 @@ def home():
     )
 
     # 初始化：{category_ID: [0, 0, 0, 0, 0]}
-    category_like_map = defaultdict(lambda: [0] * 5)
+    category_like_map = defaultdict(lambda: [0, 0, 0, 0, 0])
 
-    # 填充数据
+    # # 填充数据
     day_index = {d: i for i, d in enumerate(days)}
     for cid, date_, count in records:
         idx = day_index.get(date_)
         if idx is not None:
             category_like_map[cid][idx] = count
 
-    # 最终 tendency 数据（你可以排序 cid）
-    tendency = [category_like_map[cid] for cid in sorted(category_like_map)]
+    # # 查询过去五天内的数据
+    records = (
+        db.session.query(TendencyModel.category_ID, TendencyModel.snapshot_date, TendencyModel.like_count)
+        .filter(TendencyModel.snapshot_date.in_(days))
+        .all()
+    )
+    #
+    # # 构建二维映射：category_ID -> date -> like_count
+    data_map = defaultdict(lambda: {d: 0 for d in days})  # 默认每个日期都初始化为0
 
+    for cid, snapshot_date, count in records:
+        data_map[cid][snapshot_date] = count
+
+    # 按 category_ID 排序输出二维数组
+    sorted_ids = sorted(data_map.keys())
+    tendency = [ [data_map[cid][d] for d in days] for cid in sorted_ids ]
 
     # 查找每个景点的第一张图片
     top6 = []
@@ -84,7 +96,7 @@ def home():
                 "likes": spot.num_likes
             })
 
-    # 页面元数据
+
     default = ["Stranger","0" ,'/static/profiles/Default_user.jfif', "true"];
 
     if not current_user.is_authenticated:
@@ -119,3 +131,14 @@ def get_recommend_data():
         })
 
     return jsonify(recommond)
+
+@home_bp.route('/index/search',methods = ["POST"])
+def search():
+    data = request.get_json()
+    input_value = data.get('inputValue')
+    search_term = input_value.replace(" ", "_")
+    match = SpotModel.query.filter(SpotModel.spot_name.contains(search_term)).first()
+    if match:
+        return jsonify({'spot_id': match.spot_ID})
+    else:
+        return jsonify({'spot_id': None})

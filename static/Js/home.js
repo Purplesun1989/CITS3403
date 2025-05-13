@@ -1,14 +1,4 @@
 
-// const tendency = [
-//   [12, 19, 3, 5, 2],
-//   [2, 29, 5, 5, 20],
-//   [3, 10, 13, 15, 22],
-//   [5, 15, 8, 12, 16],
-//   [7, 6, 18, 3, 10],
-//   [8, 14, 6, 18, 12]
-// ];
-
-
 var coordinates = [[-31.97903, 115.81822],[-31.980522864646908, 115.81999644399392]];
 
 // ============ DOM 逻辑优化 ============ //
@@ -63,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new Chart(ctx.getContext('2d'), {
       type: 'bar',
       data: {
-        labels: top5.map(d => d.spot),
+        labels: top5.map(d => d.spot.replace("_"," ")),
         datasets: [{
           label: 'heats',
           data: top5.map(d => d.value),
@@ -99,10 +89,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (p) {
-      p.textContent = top6[idx].name;
+      p.textContent = top6[idx].name.replaceAll("_", " ");
     } else {
-      // 如果 <p> 是纯文本 placeholder，要替换成 <p>
-      card.innerHTML = card.innerHTML.replace('this is a place holder', `<p>${top6[idx].name}</p>`);
+      card.innerHTML = card.innerHTML.replace('this is a place holder', `<p>${top6[idx].name.replaceAll("_", " ")}</p>`);
     }
   }
 });
@@ -121,7 +110,7 @@ if (likebox) {
           <a href="/index/${items.id}">
             <div class="liked-box-items">
               <img src="${items.path}" alt="${items.name}" class="likedlist-icon" loading="lazy">
-              <div class="likedlist-text">${items.name.slice(0, 10)}<br><span class="text-muted-sm"></span></div>
+              <div class="likedlist-text">${items.name.slice(0, 10).replaceAll("_", " ")}<br><span class="text-muted-sm"></span></div>
               <i class="bi bi-heart-fill heart-icon"></i>
               <i class="bi bi-chat-dots"></i>
             </div>

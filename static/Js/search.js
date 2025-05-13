@@ -3,11 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const gallery     = document.querySelector('.gallery-box');
   const historyBox  = document.querySelector('.when-search-box');
   const historyList = document.getElementById('history-list');
+  const KEY       = 'searchHistory';
+  const MAX_COUNT = 10;
 
-  const KEY       = 'searchHistory';  // localStorage 键
-  const MAX_COUNT = 10;               // 最多保留几条
-
-  // 读取历史，返回数组
   function loadHistory() {
     try {
       const arr = JSON.parse(localStorage.getItem(KEY));
@@ -17,12 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 存储历史
   function saveHistory(arr) {
     localStorage.setItem(KEY, JSON.stringify(arr));
   }
 
-  // 根据 filter 渲染 list
   function renderHistory(filter = '') {
     const hist = loadHistory()
       .filter(item => item.includes(filter));
@@ -67,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const query = input.value.trim().toLowerCase();
   
     if (query === '') {
-      renderHistory(); // ✅ Only show history if input is empty
+      renderHistory();
       document.querySelector('.filter-buttons').style.display = 'flex';
       return;
     }
@@ -126,63 +122,53 @@ document.addEventListener('DOMContentLoaded', () => {
       input.value = text;
       historyBox.style.display = 'none';
       gallery.style.display    = 'block';
-      // TODO: 这里可以触发真正的搜索请求
       return;
     }
   });
 
   // 回车时，把当前值加入历史
-  input.addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-      const val = input.value.trim();
-      if (!val) return;
-      let arr = loadHistory()
-        .filter(x => x !== val);  // 去重
-      arr.unshift(val);           // 最新排前
-      if (arr.length > MAX_COUNT) arr = arr.slice(0, MAX_COUNT);
-      saveHistory(arr);
-      historyBox.style.display = 'none';
-      gallery.style.display    = 'block';
-      // TODO: 这里发起你的搜索逻辑
+input.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const val = input.value.trim();
+    if (!val) return;
+
+    let arr = loadHistory().filter(x => x !== val); // 去重
+    arr.unshift(val);                               // 最新排前
+    if (arr.length > MAX_COUNT) arr = arr.slice(0, MAX_COUNT);
+    saveHistory(arr);
+
+    historyBox.style.display = 'none';
+
+    fetch('/index/search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ inputValue: val })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json(); // 根据后端返回格式决定
+    })
+    .then(data => {
+       if (data.spot_id) {
+       window.location.href = `/index/${data.spot_id}`;
+     } else {
+       alert("No matching spot found.");
     }
-  });
+})
+
+    .catch(error => {
+      alert('Search request failed:', error);
+    });
+  }
 });
 
-const dataByCategory = {
-  'study-spot': [
-    { name: 'Reid Library', link: '/reid-library.html' },
-    { name: 'Law Library', link: '/law-library.html' },
-    { name: 'Business School', link: '/business-school.html' },
-    { name: 'Barry J Library', link: '/barry-j-library.html' },
-    { name: 'EZONE', link: '/ezone.html' }
-  ],
-  'food-places': [
-    { name: 'Refectory', link: '/refectory.html' },
-    { name: 'UWA Tavern', link: '/uwa-tavern.html' },
-    { name: 'IGA', link: '/iga.html' },
-    { name: 'Hackett Cafe', link: '/hackett-cafe.html' }
-  ],
-  'units': [
-    { name: 'CITS3403', link: '/cits3403.html' },
-    { name: 'CITS3400', link: '/cits3400.html' },
-    { name: 'CITS2429', link: '/cits2429.html' },
-    { name: 'CITS3592', link: '/cits3592.html' }
-  ],
-  'events': [
-    { name: 'O-Day', link: '/oday.html' },
-    { name: 'Open Day', link: '/open-day.html' },
-    { name: 'Autumn Feast', link: '/autumn-feast.html' },
-    { name: 'Spring Feast', link: '/spring-feast.html' },
-    { name: 'PROSH', link: '/prosh.html' }
-  ],
-  'organizations': [
-    { name: 'Robotics Club', link: '/robotics-club.html' },
-    { name: 'Sober?', link: '/sober.html' },
-    { name: 'Coders for Cause', link: '/coders-for-cause.html' },
-    { name: 'Data Science Club', link: '/data-science-club.html' },
-    { name: 'Computer Science Society', link: '/css.html' }
-  ]
-};
+});
+
+
 
 document.querySelectorAll('.filter-btn').forEach(button => {
   button.addEventListener('click', () => {
@@ -202,7 +188,7 @@ document.querySelectorAll('.filter-btn').forEach(button => {
       historyList.appendChild(li);
     });
 
-    // SHOW the box after filtering
+
     historyBox.style.display = 'block';
     gallery.style.display = 'none';
 
