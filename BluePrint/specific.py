@@ -236,20 +236,43 @@ def like(spot_id):
 
 @spe_bp.route('/dislike/<int:spot_id>')
 def dislike(spot_id):
-
     everliked = db.session.query(collectionModel).filter_by(
         user_id=current_user.id,
         item_ID=spot_id
     ).first()
 
-    if everliked :
-        db.session.delete(everliked)
-        spot = SpotModel.query.get(spot_id)
-        if spot:
-            spot.num_likes = max((spot.num_likes or 0) - 1, 0)
-            db.session.commit()
-        else:
-            db.session.rollback()
+    if not everliked:
+        return Response(status=204)
+
+    db.session.delete(everliked)
+    spot = SpotModel.query.get(spot_id)
+    if not spot:
+        db.session.rollback()
+        return Response(status=404)
+
+
+    spot.num_likes = max((spot.num_likes or 0) - 1, 0)
+
+
+    category = CategoryModel.query.get(spot.category_ID)
+    if category:
+        category.total_likes = max((category.total_likes or 0) - 1, 0)
+
+
+    today = date.today()
+    tendency = TendencyModel.query.filter_by(
+        category_ID=spot.category_ID,
+        snapshot_date=today
+    ).first()
+    if tendency:
+        tendency.like_count = max((tendency.like_count or 0) - 1, 0)
+
+    try:
+        db.session.commit()
+    except:
+        db.session.rollback()
+        return Response(status=500)
+
     return Response(status=204)
 
 @spe_bp.route('/insert_review/<int:spot_id>',methods= ["POST"])
