@@ -72,113 +72,171 @@
         <div class="logo-box">
           <div class="icon"></div>
         </div>
-        <form action="{{ url_for('auth.login') }}" method="post" >
-          <div class="form-floating-input mt-0">
-            <input name="uwa_email",type="email"  class="form-control enhanced-input" placeholder="Enter your Student-email" required />
-            <label for="email">Enter your Student-email</label>
-          </div>
 
-          <div class="form-floating-input">
-            <input name = "password",type="password"  class="form-control enhanced-input" placeholder="Enter your password" required />
-            <label for="password">Enter your password</label>
-          </div>
+          <form method="POST" action="{{ url_for('auth.login') }}">
+       {{ form.hidden_tag() }}
+    <div class="form-floating-input mt-0">
+    {{ form.uwa_email(class="form-control enhanced-input", placeholder="Enter your Student-email") }}
+    <label for="uwa_email">Enter your Student-email</label>
+  </div>
 
-          <button class="btn uni-login-btn w-100 mb-2" type="submit" id="login-btn">
-            <i class="bi bi-box-arrow-in-right me-2"></i> Let's go!
-          </button>
+  <div class="form-floating-input">
+    {{ form.password(class="form-control enhanced-input", placeholder="Enter your password") }}
+    <label for="password">Enter your password</label>
+  </div>
 
-          <div class="text-center mb-1"></div>
-          <button class="btn uni-register-btn w-100" type="button" id ="register-btn">
-            <i class="bi bi-person-plus me-2"></i> New here?
-          </button>
-        </form>
+  <button class="btn uni-login-btn w-100 mb-2" type="submit" id="login-btn">
+    <i class="bi bi-box-arrow-in-right me-2"></i> {{ form.submit.label.text }}
+  </button>
+
+  <div class="text-center mb-1"></div>
+  <button class="btn uni-register-btn w-100" type="button" id="register-btn">
+    <i class="bi bi-person-plus me-2"></i> New here?
+  </button>
+</form>
+
       </div>
     </div>
-    <form method="post" action="/auth/register" enctype="multipart/form-data">
-    <div class="register-input-box">
-      <div class="col-md-6 register-left">
-          <div class="upload-card animate__animated animate__fadeIn test-box">
-            <h4 class="mb-3"><i class="fas fa-user-circle me-2"></i>Upload Avatar</h4>
-            <img id="avatarPreview" class="avatar-preview" src="/static/imgs/icon.png" alt="Avatar Preview">
-              <div class="mb-3 mt-5 w-75 mx-auto">
-                <input class="form-control" type="file" id="avatarInput" name="avatar" accept="image/*" required>
-              </div>
-          </div>
-             <button class="btn uni-login-btn w-75 mb-2" type="submit" id ="upload-btn">
-                <i class="bi bi-person-plus me-2"></i> Join now!
-             </button>
+{#    <form method="post" action="/auth/register" enctype="multipart/form-data">#}
+{#    <div class="register-input-box">#}
+{#      <div class="col-md-6 register-left">#}
+{#          <div class="upload-card animate__animated animate__fadeIn test-box">#}
+{#            <h4 class="mb-3"><i class="fas fa-user-circle me-2"></i>Upload Avatar</h4>#}
+{#            <img id="avatarPreview" class="avatar-preview" src="/static/imgs/icon.png" alt="Avatar Preview">#}
+{#              <div class="mb-3 mt-5 w-75 mx-auto">#}
+{#                <input class="form-control" type="file" id="avatarInput" name="avatar" accept="image/*" required>#}
+{#              </div>#}
+{#          </div>#}
+{#             <button class="btn uni-login-btn w-75 mb-2" type="submit" id ="upload-btn">#}
+{#                <i class="bi bi-person-plus me-2"></i> Join now!#}
+{#             </button>#}
+{#      </div>#}
+{#      <div class="register-right">#}
+{#          <div class="register-card test-box">#}
+{#        <h4 class="mb-3"><i class="bi bi-person-lines-fill me-2"></i>Register Information</h4>#}
+{#          <div class="mb-3">#}
+{#            <label for="username" class="form-label">username</label>#}
+{#            <input#}
+{#              type="text"#}
+{#              class="form-control"#}
+{#              id="username"#}
+{#              name="register_username"#}
+{#              required#}
+{#            >#}
+{#          </div>#}
+{##}
+{#          <div class="mb-3">#}
+{#            <label for="email" class="form-label">student email</label>#}
+{#            <input#}
+{#              type="email"#}
+{#              class="form-control"#}
+{#              id="email"#}
+{#              name="register_email"#}
+{#              placeholder="abc@student.uwa.edu.au"#}
+{#              required#}
+{#              pattern="^[A-Za-z0-9._%+-]+@student\.uwa\.edu\.au$"#}
+{#              title="input email with @student.uwa.edu.au "#}
+{#            >#}
+{#          </div>#}
+{##}
+{#          <div class="mb-3">#}
+{#            <label for="password" class="form-label">password</label>#}
+{#            <input#}
+{#              type="password"#}
+{#              class="form-control"#}
+{#              id="password"#}
+{#              name="register_password"#}
+{#              required#}
+{#              minlength="8"#}
+{#              title="8 character at least"#}
+{#            >#}
+{#          </div>#}
+{##}
+{#          <div class="mb-3">#}
+{#            <label for="birthday" class="form-label">birthday</label>#}
+{#            <input#}
+{#              type="date"#}
+{#              class="form-control"#}
+{#              id="birthday"#}
+{#              name="register_birthday"#}
+{#              required#}
+{#            >#}
+{#          </div>#}
+{##}
+{#          <div class="mb-3">#}
+{#            <label class="form-label">Gender</label>#}
+{#            <div class="form-check">#}
+{#              <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>#}
+{#              <label class="form-check-label" for="male">male</label>#}
+{#            </div>#}
+{#            <div class="form-check">#}
+{#              <input class="form-check-input" type="radio" name="gender" id="female" value="female">#}
+{#              <label class="form-check-label" for="female">female</label>#}
+{#            </div>#}
+{#            <div class="form-check">#}
+{#              <input class="form-check-input" type="radio" name="gender" id="other" value="other">#}
+{#              <label class="form-check-label" for="other">none-binary</label>#}
+{#            </div>#}
+{#          </div>#}
+{#      </div>#}
+{#      </div>#}
+{#    </div>#}
+{#    </form>#}
+<form method="POST" action="{{ url_for('auth.register') }}" enctype="multipart/form-data">
+  {{ register_form.hidden_tag() }}
+
+  <div class="register-input-box">
+    <div class="col-md-6 register-left">
+      <div class="upload-card animate__animated animate__fadeIn test-box">
+        <h4 class="mb-3"><i class="fas fa-user-circle me-2"></i>Upload Avatar</h4>
+        <img id="avatarPreview" class="avatar-preview" src="/static/imgs/icon.png" alt="Avatar Preview">
+        <div class="mb-3 mt-5 w-75 mx-auto">
+          {{ register_form.avatar(class="form-control", id="avatarInput", accept="image/*") }}
+        </div>
       </div>
-      <div class="register-right">
-          <div class="register-card test-box">
+      <button class="btn uni-login-btn w-75 mb-2" type="submit" id="upload-btn">
+        <i class="bi bi-person-plus me-2"></i> {{ register_form.submit.label.text }}
+      </button>
+    </div>
+
+    <div class="register-right">
+      <div class="register-card test-box">
         <h4 class="mb-3"><i class="bi bi-person-lines-fill me-2"></i>Register Information</h4>
-          <div class="mb-3">
-            <label for="username" class="form-label">username</label>
-            <input
-              type="text"
-              class="form-control"
-              id="username"
-              name="register_username"
-              required
-            >
-          </div>
 
-          <div class="mb-3">
-            <label for="email" class="form-label">student email</label>
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              name="register_email"
-              placeholder="abc@student.uwa.edu.au"
-              required
-              pattern="^[A-Za-z0-9._%+-]+@student\.uwa\.edu\.au$"
-              title="input email with @student.uwa.edu.au "
-            >
-          </div>
+        <div class="mb-3">
+          <label for="username" class="form-label">username</label>
+          {{ register_form.register_username(class="form-control", id="username") }}
+        </div>
 
-          <div class="mb-3">
-            <label for="password" class="form-label">password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              name="register_password"
-              required
-              minlength="8"
-              title="8 character at least"
-            >
-          </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">student email</label>
+          {{register_form.register_email(class="form-control", id="email") }}
+        </div>
 
-          <div class="mb-3">
-            <label for="birthday" class="form-label">birthday</label>
-            <input
-              type="date"
-              class="form-control"
-              id="birthday"
-              name="register_birthday"
-              required
-            >
-          </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">password</label>
+          {{ register_form.register_password(class="form-control", id="password") }}
+        </div>
 
-          <div class="mb-3">
-            <label class="form-label">Gender</label>
+        <div class="mb-3">
+          <label for="birthday" class="form-label">birthday</label>
+          {{ register_form.register_birthday(class="form-control", id="birthday") }}
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Gender</label>
+          {% for subfield in register_form.gender %}
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
-              <label class="form-check-label" for="male">male</label>
+              {{ subfield(class="form-check-input") }}
+              <label class="form-check-label">{{ subfield.label.text }}</label>
             </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="gender" id="female" value="female">
-              <label class="form-check-label" for="female">female</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="gender" id="other" value="other">
-              <label class="form-check-label" for="other">none-binary</label>
-            </div>
-          </div>
-      </div>
+          {% endfor %}
+        </div>
       </div>
     </div>
-    </form>
+  </div>
+</form>
+
   <footer class="bg-dark text-white mt-5">
   <div class="container-fluid py-5">
     <div class="row">

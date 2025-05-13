@@ -9,10 +9,16 @@ from BluePrint.home import home_bp
 from BluePrint.specific import spe_bp
 from BluePrint.datashare import datashare_bp
 
+from flask_wtf import CSRFProtect
+
+
+
 import config
 
 app = Flask(__name__)
 app.config.from_object(config)
+csrf = CSRFProtect()
+csrf.init_app(app)
 
 # 初始化数据库
 db.init_app(app)
