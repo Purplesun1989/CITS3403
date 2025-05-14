@@ -97,6 +97,8 @@
   <div class="container-fluid" id="main-box">
     <div class="navbar-box row">
       <div class="navleft-box col-md-5">
+          <i class="bi bi-house text-white home-icon" style="font-size: 1.5rem; margin-top: 10px; position: absolute; top:3px;left: 3px"></i>
+          <i class="bi bi-trophy text-white" style="font-size: 1.5rem; margin-top: 10px"></i>
       </div>
       <div class="search-box col-md-2">
         <i class="bi bi-search"></i>
@@ -106,7 +108,7 @@
       </div>
 
       <div class="navright-box col-md-5">
-        <i class="bi bi-bell notification-icon"></i>
+        <i class="bi bi-box-arrow-right  text-white" style= "font-size: 1.5rem; margin-right: 10px"></i>
           <a href="{{ url_for('share.personal', userid=metainfo[1]) }}">
          <img alt="Profile Avatar" class="profile-box zoom-box" style="max-width: 50px">
          </a>

@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // gallery.style.display    = 'block';
     }
 
-  // 历史列表内点击：选中 vs 删除
+
   historyList.addEventListener('click', e => {
     const btn = e.target.closest('.remove-hist');
     if (btn) {
@@ -196,4 +196,13 @@ document.querySelectorAll('.filter-btn').forEach(button => {
 
   });
 });
+
+  trophy = document.querySelector(".bi-trophy")
+  if(trophy){
+    trophy.addEventListener('click',()=>{
+      alert("awards")
+    })
+  }
+
+
 });

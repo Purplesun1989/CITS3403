@@ -97,98 +97,13 @@
 
       </div>
     </div>
-{#    <form method="post" action="/auth/register" enctype="multipart/form-data">#}
-{#    <div class="register-input-box">#}
-{#      <div class="col-md-6 register-left">#}
-{#          <div class="upload-card animate__animated animate__fadeIn test-box">#}
-{#            <h4 class="mb-3"><i class="fas fa-user-circle me-2"></i>Upload Avatar</h4>#}
-{#            <img id="avatarPreview" class="avatar-preview" src="/static/imgs/icon.png" alt="Avatar Preview">#}
-{#              <div class="mb-3 mt-5 w-75 mx-auto">#}
-{#                <input class="form-control" type="file" id="avatarInput" name="avatar" accept="image/*" required>#}
-{#              </div>#}
-{#          </div>#}
-{#             <button class="btn uni-login-btn w-75 mb-2" type="submit" id ="upload-btn">#}
-{#                <i class="bi bi-person-plus me-2"></i> Join now!#}
-{#             </button>#}
-{#      </div>#}
-{#      <div class="register-right">#}
-{#          <div class="register-card test-box">#}
-{#        <h4 class="mb-3"><i class="bi bi-person-lines-fill me-2"></i>Register Information</h4>#}
-{#          <div class="mb-3">#}
-{#            <label for="username" class="form-label">username</label>#}
-{#            <input#}
-{#              type="text"#}
-{#              class="form-control"#}
-{#              id="username"#}
-{#              name="register_username"#}
-{#              required#}
-{#            >#}
-{#          </div>#}
-{##}
-{#          <div class="mb-3">#}
-{#            <label for="email" class="form-label">student email</label>#}
-{#            <input#}
-{#              type="email"#}
-{#              class="form-control"#}
-{#              id="email"#}
-{#              name="register_email"#}
-{#              placeholder="abc@student.uwa.edu.au"#}
-{#              required#}
-{#              pattern="^[A-Za-z0-9._%+-]+@student\.uwa\.edu\.au$"#}
-{#              title="input email with @student.uwa.edu.au "#}
-{#            >#}
-{#          </div>#}
-{##}
-{#          <div class="mb-3">#}
-{#            <label for="password" class="form-label">password</label>#}
-{#            <input#}
-{#              type="password"#}
-{#              class="form-control"#}
-{#              id="password"#}
-{#              name="register_password"#}
-{#              required#}
-{#              minlength="8"#}
-{#              title="8 character at least"#}
-{#            >#}
-{#          </div>#}
-{##}
-{#          <div class="mb-3">#}
-{#            <label for="birthday" class="form-label">birthday</label>#}
-{#            <input#}
-{#              type="date"#}
-{#              class="form-control"#}
-{#              id="birthday"#}
-{#              name="register_birthday"#}
-{#              required#}
-{#            >#}
-{#          </div>#}
-{##}
-{#          <div class="mb-3">#}
-{#            <label class="form-label">Gender</label>#}
-{#            <div class="form-check">#}
-{#              <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>#}
-{#              <label class="form-check-label" for="male">male</label>#}
-{#            </div>#}
-{#            <div class="form-check">#}
-{#              <input class="form-check-input" type="radio" name="gender" id="female" value="female">#}
-{#              <label class="form-check-label" for="female">female</label>#}
-{#            </div>#}
-{#            <div class="form-check">#}
-{#              <input class="form-check-input" type="radio" name="gender" id="other" value="other">#}
-{#              <label class="form-check-label" for="other">none-binary</label>#}
-{#            </div>#}
-{#          </div>#}
-{#      </div>#}
-{#      </div>#}
-{#    </div>#}
-{#    </form>#}
 <form method="POST" action="{{ url_for('auth.register') }}" enctype="multipart/form-data">
   {{ register_form.hidden_tag() }}
 
   <div class="register-input-box">
     <div class="col-md-6 register-left">
       <div class="upload-card animate__animated animate__fadeIn test-box">
-        <h4 class="mb-3"><i class="fas fa-user-circle me-2"></i>Upload Avatar</h4>
+        <i class="fas fa-user-circle me-2"></i>
         <img id="avatarPreview" class="avatar-preview" src="/static/imgs/icon.png" alt="Avatar Preview">
         <div class="mb-3 mt-5 w-75 mx-auto">
           {{ register_form.avatar(class="form-control", id="avatarInput", accept="image/*") }}

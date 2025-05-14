@@ -1,11 +1,11 @@
-from flask import Blueprint, render_template, request, session, jsonify
-from flask_login import current_user
+from flask import Blueprint, render_template, request, session, jsonify, redirect, url_for
+from flask_login import current_user,logout_user
 from sqlalchemy import func
 import random
 from collections import defaultdict
 from exts import db,csrf;
 from models import relationRequestModel, UserModel, SpotModel, LikeModel, ImgModel, TendencyModel, collectionModel;
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 
 home_bp = Blueprint("Home",__name__,)
 
@@ -143,3 +143,9 @@ def search():
         return jsonify({'spot_id': match.spot_ID})
     else:
         return jsonify({'spot_id': None})
+
+@home_bp.route('/exit',methods = ["GET"])
+@csrf.exempt
+def exit():
+    logout_user()
+    return redirect(url_for('Home.home'))

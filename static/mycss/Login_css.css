@@ -47,22 +47,23 @@ body {
 
 .upload-card {
       max-width: 80%;
-      padding: 20px;
+      padding: 5%;
       min-height: 60%;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.5);
       text-align: center;
-      margin: 10% auto;
+      margin: 5% auto;
       background-color: #76cae8;
     }
 .avatar-preview {
-      height: 150px;
+      /*height: 150px;*/
+      height: 60%;
       aspect-ratio: 1/1;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 15px;
       border: 2px solid #dee2e6;
       transition: 0.3s;
+      margin-top: 5%;
     }
 .avatar-preview:hover {
       box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);

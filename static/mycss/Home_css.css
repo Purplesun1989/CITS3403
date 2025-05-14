@@ -44,6 +44,8 @@ body {
 
 .navleft-box {
   display: flex;
+  justify-content: end;
+
 }
 
 .navleft-box i {
