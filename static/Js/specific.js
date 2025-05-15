@@ -47,13 +47,6 @@ document.addEventListener('DOMContentLoaded', async () => {
        window.location.href = '/';
     })
   }
-
- var exit = document.querySelector(".bi-box-arrow-right")
-  if(exit){
-    exit.addEventListener('click',()=>{
-       window.location.href ='/exit'
-    })
-  }
   //评论区
 const comment_box = document.querySelector(".comment-section-box");
 if (comment_box) {

@@ -200,7 +200,14 @@ document.querySelectorAll('.filter-btn').forEach(button => {
   trophy = document.querySelector(".bi-trophy")
   if(trophy){
     trophy.addEventListener('click',()=>{
-      alert("awards")
+       window.location.href ='/awards/study'
+    })
+  }
+
+ var exit = document.querySelector(".bi-box-arrow-right")
+  if(exit){
+    exit.addEventListener('click',()=>{
+       window.location.href ='/exit'
     })
   }
 

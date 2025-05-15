@@ -5,7 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const statsSection = document.getElementById('award-stats');
   const chartContainer = document.getElementById('chart-container');
   const titleElement = document.getElementById('award-title');
-
+  const homebut = document.querySelector(".fa-home")
+  if(homebut){
+    homebut.addEventListener('click',()=>{
+      window.location.href = "/"
+    })
+  }
   buttons.forEach(button => {
     button.addEventListener('click', () => {
       const category = button.dataset.category;
