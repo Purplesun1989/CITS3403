@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.test-box{
+.test-box {
   border: #0a53be 5px solid;
 }
 
@@ -15,29 +15,35 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  position: relative;
 }
 
+
 .overlay {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background-color: rgba(0, 48, 135, 0.6);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(5px);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+}
+
+.overlay>main .form-control {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+}
+
+footer {
+  align-self: stretch;
+  background-color: #222222c8;
 }
 
 .form-control {
   border: 1px solid #ccc;
   border-radius: 0.75rem;
   padding: 0.6rem 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s, box-shadow 0.3s;
   background-color: #fff;
 }
@@ -45,11 +51,11 @@ body {
 
 .form-control:focus {
   border-color: #33ccff;
-  box-shadow: 0 0 0 0.2rem rgba(51,204,255,0.25);
+  box-shadow: 0 0 0 0.2rem rgba(51, 204, 255, 0.25);
   outline: none;
 }
 
-.register-input-box{
+.register-input-box {
   width: 75vh;
   height: 45vh;
   border-radius: 20px;
@@ -57,44 +63,47 @@ body {
   display: flex;
   flex-direction: row;
   background-color: #f1f1a1;
-  margin-top: -100px;
   display: none;
 }
 
 .upload-card {
-      max-width: 80%;
-      padding: 5%;
-      min-height: 60%;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-      text-align: center;
-      margin: 5% auto;
-      background-color: #76cae8;
-    }
+  max-width: 80%;
+  padding: 5%;
+  min-height: 60%;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  margin: 5% auto;
+  background-color: #76cae8;
+}
+
 .avatar-preview {
-      /*height: 150px;*/
-      height: 60%;
-      aspect-ratio: 1/1;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #dee2e6;
-      transition: 0.3s;
-      margin-top: 5%;
-    }
+  /*height: 150px;*/
+  height: 60%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #dee2e6;
+  transition: 0.3s;
+  margin-top: 5%;
+}
+
 .avatar-preview:hover {
-      box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
-    }
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+}
+
 .btn-upload {
-      background: linear-gradient(135deg, #0066cc, #33ccff);
-      color: #fff;
-      border: none;
-      border-radius: 30px;
-      padding: 8px 20px;
-      transition: 0.3s;
-    }
-    .btn-upload:hover {
-      background: linear-gradient(135deg, #005bb5, #2ab6ff);
-    }
+  background: linear-gradient(135deg, #0066cc, #33ccff);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 8px 20px;
+  transition: 0.3s;
+}
+
+.btn-upload:hover {
+  background: linear-gradient(135deg, #005bb5, #2ab6ff);
+}
 
 .register-left {
   display: flex;
@@ -104,9 +113,10 @@ body {
   flex: 1;
 }
 
-.register-right{
+.register-right {
   flex: 1;
 }
+
 .register-card {
   padding: 30px;
   max-height: 80%;
@@ -115,7 +125,7 @@ body {
   border: #cece34 2px solid;
   border-radius: 20px;
   max-width: 80%;
- }
+}
 
 .face {
   position: relative;
@@ -205,7 +215,6 @@ body {
 .big-box {
   width: 100%;
   height: 100%;
-  display: contents;
   justify-content: center;
   padding-top: 13%;
   padding: 10%;
