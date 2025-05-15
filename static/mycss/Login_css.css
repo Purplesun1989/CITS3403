@@ -15,6 +15,22 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  position: relative;
+}
+
+.overlay {
+  background-color: rgba(0, 48, 135, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(5px);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
 .form-control {
@@ -89,7 +105,6 @@ body {
 }
 
 .register-right{
-
   flex: 1;
 }
 .register-card {
@@ -101,6 +116,7 @@ body {
   border-radius: 20px;
   max-width: 80%;
  }
+
 .face {
   position: relative;
   width: 400px;
@@ -189,12 +205,10 @@ body {
 .big-box {
   width: 100%;
   height: 100%;
-  display: flex;
+  display: contents;
   justify-content: center;
   padding-top: 13%;
-  background-color: rgba(0, 48, 135, 0.6);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  padding: 10%;
 }
 
 .logo-box {

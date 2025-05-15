@@ -5,208 +5,188 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Bootstrap  -->
-  <link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}"
-  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" />
 
   <!-- Bootstrap Icons（CDN）-->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-    rel="stylesheet"
-  />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
 
 
   <!-- 自定义 Login 样式 -->
-  <link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='mycss/Login_css.css') }}"
-  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='mycss/Login_css.css') }}" />
 
- <link
-    rel="shortcut icon"
-    href="{{ url_for('static', filename='imgs/icon.png') }}"
-    type="image/png"
-    sizes="32x32"
-  />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='imgs/icon.png') }}" type="image/png" sizes="32x32" />
 
 
   <title>Join us!</title>
-    <script>
-        const path = {{ path | default(["/static/profiles/Default_user.jfif"]) | tojson }};
-    </script>
-  <script
-    src="{{ url_for('static', filename='Jquery/jquery.js') }}"
-    defer
-  ></script>
+  <script>
+    const path = {{ path | default (["/static/profiles/Default_user.jfif"]) | tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='Jquery/jquery.js') }}" defer></script>
 
-  <script
-    src="{{ url_for('static', filename='Js/login_register.js') }}"
-    defer
-  ></script>
+  <script src="{{ url_for('static', filename='Js/login_register.js') }}" defer></script>
 
   <!-- Bootstrap JS-->
-  <script
-    src="{{ url_for('static', filename='bootstrap/Js/bootstrap.bundle.min.js') }}"
-    defer
-  ></script>
+  <script src="{{ url_for('static', filename='bootstrap/Js/bootstrap.bundle.min.js') }}" defer></script>
 
   <!-- 页面脚本 -->
-  <script
-    src="{{ url_for('static', filename='Js/search.js') }}"
-    defer
-  ></script>
+  <script src="{{ url_for('static', filename='Js/search.js') }}" defer></script>
 </head>
 
 
-<body>
-  <div class="container d-flex flex-column justify-content-center align-items-center vh-100 big-box pb-1">
-    <div class="row centralbox">
-      <div class="face custom-box">
-        <div class="eyes">
-          <div class="eye"></div>
-          <div class="eye"></div>
-        </div>
-      </div>
-      <div class="form-box">
-        <div class="logo-box">
-          <div class="icon"></div>
-        </div>
-
-          <form method="POST" action="{{ url_for('auth.login') }}">
-       {{ form.hidden_tag() }}
-    <div class="form-floating-input mt-0">
-    {{ form.uwa_email(class="form-control enhanced-input", placeholder="Enter your Student-email") }}
-    <label for="uwa_email">Enter your Student-email</label>
-  </div>
-
-  <div class="form-floating-input">
-    {{ form.password(class="form-control enhanced-input", placeholder="Enter your password") }}
-    <label for="password">Enter your password</label>
-  </div>
-
-  <button class="btn uni-login-btn w-100 mb-2" type="submit" id="login-btn">
-    <i class="bi bi-box-arrow-in-right me-2"></i> {{ form.submit.label.text }}
-  </button>
-
-  <div class="text-center mb-1"></div>
-  <button class="btn uni-register-btn w-100" type="button" id="register-btn">
-    <i class="bi bi-person-plus me-2"></i> New here?
-  </button>
-</form>
-
-      </div>
-    </div>
-<form method="POST" action="{{ url_for('auth.register') }}" enctype="multipart/form-data">
-  {{ register_form.hidden_tag() }}
-
-  <div class="register-input-box">
-    <div class="col-md-6 register-left">
-      <div class="upload-card animate__animated animate__fadeIn test-box">
-        <i class="fas fa-user-circle me-2"></i>
-        <img id="avatarPreview" class="avatar-preview" src="/static/imgs/icon.png" alt="Avatar Preview">
-        <div class="mb-3 mt-5 w-75 mx-auto">
-          {{ register_form.avatar(class="form-control", id="avatarInput", accept="image/*") }}
-        </div>
-      </div>
-      <button class="btn uni-login-btn w-75 mb-2" type="submit" id="upload-btn">
-        <i class="bi bi-person-plus me-2"></i> {{ register_form.submit.label.text }}
-      </button>
-    </div>
-
-    <div class="register-right">
-      <div class="register-card test-box">
-        <h4 class="mb-3"><i class="bi bi-person-lines-fill me-2"></i>Register Information</h4>
-
-        <div class="mb-3">
-          <label for="username" class="form-label">username</label>
-          {{ register_form.register_username(class="form-control", id="username") }}
-        </div>
-
-        <div class="mb-3">
-          <label for="email" class="form-label">student email</label>
-          {{register_form.register_email(class="form-control", id="email") }}
-        </div>
-
-        <div class="mb-3">
-          <label for="password" class="form-label">password</label>
-          {{ register_form.register_password(class="form-control", id="password") }}
-        </div>
-
-        <div class="mb-3">
-          <label for="birthday" class="form-label">birthday</label>
-          {{ register_form.register_birthday(class="form-control", id="birthday") }}
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Gender</label>
-          {% for subfield in register_form.gender %}
-            <div class="form-check">
-              {{ subfield(class="form-check-input") }}
-              <label class="form-check-label">{{ subfield.label.text }}</label>
+<body class="h-100">
+  <div class="overlay w-100">
+    <div class="d-flex flex-column min-vh-100">
+      <main class="flex-fill">
+        <div class="container d-flex flex-column justify-content-center align-items-center big-box pb-1 flex-fill">
+          <div class="row centralbox">
+            <div class="face custom-box">
+              <div class="eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+              </div>
             </div>
-          {% endfor %}
+            <div class="form-box">
+              <div class="logo-box">
+                <div class="icon"></div>
+              </div>
+
+              <form method="POST" action="{{ url_for('auth.login') }}">
+                {{ form.hidden_tag() }}
+                <div class="form-floating-input mt-0">
+                  {{ form.uwa_email(class="form-control enhanced-input", placeholder="Enter your Student-email") }}
+                </div>
+
+                <div class="form-floating-input">
+                  {{ form.password(class="form-control enhanced-input", placeholder="Enter your password") }}
+                </div>
+
+                <button class="btn uni-login-btn w-100 mb-2" type="submit" id="login-btn">
+                  <i class="bi bi-box-arrow-in-right me-2"></i> {{ form.submit.label.text }}
+                </button>
+
+                <div class="text-center mb-1"></div>
+                <button class="btn uni-register-btn w-100" type="button" id="register-btn">
+                  <i class="bi bi-person-plus me-2"></i> New here?
+                </button>
+              </form>
+
+            </div>
+          </div>
+          <form method="POST" action="{{ url_for('auth.register') }}" enctype="multipart/form-data">
+            {{ register_form.hidden_tag() }}
+
+            <div class="register-input-box">
+              <div class="col-md-6 register-left">
+                <div class="upload-card animate__animated animate__fadeIn test-box">
+                  <i class="fas fa-user-circle me-2"></i>
+                  <img id="avatarPreview" class="avatar-preview" src="/static/imgs/icon.png" alt="Avatar Preview">
+                  <div class="mb-3 mt-5 w-75 mx-auto">
+                    {{ register_form.avatar(class="form-control", id="avatarInput", accept="image/*") }}
+                  </div>
+                </div>
+                <button class="btn uni-login-btn w-75 mb-2" type="submit" id="upload-btn">
+                  <i class="bi bi-person-plus me-2"></i> {{ register_form.submit.label.text }}
+                </button>
+              </div>
+
+              <div class="register-right">
+                <div class="register-card test-box">
+                  <h4 class="mb-3"><i class="bi bi-person-lines-fill me-2"></i>Register Information</h4>
+
+                  <div class="mb-3">
+                    <label for="username" class="form-label">username</label>
+                    {{ register_form.register_username(class="form-control", id="username") }}
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="email" class="form-label">student email</label>
+                    {{register_form.register_email(class="form-control", id="email") }}
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="password" class="form-label">password</label>
+                    {{ register_form.register_password(class="form-control", id="password") }}
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="birthday" class="form-label">birthday</label>
+                    {{ register_form.register_birthday(class="form-control", id="birthday") }}
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Gender</label>
+                    {% for subfield in register_form.gender %}
+                    <div class="form-check">
+                      {{ subfield(class="form-check-input") }}
+                      <label class="form-check-label">{{ subfield.label.text }}</label>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+
         </div>
-      </div>
-    </div>
-  </div>
-</form>
+      </main>
+      <footer class="mt-auto w-100">
+        <div class="container-fluid px-0">
+          <div class="row">
 
-  <footer class="bg-dark text-white mt-5">
-  <div class="container-fluid py-5">
-    <div class="row">
-
-      <div class="col-lg-4 mb-4">
-        <h2 class="fw-bold fs-2 mb-3">U-PAL</h2>
-        <p class="fs-5 mb-1">Discover your best uni life —</p>
-        <p class="fs-5">explore, eat, learn, connect.</p>
-      </div>
+            <div class="col-lg-4 mb-4">
+              <h2 class="fw-bold fs-2 mb-3">U-PAL</h2>
+              <p class="fs-5 mb-1">Discover your best uni life —</p>
+              <p class="fs-5">explore, eat, learn, connect.</p>
+            </div>
 
 
-      <div class="col-lg-4 mb-4">
-        <h3 class="fw-bold fs-4 mb-3">Quick Links</h3>
-        <ul class="list-unstyled fs-6">
-          <li class="mb-2">
-            <a href="#" class="text-white text-decoration-none">Home</a>
-          </li>
-          <li class="mb-2">
-            <a href="#" class="text-white text-decoration-none">About</a>
-          </li>
-          <li class="mb-2">
-            <a href="#" class="text-white text-decoration-none">Careers</a>
-          </li>
-          <li>
-            <a href="#" class="text-white text-decoration-none">Contact</a>
-          </li>
-        </ul>
-      </div>
+            <div class="col-lg-4 mb-4">
+              <h3 class="fw-bold fs-4 mb-3">Quick Links</h3>
+              <ul class="list-unstyled fs-6">
+                <li class="mb-2">
+                  <a href="#" class="text-white text-decoration-none">Home</a>
+                </li>
+                <li class="mb-2">
+                  <a href="#" class="text-white text-decoration-none">About</a>
+                </li>
+                <li class="mb-2">
+                  <a href="#" class="text-white text-decoration-none">Careers</a>
+                </li>
+                <li>
+                  <a href="#" class="text-white text-decoration-none">Contact</a>
+                </li>
+              </ul>
+            </div>
 
 
-      <div class="col-lg-4 mb-4">
-        <h3 class="fw-bold fs-4 mb-3">Follow Us</h3>
-        <div class="d-flex fs-2">
-          <a href="#" class="text-white me-4"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="text-white me-4"><i class="bi bi-twitter"></i></a>
-          <a href="#" class="text-white me-4"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="text-white"><i class="bi bi-wechat"></i></a>
+            <div class="col-lg-4 mb-4">
+              <h3 class="fw-bold fs-4 mb-3">Follow Us</h3>
+              <div class="d-flex fs-2">
+                <a href="#" class="text-white me-4"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-white me-4"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="text-white me-4"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-wechat"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <hr class="border-light my-4" />
+
+          <div class="text-center fs-6">
+            &copy; 2025 U-Pal. All rights reserved.
+          </div>
         </div>
-      </div>
+      </footer>
     </div>
 
-    <hr class="border-light my-4" />
 
-    <div class="text-center fs-6">
-      &copy; 2025 U-Pal. All rights reserved.
-    </div>
+    {% if error %}
+    <script>
+      window.loginError = "{{ error | safe }}";
+    </script>
+    {% endif %}
   </div>
-</footer>
-  </div>
-     {% if error %}
-  <script>
-    window.loginError = "{{ error | safe }}";
-  </script>
-  {% endif %}
-
 </body>
 
 </html>
