@@ -151,13 +151,13 @@
                 </ul>
             </div>
 
-            <div id="snap" style="display:none;">
+            <div id="snap">
                 <ul>
-                    {% if best_reviews %}
+                    {% if Most_Instagrammable %}
                     <li>
                         <div class="image-card">
-                            <img src="{{ url_for('static', filename=best_reviews.image_path) }}" alt="Best Reviews">
-                            <div class="winner-title">{{ best_reviews.spot_name }}</div>
+                            <img src="{{ url_for('static', filename=Most_Instagrammable.image_path) }}" alt="Best Reviews">
+                            <div class="winner-title">{{ Most_Instagrammable.spot_name }}</div>
                         </div>
                         <br>
                         <button class="award-button" data-award="Best Reviews" data-category="5" data-metric="rank_overall">Best Reviews</button>
@@ -188,7 +188,7 @@
                 </ul>
             </div>
 
-            <div id="fun" style="display:none;">
+            <div id="fun">
                 <ul>
                     {% if best_reviews %}
                     <li>

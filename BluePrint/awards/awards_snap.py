@@ -8,8 +8,8 @@ from BluePrint.awards import awards_bp
 def snap_awards_page():
     category_id = 5  # NOTE: SNAP CATEGORY
 
-    # Best Reviews → rank_overall
-    best_reviews = db.session.query(
+    # Most Instagramable → rank_overall
+    Most_Instagrammable = db.session.query(
         SpotModel,
         func.avg(reviewstModel.rank_overall).label('avg_score')
     ).join(reviewstModel, SpotModel.spot_ID == reviewstModel.spot_ID)\
@@ -45,13 +45,13 @@ def snap_awards_page():
         setattr(spot, avg_label, round(avg, 2))
         return spot
 
-    best_reviews = attach_data(best_reviews, 'avg_score')
+    Most_Instagrammable = attach_data(Most_Instagrammable, 'avg_score')
     solo_shoot = attach_data(solo_shoot, 'avg_crowdedness')
     best_vibe = attach_data(best_vibe, 'avg_atmosphere')
 
     return render_template(
         'awards.html',
-        best_reviews=best_reviews,
+        Most_Instagrammable=Most_Instagrammable,
         solo_shoot=solo_shoot,
         best_vibe=best_vibe
     )
