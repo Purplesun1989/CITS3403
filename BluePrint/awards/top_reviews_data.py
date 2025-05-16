@@ -15,7 +15,8 @@ def top_reviews_data():
         'rank_noise_level': reviewstModel.rank_noise_level,
         'rank_value': reviewstModel.rank_value,
         'rank_service_quality': reviewstModel.rank_service_quality,
-        'rank_atmosphere': reviewstModel.rank_atmosphere
+        'rank_atmosphere': reviewstModel.rank_atmosphere,
+        'rank_crowdedness': reviewstModel.rank_crowdedness
     }
 
     if metric not in allowed:
