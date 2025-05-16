@@ -28,3 +28,4 @@ greenlet~=3.2.1
 websocket-client~=1.8.0
 pycparser~=2.22
 wsproto~=1.2.0
+email_validator~=2.2.0
