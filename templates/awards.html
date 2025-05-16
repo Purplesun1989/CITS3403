@@ -33,8 +33,6 @@
             <a href="{{ url_for('awards.fun_awards_page') }}">
                 <button  id="funButton">Fun</button>
             </a>
-            <button id="shopButton">Shop</button>
-            <button id="chillButton">Chill</button>
         </div>
 
         <div class="awards-container">
@@ -225,57 +223,6 @@
                 </ul>
             </div>
 
-            <div id="shop" style="display:none;">
-                <ul>
-                    <li>
-                        <h2>Winner Placeholder</h2>
-                        <br>
-                        <img src="{{ url_for('static', filename='imgs/Awards/Placeholder.jpg') }}" alt="Most Affordable">                                          
-                        <br>
-                        <button class="award-button" data-award="Most Affordable">Most Affordable</button>
-                    </li>
-                    <li>
-                        <h2>Winner Placeholder</h2>
-                        <br>
-                        <img src="{{ url_for('static', filename='imgs/Awards/Placeholder.jpg') }}" alt="Best Variety">                                          
-                        <br>
-                        <button class="award-button" data-award="Best Variety">Best Variety</button>
-                    </li>
-                    <li>
-                        <h2>Winner Placeholder</h2>
-                        <br>
-                        <img src="{{ url_for('static', filename='imgs/Awards/Placeholder.jpg') }}" alt="Fastest Service">                                          
-                        <br>
-                        <button class="award-button" data-award="Fastest Service">Fastest Service</button>
-                    </li>
-                </ul>
-            </div>
-
-            <div id="chill" style="display:none;">
-                <ul>
-                    <li>
-                        <h2>Winner Placeholder</h2>
-                        <br>
-                        <img src="{{ url_for('static', filename='imgs/Awards/Placeholder.jpg') }}" alt="Best Hangout">                                          
-                        <br>
-                        <button class="award-button" data-award="Best Hangout">Best Hangout</button>
-                    </li>
-                    <li>
-                        <h2>Winner Placeholder</h2>
-                        <br>
-                        <img src="{{ url_for('static', filename='imgs/Awards/Placeholder.jpg') }}" alt="Most Relaxing">                                          
-                        <br>
-                        <button class="award-button" data-award="Most Relaxing">Most Relaxing</button>
-                    </li>
-                    <li>
-                        <h2>Winner Placeholder</h2>
-                        <br>
-                        <img src="{{ url_for('static', filename='imgs/Awards/Placeholder.jpg') }}" alt="Peaceful Vibes">                                          
-                        <br>
-                        <button class="award-button" data-award="Peaceful Vibes">Peaceful Vibes</button>
-                    </li>
-                </ul>
-            </div>
 
             <div id="award-stats">
                 <h3 id="award-title"></h3>
@@ -292,15 +239,12 @@
         const grubButton = document.getElementById('grubButton');
         const snapButton = document.getElementById('snapButton');
         const funButton = document.getElementById('funButton');
-        const shopButton = document.getElementById('shopButton');
-        const chillButton = document.getElementById('chillButton');
 
         const study = document.getElementById('study');
         const grub = document.getElementById('grub');
         const snap = document.getElementById('snap');
         const fun = document.getElementById('fun');
-        const shop = document.getElementById('shop');
-        const chill = document.getElementById('chill');
+
 
         const awardStats = document.getElementById('award-stats');
         const awardTitle = document.getElementById('award-title');
@@ -311,8 +255,6 @@
             grub.style.display = 'none';
             snap.style.display = 'none';
             fun.style.display = 'none';
-            shop.style.display = 'none';
-            chill.style.display = 'none';
             awardStats.style.display = 'none';
         }
 
