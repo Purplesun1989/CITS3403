@@ -52,7 +52,7 @@ Visit the app in your browser: [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 ## 🧪 Running Tests
 
 This project includes both unit tests and Selenium-based UI tests.
-Note: This project was tested on macOS. It should run on macOS/Linux as long as Python 3.11+ and dependencies are properly installed. Any OS-specific issues are declared in this README.
+Note: This project was tested on macOS. The selenium runs right on macOS. 
 
 To run unit tests:
 ```bash
