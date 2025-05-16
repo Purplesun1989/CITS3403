@@ -34,21 +34,13 @@ git clone (https://github.com/undergraduateuwa/CITS3403)
 
 ```
 
-### 2. (Optional) Create a Virtual Environment
-```bash
-python -m venv venv
-# On Windows:
-venv\Scripts\activate
-# On macOS/Linux:
-source venv/bin/activate
-```
 
-### 3. Install Dependencies
+### 2. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run the Application
+### 3. Run the Application
 ```bash
 python app.py
 ```
@@ -96,7 +88,7 @@ python -m unittest discover project_tests/selenium_tests
 
 ## 👨‍💻 Authors
 
-Name	         Student ID	
-Johen Ciu	     24369572	
-Johan llagan	 23832843
-Layla V.	     24230713
+Name	         Student ID	    github
+Johen Ciu	     24369572	      Purplesun1989
+Johan llagan	 23832843       jcarlo-mabini
+Layla V.	     24230713       laylaVanStaden
